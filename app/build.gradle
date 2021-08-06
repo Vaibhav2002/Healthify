@@ -9,7 +9,7 @@ plugins {
 
 android {
     compileSdkVersion 30
-    buildToolsVersion "31.0.0"
+    buildToolsVersion "30.0.0"
 
     defaultConfig {
         applicationId "com.vaibhav.healthify"
@@ -17,6 +17,8 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
+
+        manifestPlaceholders = [auth0Domain: "@string/domain", auth0Scheme: "@string/scheme"]
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -62,10 +64,11 @@ dependencies {
     // optional - helpers for implementing LifecycleOwner in a Service
     implementation "androidx.lifecycle:lifecycle-service:$lifecycle_version"
 
+    //dataStore
+    implementation "androidx.datastore:datastore-preferences:1.0.0"
+
 
     implementation platform('com.google.firebase:firebase-bom:28.1.0')
-    implementation 'com.google.firebase:firebase-crashlytics-ktx'
-    implementation 'com.google.firebase:firebase-analytics-ktx'
     implementation 'com.google.firebase:firebase-firestore-ktx'
     implementation 'com.google.firebase:firebase-storage-ktx'
 

@@ -1,1 +1,5 @@
 /build
+/google-services.json
+/src/main/java/com/vaibhav/healthify/util/Secrets.kt
+/src/main/res/values/secrets.xml
+/src/main/res/values/strings.xml

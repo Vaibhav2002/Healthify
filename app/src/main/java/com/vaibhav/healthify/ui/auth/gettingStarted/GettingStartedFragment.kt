@@ -1,60 +1,96 @@
 package com.vaibhav.healthify.ui.auth.gettingStarted
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
+import com.auth0.android.Auth0
+import com.auth0.android.authentication.AuthenticationAPIClient
+import com.auth0.android.authentication.AuthenticationException
+import com.auth0.android.callback.Callback
+import com.auth0.android.provider.WebAuthProvider
+import com.auth0.android.result.Credentials
+import com.auth0.android.result.UserProfile
 import com.vaibhav.healthify.R
+import com.vaibhav.healthify.databinding.FragmentGettingStartedBinding
+import com.vaibhav.healthify.util.showToast
+import com.vaibhav.healthify.util.viewBinding
+import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.collect
+import javax.inject.Inject
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+@AndroidEntryPoint
+class GettingStartedFragment : Fragment(R.layout.fragment_getting_started) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [GettingStartedFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class GettingStartedFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private val binding by viewBinding(FragmentGettingStartedBinding::bind)
+    private val viewModel by viewModels<GettingStartedViewModel>()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    @Inject
+    lateinit var auth0: Auth0
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding.btnLogin.setOnClickListener {
+            loginUser()
+        }
+        collectUiState()
+        collectUiEvents()
+    }
+
+    private fun collectUiState() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.uiState.collect {
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_getting_started, container, false)
-    }
-
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment GettingStartedFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GettingStartedFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+    private fun collectUiEvents() {
+        viewLifecycleOwner.lifecycleScope.launchWhenStarted {
+            viewModel.events.collect {
+                when (it) {
+                    is GettingStartedScreenEvents.Error -> requireContext().showToast(it.message)
+                    GettingStartedScreenEvents.Logout -> {
+                    }
+                    GettingStartedScreenEvents.NavigateFurther -> {
+                    }
                 }
             }
+        }
+    }
+
+    private fun loginUser() {
+        viewModel.startLoading()
+        WebAuthProvider
+            .login(auth0)
+            .withScheme(getString(R.string.scheme))
+            .withScope("openid profile email read:current_user update:current_user_metadata")
+            .start(
+                requireContext(),
+                object : Callback<Credentials, AuthenticationException> {
+                    override fun onFailure(error: AuthenticationException) {
+                        viewModel.sendError(error.message.toString())
+                    }
+
+                    override fun onSuccess(result: Credentials) {
+                        getUserProfile(result.accessToken)
+                    }
+                }
+            )
+    }
+
+    private fun getUserProfile(accessToken: String) {
+        val client = AuthenticationAPIClient(auth0)
+        client.userInfo(accessToken)
+            .start(object : Callback<UserProfile, AuthenticationException> {
+                override fun onFailure(error: AuthenticationException) {
+                    viewModel.sendError(error.message.toString())
+                }
+
+                override fun onSuccess(result: UserProfile) {
+                    viewModel.saveUser(result)
+                    viewModel.loginComplete()
+                }
+            })
     }
 }
