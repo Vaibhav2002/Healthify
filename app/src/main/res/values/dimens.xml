@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="username_illustration_size">300dp</dimen>
+    <dimen name="boundary">16dp</dimen>
+</resources>

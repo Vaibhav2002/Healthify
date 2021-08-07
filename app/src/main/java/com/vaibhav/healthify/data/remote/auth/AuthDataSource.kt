@@ -5,7 +5,11 @@ import com.vaibhav.healthify.util.Resource
 
 interface AuthDataSource {
 
-    suspend fun getUserDataFromFirestore(email: String): Resource<UserDTO>
+    suspend fun getUserData(email: String): Resource<UserDTO>
 
-    suspend fun saveUserDataInFireStore(user: UserDTO): Resource<UserDTO>
+    suspend fun saveUserData(user: UserDTO): Resource<UserDTO>
+
+    suspend fun saveUserName(username: String, email: String): Resource<Unit>
+
+    suspend fun saveUserAgeAndWeight(age: Int, weight: Float, email: String): Resource<Unit>
 }

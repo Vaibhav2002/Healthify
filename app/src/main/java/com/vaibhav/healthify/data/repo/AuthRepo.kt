@@ -17,8 +17,16 @@ class AuthRepo @Inject constructor(
     private val userMapper: UserMapper
 ) {
 
+    companion object {
+        private const val USER_NOT_LOGGED_IN = "User is not logged in"
+    }
+
+    private suspend fun getCurrentUser() = preferencesRepo.getUserData()
+
+    private suspend fun isUserLoggedIn() = getCurrentUser() != null
+
     suspend fun continueAfterLogin(userProfile: UserProfile) = withContext(Dispatchers.IO) {
-        val userResource = authDataSource.getUserDataFromFirestore(userProfile.email.toString())
+        val userResource = authDataSource.getUserData(userProfile.email.toString())
         return@withContext if (userResource is Resource.Error) {
             if (userResource.message == USER_DOES_NOT_EXIST) addUserToFirestore(
                 createUserDTO(userProfile)
@@ -34,8 +42,31 @@ class AuthRepo @Inject constructor(
         removeUserFromPreferences()
     }
 
+    suspend fun saveUserName(username: String) = withContext(Dispatchers.IO) {
+        val user = getCurrentUser()
+        return@withContext user?.let {
+            it.username = username
+            val resource = authDataSource.saveUserName(username, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
+    suspend fun saveUserAgeAndWeight(age: Int, weight: Float) = withContext(Dispatchers.IO) {
+        val user = getCurrentUser()
+        return@withContext user?.let {
+            it.age = age
+            it.weight = weight
+            val resource = authDataSource.saveUserAgeAndWeight(age, weight, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
     private suspend fun addUserToFirestore(userDTO: UserDTO): Resource<UserDTO> {
-        val resource = authDataSource.saveUserDataInFireStore(userDTO)
+        val resource = authDataSource.saveUserData(userDTO)
         if (resource is Resource.Success) saveUserIntoPreferences(userMapper.toEntity(userDTO))
         return resource
     }

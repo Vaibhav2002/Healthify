@@ -13,6 +13,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthify">
         <activity
+            android:name=".ui.userDetailsInput.UserDetailsActivity"
+            android:theme="@style/Theme.Healthify.NoStatusBarTheme" />
+        <activity
             android:name=".ui.auth.AuthActivity"
             android:theme="@style/Theme.Healthify.NoStatusBarTheme">
             <intent-filter>
@@ -21,9 +24,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity">
-
-        </activity>
+        <activity android:name=".ui.MainActivity"></activity>
     </application>
 
 </manifest>

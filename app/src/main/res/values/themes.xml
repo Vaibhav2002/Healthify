@@ -27,7 +27,15 @@
         <item name="android:background">@color/lt_blue</item>
     </style>
 
+    <style name="ColoredText">
+        <item name="android:textColor">@color/surface</item>
+    </style>
+
+    <style name="questionColor">
+        <item name="android:textColor">@color/surface</item>
+    </style>
+
     <style name="grayText">
-        <item name="android:textColor">@color/gray4</item>
+        <item name="android:textColor">@color/gray2</item>
     </style>
 </resources>

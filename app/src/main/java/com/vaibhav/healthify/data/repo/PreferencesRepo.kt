@@ -31,10 +31,12 @@ class PreferencesRepo @Inject constructor(private val dataStore: DataStore<Prefe
         }
     }
 
-    suspend fun getUserData(): User = withContext(Dispatchers.IO) {
+    suspend fun getUserData(): User? = withContext(Dispatchers.IO) {
         return@withContext dataStore.data.map {
             val serializedUser = it[USER_KEY]
-            return@map Gson().fromJson(serializedUser, User::class.java)
+            return@map serializedUser?.let { sUser ->
+                Gson().fromJson(sUser, User::class.java)
+            }
         }.first()
     }
 }

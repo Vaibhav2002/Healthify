@@ -9,10 +9,5 @@
         android:id="@+id/gettingStartedFragment"
         android:name="com.vaibhav.healthify.ui.auth.gettingStarted.GettingStartedFragment"
         android:label="fragment_getting_started"
-        tools:layout="@layout/fragment_getting_started">
-        <deepLink
-            android:id="@+id/deepLink"
-            android:autoVerify="true"
-            app:uri="https://www.healthify.com/getting-started" />
-    </fragment>
+        tools:layout="@layout/fragment_getting_started" />
 </navigation>

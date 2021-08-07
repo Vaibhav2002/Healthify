@@ -64,6 +64,7 @@
     <style name="TextAppearance.MdcTypographyStyles.Button" parent="TextAppearance.MaterialComponents.Button">
         <item name="fontFamily">@font/quicksand_bold</item>
         <item name="android:fontFamily">@font/quicksand_bold</item>
+        <item name="android:textAllCaps">false</item>
         <item name="android:textSize">19sp</item>
     </style>
 

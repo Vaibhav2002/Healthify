@@ -1,8 +1,12 @@
 package com.vaibhav.healthify.data.models.local
 
 data class User(
-    val username: String,
+    var username: String,
     val email: String,
     val profileImg: String,
-    val exp: Int
+    var exp: Int,
+    var waterLimit: Int,
+    var sleepLimit: Int,
+    var age: Int,
+    var weight: Float
 )

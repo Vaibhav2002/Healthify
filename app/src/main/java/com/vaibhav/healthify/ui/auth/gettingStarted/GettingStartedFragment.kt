@@ -1,5 +1,6 @@
 package com.vaibhav.healthify.ui.auth.gettingStarted
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
@@ -14,10 +15,12 @@ import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentGettingStartedBinding
+import com.vaibhav.healthify.ui.userDetailsInput.UserDetailsActivity
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -34,6 +37,7 @@ class GettingStartedFragment : Fragment(R.layout.fragment_getting_started) {
         binding.btnLogin.setOnClickListener {
             loginUser()
         }
+
         collectUiState()
         collectUiEvents()
     }
@@ -41,6 +45,8 @@ class GettingStartedFragment : Fragment(R.layout.fragment_getting_started) {
     private fun collectUiState() {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
+                binding.btnLogin.isEnabled = it.isButtonEnabled
+//                TODO("Add loading animation")
             }
         }
     }
@@ -49,10 +55,14 @@ class GettingStartedFragment : Fragment(R.layout.fragment_getting_started) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.events.collect {
                 when (it) {
-                    is GettingStartedScreenEvents.Error -> requireContext().showToast(it.message)
-                    GettingStartedScreenEvents.Logout -> {
-                    }
+                    is GettingStartedScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                    GettingStartedScreenEvents.Logout -> logoutUser()
                     GettingStartedScreenEvents.NavigateFurther -> {
+                        Timber.d("Navigate away")
+                        Intent(requireContext(), UserDetailsActivity::class.java).also { intent ->
+                            startActivity(intent)
+                            requireActivity().finish()
+                        }
                     }
                 }
             }
@@ -92,5 +102,23 @@ class GettingStartedFragment : Fragment(R.layout.fragment_getting_started) {
                     viewModel.loginComplete()
                 }
             })
+    }
+
+    private fun logoutUser() {
+        WebAuthProvider
+            .logout(auth0)
+            .withScheme(getString(R.string.scheme))
+            .start(
+                requireContext(),
+                object : Callback<Void?, AuthenticationException> {
+                    override fun onFailure(error: AuthenticationException) {
+                        viewModel.logoutFailed()
+                    }
+
+                    override fun onSuccess(result: Void?) {
+                        viewModel.logoutComplete()
+                    }
+                }
+            )
     }
 }

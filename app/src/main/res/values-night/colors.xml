@@ -1,13 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <color name="white">#ffffff</color>
     <color name="gray2">#f1f1f1</color>
     <color name="gray3">#AAAAAA</color>
     <color name="gray4">#9a9a9a</color>
     <color name="gray5">#6A6A6A</color>
     <color name="black">#000000</color>
-
 
 
     <!--    lightTheme-->
@@ -27,14 +25,11 @@
     <color name="dt_yellow">#f0c38e</color>
     <color name="dt_gray">#ececed</color>
 
-
-    <color name="secondary_button_color">@color/lt_blue</color>
+    <color name="secondary_button_color">@color/dt_yellow</color>
     <color name="secondary_button_color_disabled">@color/gray5</color>
 
-
-    <color name="nextIconTint">@color/surface</color>
-    <color name="primary_button_color">@color/lt_darkpblue</color>
+    <color name="nextIconTint">@color/dt_darkpblue</color>
+    <color name="primary_button_color">@color/dt_yellow</color>
     <color name="primary_button_color_disabled">@color/gray5</color>
-
 
 </resources>

@@ -27,6 +27,14 @@
         <item name="android:background">@color/dt_darkpblue</item>
     </style>
 
+    <style name="ColoredText">
+        <item name="android:textColor">@color/dt_yellow</item>
+    </style>
+
+    <style name="questionColor">
+        <item name="android:textColor">@color/dt_pink</item>
+    </style>
+
     <style name="grayText">
         <item name="android:textColor">@color/dt_gray</item>
     </style>

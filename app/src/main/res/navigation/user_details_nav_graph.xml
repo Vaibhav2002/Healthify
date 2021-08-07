@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/user_details_nav_graph"
+    app:startDestination="@id/getUserNameFragment">
+
+    <fragment
+        android:id="@+id/getUserNameFragment"
+        android:name="com.vaibhav.healthify.ui.userDetailsInput.userName.GetUserNameFragment"
+        android:label="fragment_get_user_name"
+        tools:layout="@layout/fragment_get_user_name">
+        <action
+            android:id="@+id/action_getUserNameFragment_to_userAgeAndWeightFragment"
+            app:destination="@id/userAgeAndWeightFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userAgeAndWeightFragment"
+        android:name="com.vaibhav.healthify.ui.userDetailsInput.ageAndWeight.UserAgeAndWeightFragment"
+        android:label="fragment_user_age_and_weight"
+        tools:layout="@layout/fragment_user_age_and_weight" />
+</navigation>

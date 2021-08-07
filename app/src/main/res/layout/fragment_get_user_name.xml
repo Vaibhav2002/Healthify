@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/authBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.userDetailsInput.userName.GetUserNameFragment">
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.airbnb.lottie.LottieAnimationView
+            android:layout_width="@dimen/username_illustration_size"
+            android:layout_height="@dimen/username_illustration_size"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="40dp"
+            app:lottie_autoPlay="true"
+            app:lottie_loop="true"
+            app:lottie_rawRes="@raw/forget_animation" />
+
+        <TextView
+            style="@style/ColoredText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="32dp"
+            android:text="@string/what_should_we_ncall_you"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4" />
+
+        <EditText
+            android:id="@+id/username_input"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded_text_box"
+            android:hint="@string/enter_your_name"
+            android:inputType="textPersonName"
+            android:maxLines="1"
+            android:padding="16dp"
+            android:singleLine="true"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1" />
+
+        <ImageButton
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/next_button"
+            android:elevation="8dp"
+            android:paddingHorizontal="24dp"
+            android:paddingVertical="8dp"
+            android:src="@drawable/ic_next_arrow"
+            app:tint="@color/nextIconTint" />
+
+
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

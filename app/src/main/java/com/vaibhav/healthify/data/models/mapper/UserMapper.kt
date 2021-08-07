@@ -9,7 +9,11 @@ class UserMapper : Mapper<User, UserDTO> {
             username = dto.username,
             email = dto.email,
             profileImg = dto.profileImg,
-            exp = dto.exp
+            exp = dto.exp,
+            waterLimit = dto.waterLimit,
+            sleepLimit = dto.sleepLimit,
+            age = dto.age,
+            weight = dto.weight
         )
     }
 
@@ -24,7 +28,11 @@ class UserMapper : Mapper<User, UserDTO> {
             username = entity.username,
             email = entity.email,
             profileImg = entity.profileImg,
-            exp = entity.exp
+            exp = entity.exp,
+            waterLimit = entity.waterLimit,
+            sleepLimit = entity.sleepLimit,
+            age = entity.age,
+            weight = entity.weight
         )
     }
 }
