@@ -2,6 +2,7 @@ package com.vaibhav.healthify.ui.userDetailsInput.userName
 
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -39,7 +40,7 @@ class GetUserNameFragment : Fragment(R.layout.fragment_get_user_name) {
         viewLifecycleOwner.lifecycleScope.launchWhenStarted {
             viewModel.uiState.collect {
                 binding.nextButton.isEnabled = it.isNextButtonEnabled
-//                TODO("Add loading animation")
+                binding.loadingLayout.loadingLayout.isVisible = it.isLoading
             }
         }
     }
@@ -49,7 +50,7 @@ class GetUserNameFragment : Fragment(R.layout.fragment_get_user_name) {
             viewModel.events.collect {
                 when (it) {
                     GetUserNameScreenEvents.NavigateToNextScreen -> {
-                        findNavController().navigate(R.id.action_getUserNameFragment_to_userAgeAndWeightFragment)
+                        findNavController().navigate(R.id.action_getUserNameFragment_to_userWeightFragment)
                     }
                     is GetUserNameScreenEvents.ShowToast -> requireContext().showToast(it.message)
                 }

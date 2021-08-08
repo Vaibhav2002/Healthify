@@ -11,12 +11,21 @@
         android:label="fragment_get_user_name"
         tools:layout="@layout/fragment_get_user_name">
         <action
-            android:id="@+id/action_getUserNameFragment_to_userAgeAndWeightFragment"
-            app:destination="@id/userAgeAndWeightFragment" />
+            android:id="@+id/action_getUserNameFragment_to_userWeightFragment"
+            app:destination="@id/userWeightFragment" />
     </fragment>
     <fragment
-        android:id="@+id/userAgeAndWeightFragment"
-        android:name="com.vaibhav.healthify.ui.userDetailsInput.ageAndWeight.UserAgeAndWeightFragment"
+        android:id="@+id/userWeightFragment"
+        android:name="com.vaibhav.healthify.ui.userDetailsInput.weight.UserWeightFragment"
         android:label="fragment_user_age_and_weight"
-        tools:layout="@layout/fragment_user_age_and_weight" />
+        tools:layout="@layout/fragment_user_weight">
+        <action
+            android:id="@+id/action_userWeightFragment_to_userAgeFragment"
+            app:destination="@id/userAgeFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userAgeFragment"
+        android:name="com.vaibhav.healthify.ui.userDetailsInput.age.UserAgeFragment"
+        android:label="fragment_user_age"
+        tools:layout="@layout/fragment_user_age" />
 </navigation>

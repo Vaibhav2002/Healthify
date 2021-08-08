@@ -25,6 +25,17 @@ class AuthRepo @Inject constructor(
 
     private suspend fun isUserLoggedIn() = getCurrentUser() != null
 
+    suspend fun isUserRegistered(userProfile: UserProfile): Resource<Boolean> =
+        withContext(Dispatchers.IO) {
+            val userResource = authDataSource.getUserData(userProfile.email!!)
+            return@withContext if (userResource is Resource.Error) {
+                if (userResource.message == USER_DOES_NOT_EXIST)
+                    Resource.Success(false)
+                else
+                    Resource.Error(userResource.message)
+            } else Resource.Success(true)
+        }
+
     suspend fun continueAfterLogin(userProfile: UserProfile) = withContext(Dispatchers.IO) {
         val userResource = authDataSource.getUserData(userProfile.email.toString())
         return@withContext if (userResource is Resource.Error) {
@@ -53,12 +64,22 @@ class AuthRepo @Inject constructor(
         } ?: Resource.Error(USER_NOT_LOGGED_IN)
     }
 
-    suspend fun saveUserAgeAndWeight(age: Int, weight: Float) = withContext(Dispatchers.IO) {
+    suspend fun saveUserAge(age: Int) = withContext(Dispatchers.IO) {
         val user = getCurrentUser()
         return@withContext user?.let {
             it.age = age
+            val resource = authDataSource.saveUserAge(age, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
+    suspend fun saveUserWeight(weight: Int) = withContext(Dispatchers.IO) {
+        val user = getCurrentUser()
+        return@withContext user?.let {
             it.weight = weight
-            val resource = authDataSource.saveUserAgeAndWeight(age, weight, it.email)
+            val resource = authDataSource.saveUserWeight(weight, it.email)
             if (resource is Resource.Success)
                 saveUserIntoPreferences(it)
             resource

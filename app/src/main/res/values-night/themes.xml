@@ -10,6 +10,7 @@
         <item name="colorSecondaryVariant">@color/dt_pink</item>
         <item name="colorOnSecondary">@color/dt_darkpblue</item>
 
+        <item name="colorSurface">@color/dt_darkpblue</item>
 
         <item name="colorBackgroundFloating">@color/dt_blue</item>
         <!-- Status bar color. -->

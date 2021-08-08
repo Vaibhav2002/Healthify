@@ -20,7 +20,8 @@ data class GettingStartedScreenState(
 
 sealed class GettingStartedScreenEvents {
     data class ShowToast(val message: String) : GettingStartedScreenEvents()
-    object NavigateFurther : GettingStartedScreenEvents()
+    object NavigateToUserDetailsScreen : GettingStartedScreenEvents()
+    object NavigateToHomeScreen : GettingStartedScreenEvents()
     object Logout : GettingStartedScreenEvents()
 }
 
@@ -59,11 +60,20 @@ class GettingStartedViewModel @Inject constructor(private val authRepo: AuthRepo
 
     fun loginComplete() = viewModelScope.launch {
         user.value?.let {
+            val isUserAlreadyRegistered = authRepo.isUserRegistered(it)
+            if (isUserAlreadyRegistered is Resource.Error) {
+                sendError(isUserAlreadyRegistered.message)
+                _events.emit(GettingStartedScreenEvents.Logout)
+                return@launch
+            }
             val resource = authRepo.continueAfterLogin(it)
             stopLoading()
             if (resource is Resource.Success) {
                 _events.emit(GettingStartedScreenEvents.ShowToast(LOGIN_SUCCESS))
-                _events.emit(GettingStartedScreenEvents.NavigateFurther)
+                if (isUserAlreadyRegistered.data!!)
+                    _events.emit(GettingStartedScreenEvents.NavigateToHomeScreen)
+                else
+                    _events.emit(GettingStartedScreenEvents.NavigateToUserDetailsScreen)
             } else {
                 sendError(resource.message)
                 _events.emit(GettingStartedScreenEvents.Logout)

@@ -30,10 +30,11 @@ class GetUserNameViewModel @Inject constructor(private val authRepo: AuthRepo) :
     fun onNextButtonClicked() = viewModelScope.launch {
         _uiState.emit(uiState.value.copy(isLoading = true, isNextButtonEnabled = false))
         val resource = authRepo.saveUserName(uiState.value.username)
+        _uiState.emit(uiState.value.copy(isLoading = false))
         if (resource is Resource.Success)
             _events.send(NavigateToNextScreen)
         else {
-            _uiState.emit(uiState.value.copy(isLoading = false, isNextButtonEnabled = true))
+            _uiState.emit(uiState.value.copy(isNextButtonEnabled = true))
             _events.send(GetUserNameScreenEvents.ShowToast(resource.message))
         }
     }

@@ -2,6 +2,6 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
     <corners android:radius="12dp" />
-    <solid android:color="?attr/colorBackgroundFloating" />
+    <solid android:color="@color/username_textBox_color" />
 
 </shape>

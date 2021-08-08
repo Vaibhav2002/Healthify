@@ -79,6 +79,10 @@ dependencies {
     def lottieVersion = "4.0.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
 
+    implementation 'com.github.drynk-app:weighing-scales:1.0.1'
+
+    implementation 'com.github.warkiz.widget:indicatorseekbar:2.1.2'
+
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

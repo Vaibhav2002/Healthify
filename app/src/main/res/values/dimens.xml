@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="username_illustration_size">300dp</dimen>
+    <dimen name="gettingStarted_illustration_size">300dp</dimen>
+    <dimen name="loadingAnimSize">80dp</dimen>
+    <dimen name="loadingAnimPadding">8dp</dimen>
+    <dimen name="loadingAnimCornerRadius">44dp</dimen>
     <dimen name="boundary">16dp</dimen>
 </resources>

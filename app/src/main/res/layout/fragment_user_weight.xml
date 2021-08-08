@@ -2,56 +2,65 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="?attr/colorSurface"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.userDetailsInput.userName.GetUserNameFragment">
-
+    android:background="?attr/colorSurface"
+    tools:context=".ui.userDetailsInput.weight.UserWeightFragment">
 
     <LinearLayout
-        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="@dimen/username_illustration_size"
-            android:layout_height="@dimen/username_illustration_size"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginBottom="40dp"
-            app:lottie_autoPlay="true"
-            app:lottie_loop="true"
-            app:lottie_rawRes="@raw/forget_animation" />
 
         <TextView
             style="@style/ColoredText"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="32dp"
-            android:text="@string/what_should_we_ncall_you"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/boundary"
+            android:layout_marginBottom="8dp"
+            android:text="@string/what_s_your_weight"
+            android:textAlignment="center"
             android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4" />
 
-        <EditText
-            android:id="@+id/username_input"
+        <TextView
+            style="@style/grayText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="56dp"
+            android:text="@string/this_would_help_us_find_the_perfect_water_limit_for_you"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption" />
+
+        <TextView
+            android:id="@+id/userWeight"
+            style="@style/ColoredText"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="160dp"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline3" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/weight_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="16dp"
-            android:layout_marginBottom="24dp"
-            android:background="@drawable/rounded_text_box"
-            android:hint="@string/enter_your_name"
-            android:inputType="textPersonName"
-            android:maxLines="1"
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="24dp"
-            android:singleLine="true"
-            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6" />
+            android:layout_marginBottom="16dp"
+            android:clipToPadding="false"
+            android:scrollbars="none" />
+
+        <ImageView
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="56dp"
+            android:src="@drawable/triangle"
+            app:tint="@color/spokeColor" />
+
 
         <ImageButton
             android:id="@+id/nextButton"

@@ -10,6 +10,8 @@
         <item name="colorSecondaryVariant">@color/lt_yellow</item>
         <item name="colorOnSecondary">@color/surface</item>
 
+        <item name="colorSurface">@color/surface</item>
+
         <item name="colorBackgroundFloating">@color/surface</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/white</item>
@@ -28,14 +30,14 @@
     </style>
 
     <style name="ColoredText">
-        <item name="android:textColor">@color/surface</item>
+        <item name="android:textColor">@color/lt_darkpblue</item>
     </style>
 
     <style name="questionColor">
-        <item name="android:textColor">@color/surface</item>
+        <item name="android:textColor">@color/lt_darkpblue</item>
     </style>
 
     <style name="grayText">
-        <item name="android:textColor">@color/gray2</item>
+        <item name="android:textColor">@color/gray5</item>
     </style>
 </resources>

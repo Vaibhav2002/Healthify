@@ -8,5 +8,5 @@ data class User(
     var waterLimit: Int,
     var sleepLimit: Int,
     var age: Int,
-    var weight: Float
+    var weight: Int
 )

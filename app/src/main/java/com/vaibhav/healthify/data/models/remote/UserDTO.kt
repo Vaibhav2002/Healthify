@@ -8,5 +8,5 @@ data class UserDTO(
     val waterLimit: Int = 0,
     val sleepLimit: Int = 0,
     val age: Int = 0,
-    val weight: Float = 0f
+    val weight: Int = 0
 )
