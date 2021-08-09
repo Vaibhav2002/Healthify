@@ -6,6 +6,7 @@
     <color name="gray3">#AAAAAA</color>
     <color name="gray4">#9a9a9a</color>
     <color name="gray5">#6A6A6A</color>
+    <color name="gray6">#535353</color>
     <color name="black">#000000</color>
 
 
@@ -41,6 +42,24 @@
     <color name="indicatorColor">@color/lt_darkpblue</color>
     <color name="indicatorTrackColor">#90003cbf</color>
     <color name="indicatorTextColor">@color/surface</color>
+
+
+    <color name="bottom_nav_icon_tint">@color/lt_darkpblue</color>
+    <color name="bottom_nav_icon_tint_disabled">@color/gray6</color>
+    <color name="bottom_nav_bg">@color/white</color>
+
+
+    <color name="dashboard_title_color">@color/lt_deepblue</color>
+
+    <color name="tabLayoutIndicatorColor">@color/dt_deepblue</color>
+
+    <color name="icon_bg_color">@color/lt_blue</color>
+
+    <color name="dashboard_card_color">@color/lt_blue</color>
+    <color name="dashboard_card_add_color">@color/lt_darkpblue</color>
+
+    <color name="fotd_bg_color">@color/lt_yellow</color>
+    <color name="color_on_fotd">@color/lt_deepblue</color>
 
 
 </resources>

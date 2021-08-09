@@ -39,4 +39,22 @@
     <color name="indicatorTrackColor">#90f1aa9b</color>
     <color name="indicatorTextColor">@color/dt_darkpblue</color>
 
+    <color name="bottom_nav_icon_tint">@color/dt_yellow</color>
+    <color name="bottom_nav_icon_tint_disabled">@color/gray2</color>
+    <color name="bottom_nav_bg">@color/dt_blue</color>
+
+
+    <color name="dashboard_title_color">@color/dt_yellow</color>
+
+    <color name="tabLayoutIndicatorColor">@color/dt_yellow</color>
+
+    <color name="icon_bg_color">@color/dt_darkpblue</color>
+
+    <color name="dashboard_card_color">@color/dt_yellow</color>
+    <color name="dashboard_card_add_color">@color/dt_blue</color>
+
+    <color name="fotd_bg_color">@color/dt_pink</color>
+    <color name="color_on_fotd">@color/dt_darkpblue</color>
+
+
 </resources>

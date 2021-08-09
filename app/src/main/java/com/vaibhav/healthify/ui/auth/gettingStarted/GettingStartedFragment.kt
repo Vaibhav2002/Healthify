@@ -16,7 +16,7 @@ import com.auth0.android.result.Credentials
 import com.auth0.android.result.UserProfile
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentGettingStartedBinding
-import com.vaibhav.healthify.ui.MainActivity
+import com.vaibhav.healthify.ui.homeScreen.MainActivity
 import com.vaibhav.healthify.ui.userDetailsInput.UserDetailsActivity
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding

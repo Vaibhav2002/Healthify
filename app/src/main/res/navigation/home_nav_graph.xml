@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.vaibhav.healthify.ui.homeScreen.dashboardScreen.DashboardFragment"
+        android:label="fragment_dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+    <fragment
+        android:id="@+id/statsFragment"
+        android:name="com.vaibhav.healthify.ui.homeScreen.statsScreen.StatsFragment"
+        android:label="StatsFragment"
+        tools:layout="@layout/fragment_stats" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.vaibhav.healthify.ui.homeScreen.profileScreen.ProfileFragment"
+        android:label="fragment_profile"
+        tools:layout="@layout/fragment_profile" />
+</navigation>

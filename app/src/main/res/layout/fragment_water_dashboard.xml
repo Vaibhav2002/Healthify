@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    tools:context=".ui.homeScreen.dashboardScreen.water.WaterDashboardFragment">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/boundary"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/dashboard_card_color"
+                app:cardCornerRadius="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/yayText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintEnd_toStartOf="@+id/relativeLayout2"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        tools:text="Yay !" />
+
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintEnd_toEndOf="@+id/yayText"
+                        app:layout_constraintStart_toStartOf="@id/yayText"
+                        app:layout_constraintTop_toBottomOf="@id/yayText"
+                        tools:text="You're almost done !" />
+
+                    <TextView
+                        android:id="@+id/completedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintStart_toStartOf="@id/greetingText"
+                        app:layout_constraintTop_toBottomOf="@id/greetingText"
+                        tools:text="2300" />
+
+                    <TextView
+                        android:id="@+id/totalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:alpha="0.9"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintBottom_toBottomOf="@+id/completedText"
+                        app:layout_constraintStart_toEndOf="@id/completedText"
+                        tools:text="/ 3500 mL" />
+
+                    <com.db.williamchart.view.HorizontalBarChartView
+                        android:id="@+id/barChart"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/boundary"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="@dimen/boundary"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/totalText" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/relativeLayout2"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:background="@drawable/mini_card_bg"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:elevation="8dp"
+                            android:src="@drawable/add_water" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/boundary"
+                android:text="Fact of the day"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/fotd_bg_color"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineHeight="24dp"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                        android:textColor="@color/color_on_fotd"
+                        tools:text="@string/fotd_sample_1" />
+
+                </FrameLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/boundary"
+                android:text="Drink Log"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                android:textColor="?attr/colorOnSurface" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/drinkLogRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/water_list_item" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

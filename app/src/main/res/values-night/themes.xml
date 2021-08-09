@@ -24,6 +24,16 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.TabLayout</item>
+    </style>
+
+    <style name="ThemeOverlay.App.TabLayout" parent="">
+        <item name="colorPrimary">@color/dt_yellow</item>
+        <item name="colorSurface">@color/dt_darkpblue</item>
+        <item name="colorOnSurface">@color/dt_yellow</item>
+    </style>
+
     <style name="authBg">
         <item name="android:background">@color/dt_darkpblue</item>
     </style>

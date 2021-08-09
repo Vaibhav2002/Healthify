@@ -9,7 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentUserAgeBinding
-import com.vaibhav.healthify.ui.MainActivity
+import com.vaibhav.healthify.ui.homeScreen.MainActivity
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import com.warkiz.widget.IndicatorSeekBar

@@ -24,7 +24,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.MainActivity"></activity>
+        <activity
+            android:name=".ui.homeScreen.MainActivity"
+            android:theme="@style/Theme.Healthify.NoStatusBarTheme"></activity>
     </application>
 
 </manifest>
