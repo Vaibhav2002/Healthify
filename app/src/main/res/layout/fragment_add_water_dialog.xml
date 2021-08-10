@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="@dimen/boundary"
+    app:cardBackgroundColor="?attr/colorBackgroundFloating"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="16dp"
+    tools:context=".ui.homeScreen.dashboardScreen.addWaterDialog.AddWaterDialogFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select amount"
+            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5" />
+
+        <GridLayout
+            android:id="@+id/add_water_rv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:columnCount="4">
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/quantity1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/waterImage1"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/hot_cup" />
+
+                <TextView
+                    android:id="@+id/waterQuantity1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="200mL"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/quantity2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/waterImage2"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/mug" />
+
+                <TextView
+                    android:id="@+id/waterQuantity2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="400mL"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/quantity3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/waterImage3"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/water_glass" />
+
+                <TextView
+                    android:id="@+id/waterQuantity3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="600mL"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/quantity4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/waterImage4"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/mineral_water" />
+
+                <TextView
+                    android:id="@+id/waterQuantity4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="800mL"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </LinearLayout>
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:id="@+id/quantity5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_columnWeight="1"
+                android:layout_margin="4dp"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="8dp">
+
+                <ImageView
+                    android:id="@+id/waterImage5"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:src="@drawable/water_bottle" />
+
+                <TextView
+                    android:id="@+id/waterQuantity5"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="1000mL"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                    android:textColor="?attr/colorOnSurface" />
+
+            </LinearLayout>
+
+
+        </GridLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

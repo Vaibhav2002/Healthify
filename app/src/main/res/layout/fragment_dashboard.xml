@@ -17,6 +17,7 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
+            android:id="@+id/greetingUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/boundary"
@@ -24,7 +25,7 @@
             android:ellipsize="end"
             android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
             android:textColor="@color/dashboard_title_color"
-            tools:text="Hey Vaibhav !" />
+            android:text="Hey Vaibhav !" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tableLayout"

@@ -3,6 +3,7 @@ package com.vaibhav.healthify.data.remote.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vaibhav.healthify.data.models.remote.UserDTO
 import com.vaibhav.healthify.util.Resource
+import com.vaibhav.healthify.util.USER_COLLECTION
 import com.vaibhav.healthify.util.USER_DOES_NOT_EXIST
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -10,10 +11,6 @@ import javax.inject.Inject
 class FirebaseAuthDataSource @Inject constructor(
     private val fireStore: FirebaseFirestore
 ) : AuthDataSource {
-
-    companion object {
-        private const val USER_COLLECTION = "users"
-    }
 
     override suspend fun getUserData(email: String): Resource<UserDTO> =
         try {
@@ -53,10 +50,14 @@ class FirebaseAuthDataSource @Inject constructor(
             Resource.Error(e.message.toString())
         }
 
-    override suspend fun saveUserWeight(weight: Int, email: String): Resource<Unit> =
+    override suspend fun saveUserWeightAndWaterQuantity(
+        weight: Int,
+        waterLimit: Int,
+        email: String
+    ): Resource<Unit> =
         try {
             fireStore.collection(USER_COLLECTION).document(email)
-                .update("weight", weight).await()
+                .update("weight", weight, "waterLimit", waterLimit).await()
             Resource.Success()
         } catch (e: Exception) {
             Resource.Error(e.message.toString())

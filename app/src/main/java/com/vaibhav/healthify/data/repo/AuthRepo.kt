@@ -21,7 +21,7 @@ class AuthRepo @Inject constructor(
         private const val USER_NOT_LOGGED_IN = "User is not logged in"
     }
 
-    private suspend fun getCurrentUser() = preferencesRepo.getUserData()
+    suspend fun getCurrentUser() = preferencesRepo.getUserData()
 
     private suspend fun isUserLoggedIn() = getCurrentUser() != null
 
@@ -79,7 +79,9 @@ class AuthRepo @Inject constructor(
         val user = getCurrentUser()
         return@withContext user?.let {
             it.weight = weight
-            val resource = authDataSource.saveUserWeight(weight, it.email)
+            it.waterLimit = (weight.toFloat() / 30 * 1000).toInt()
+            val resource =
+                authDataSource.saveUserWeightAndWaterQuantity(weight, it.waterLimit, it.email)
             if (resource is Resource.Success)
                 saveUserIntoPreferences(it)
             resource

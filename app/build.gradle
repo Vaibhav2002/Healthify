@@ -85,6 +85,8 @@ dependencies {
 
     implementation 'com.diogobernardino:williamchart:3.10.1'
 
+    implementation "com.github.skydoves:progressview:1.1.2"
+
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

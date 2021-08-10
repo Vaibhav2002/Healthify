@@ -4,13 +4,17 @@ import android.content.Context
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.preferencesDataStore
+import androidx.room.Room
 import com.auth0.android.Auth0
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
+import com.vaibhav.healthify.data.local.room.HealthifyDB
+import com.vaibhav.healthify.data.local.room.WaterDao
 import com.vaibhav.healthify.data.models.mapper.UserMapper
+import com.vaibhav.healthify.data.models.mapper.WaterMapper
 import com.vaibhav.healthify.util.CLIENT_ID
 import com.vaibhav.healthify.util.DATASTORE
 import com.vaibhav.healthify.util.DOMAIN_NAME
@@ -19,6 +23,7 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -40,8 +45,21 @@ object Module {
         return context.dataStore
     }
 
+    @Provides
+    @Singleton
+    fun providesRoomDb(@ApplicationContext context: Context): HealthifyDB =
+        Room.databaseBuilder(context, HealthifyDB::class.java, "Healthify_DB")
+            .fallbackToDestructiveMigration()
+            .build()
+
+    @Provides
+    fun providesWaterDao(roomDatabase: HealthifyDB): WaterDao = roomDatabase.getWaterDao()
+
     // mappers
 
     @Provides
     fun providesUserMapper(): UserMapper = UserMapper()
+
+    @Provides
+    fun providesWaterMapper(): WaterMapper = WaterMapper()
 }

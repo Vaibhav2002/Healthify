@@ -61,5 +61,8 @@
     <color name="fotd_bg_color">@color/lt_yellow</color>
     <color name="color_on_fotd">@color/lt_deepblue</color>
 
+    <color name="progress_color">@color/lt_darkpblue</color>
+    <color name="progress_bg_color">@color/surface</color>
+
 
 </resources>

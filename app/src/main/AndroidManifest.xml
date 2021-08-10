@@ -26,7 +26,7 @@
         </activity>
         <activity
             android:name=".ui.homeScreen.MainActivity"
-            android:theme="@style/Theme.Healthify.NoStatusBarTheme"></activity>
+            android:theme="@style/Theme.Healthify"></activity>
     </application>
 
 </manifest>

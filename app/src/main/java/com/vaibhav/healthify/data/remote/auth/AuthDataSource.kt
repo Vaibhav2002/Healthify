@@ -13,5 +13,9 @@ interface AuthDataSource {
 
     suspend fun saveUserAge(age: Int, email: String): Resource<Unit>
 
-    suspend fun saveUserWeight(weight: Int, email: String): Resource<Unit>
+    suspend fun saveUserWeightAndWaterQuantity(
+        weight: Int,
+        quantity: Int,
+        email: String
+    ): Resource<Unit>
 }

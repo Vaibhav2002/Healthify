@@ -56,5 +56,7 @@
     <color name="fotd_bg_color">@color/dt_pink</color>
     <color name="color_on_fotd">@color/dt_darkpblue</color>
 
+    <color name="progress_color">@color/dt_blue</color>
+    <color name="progress_bg_color">@color/dt_gray</color>
 
 </resources>
