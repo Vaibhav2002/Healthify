@@ -41,10 +41,14 @@ class FirebaseAuthDataSource @Inject constructor(
             Resource.Error(e.message.toString())
         }
 
-    override suspend fun saveUserAge(age: Int, email: String): Resource<Unit> =
+    override suspend fun saveUserAgeAndSleepLimit(
+        age: Int,
+        limit: Int,
+        email: String
+    ): Resource<Unit> =
         try {
             fireStore.collection(USER_COLLECTION).document(email)
-                .update("age", age).await()
+                .update("age", age, "sleepLimit", limit).await()
             Resource.Success()
         } catch (e: Exception) {
             Resource.Error(e.message.toString())

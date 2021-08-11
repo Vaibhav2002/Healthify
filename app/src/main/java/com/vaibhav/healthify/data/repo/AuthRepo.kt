@@ -7,6 +7,8 @@ import com.vaibhav.healthify.data.models.remote.UserDTO
 import com.vaibhav.healthify.data.remote.auth.FirebaseAuthDataSource
 import com.vaibhav.healthify.util.Resource
 import com.vaibhav.healthify.util.USER_DOES_NOT_EXIST
+import com.vaibhav.healthify.util.getSleepQuantity
+import com.vaibhav.healthify.util.getWaterQuantity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
@@ -68,7 +70,8 @@ class AuthRepo @Inject constructor(
         val user = getCurrentUser()
         return@withContext user?.let {
             it.age = age
-            val resource = authDataSource.saveUserAge(age, it.email)
+            it.sleepLimit = age.getSleepQuantity()
+            val resource = authDataSource.saveUserAgeAndSleepLimit(it.age, it.sleepLimit, it.email)
             if (resource is Resource.Success)
                 saveUserIntoPreferences(it)
             resource
@@ -79,7 +82,7 @@ class AuthRepo @Inject constructor(
         val user = getCurrentUser()
         return@withContext user?.let {
             it.weight = weight
-            it.waterLimit = (weight.toFloat() / 30 * 1000).toInt()
+            it.waterLimit = weight.getWaterQuantity()
             val resource =
                 authDataSource.saveUserWeightAndWaterQuantity(weight, it.waterLimit, it.email)
             if (resource is Resource.Success)

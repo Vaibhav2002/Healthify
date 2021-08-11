@@ -30,7 +30,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding.addWater.setOnClickListener {
-            openAddWaterDialog()
+            viewModel.onAddWaterPressed()
         }
         binding.drinkLogRv.apply {
             setHasFixedSize(false)
@@ -58,6 +58,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
                 completedText.text = it.completedAmount.toString()
                 totalText.text = "/ ${it.totalAmount} mL"
                 progress.progress = it.progress
+                addWater.isEnabled = it.isAddWaterButtonEnabled
                 loadingLayout.loadingAnim.isVisible = it.isLoading
                 waterAdapter.submitList(it.waterLog)
             }

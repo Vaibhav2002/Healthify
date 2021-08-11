@@ -34,6 +34,12 @@ class WaterDashboardViewModel @Inject constructor(
             collectWaterLogs()
         }
         collectUserData()
+        getFotd()
+    }
+
+    private fun getFotd() = viewModelScope.launch {
+        val fotd = waterRepo.getFOTD()
+        _uiState.emit(uiState.value.copy(factOfTheDay = fotd))
     }
 
     fun onAddWaterPressed() = viewModelScope.launch {

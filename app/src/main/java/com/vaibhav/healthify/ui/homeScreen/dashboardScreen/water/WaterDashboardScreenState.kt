@@ -10,5 +10,6 @@ data class WaterDashboardScreenState(
     val progress: Float = 0F,
     val factOfTheDay: String = "",
     val isLoading: Boolean = false,
+    val isAddWaterButtonEnabled: Boolean = true,
     val waterLog: List<Water> = emptyList()
 )

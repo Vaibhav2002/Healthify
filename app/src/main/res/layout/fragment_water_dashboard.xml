@@ -50,7 +50,7 @@
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="2dp"
-                        android:text="You're almost done !"
+                        tools:text="You're almost done !"
                         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
                         android:textColor="?attr/colorOnSecondary"
                         app:layout_constraintEnd_toEndOf="@+id/yayText"
@@ -63,7 +63,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="16dp"
                         android:includeFontPadding="false"
-                        android:text="2300"
+                        tools:text="2300"
                         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
                         android:textColor="?attr/colorOnSecondary"
                         app:layout_constraintStart_toStartOf="@id/greetingText"
@@ -75,8 +75,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
                         android:layout_marginBottom="4dp"
-                        android:alpha="0.9"
-                        android:text="/ 3500 mL"
+                        android:alpha="0.7"
+                        tools:text="/ 3500 mL"
                         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
                         android:textColor="?attr/colorOnSecondary"
                         app:layout_constraintBottom_toBottomOf="@+id/completedText"
@@ -99,7 +99,7 @@
                         app:progressView_colorProgress="@color/progress_color"
                         app:progressView_max="100"
                         app:progressView_min="0"
-                        app:progressView_progress="70"
+                        tools:progressView_progress="70"
                         app:progressView_progressFromPrevious="true"
                         app:progressView_radius="12dp" />
 
@@ -157,7 +157,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:lineHeight="24dp"
-                        android:text="@string/fotd_sample_1"
+                        tools:text="@string/fotd_sample_1"
                         android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
                         android:textColor="@color/color_on_fotd" />
 
@@ -179,6 +179,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginBottom="56dp"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/water_list_item" />
 

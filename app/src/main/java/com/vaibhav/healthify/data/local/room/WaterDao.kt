@@ -14,4 +14,7 @@ interface WaterDao {
 
     @Insert
     fun insertWater(water: List<Water>)
+
+    @Query("DELETE FROM water_table")
+    suspend fun deleteAll()
 }

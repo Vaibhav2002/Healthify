@@ -6,6 +6,7 @@ import com.vaibhav.healthify.data.models.mapper.WaterMapper
 import com.vaibhav.healthify.data.remote.water.FirestoreWaterDataSource
 import com.vaibhav.healthify.util.Resource
 import com.vaibhav.healthify.util.USER_DOES_NOT_EXIST
+import com.vaibhav.healthify.util.waterFOTD
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import java.util.*
@@ -24,13 +25,19 @@ class WaterRepo @Inject constructor(
         return calendar.timeInMillis
     }
 
+    private fun getTodayDayNo(): Int {
+        val cal = Calendar.getInstance()
+        cal.timeInMillis = System.currentTimeMillis()
+        return cal[Calendar.DAY_OF_WEEK] - 1
+    }
+
     fun getTodaysWaterLogs() = waterDataSource.getAllWaterLogsAfterTime(getTodaysTime())
 
     suspend fun fetchAllWaterLogs(): Resource<Unit> = withContext(Dispatchers.IO) {
         return@withContext authRepo.getCurrentUser()?.let {
             val resource = firebaseWaterDataSource.getAllWaterLogs(it.email)
             if (resource is Resource.Success) {
-                insertWaterIntoDb(waterMapper.toEntityList(resource.data!!))
+                dumpNewWaterLogsDataIntoDb(waterMapper.toEntityList(resource.data!!))
                 Resource.Success<Unit>()
             } else Resource.Error(resource.message)
         } ?: Resource.Error(USER_DOES_NOT_EXIST)
@@ -46,7 +53,19 @@ class WaterRepo @Inject constructor(
         } ?: Resource.Error(USER_DOES_NOT_EXIST)
     }
 
+    fun getFOTD(): String {
+        val day = getTodayDayNo()
+        return waterFOTD[day]
+    }
+
     private suspend fun insertWaterIntoDb(water: List<Water>) {
         waterDataSource.insertWater(water)
     }
+
+    private suspend fun dumpNewWaterLogsDataIntoDb(water: List<Water>) {
+        deleteAllWaterLogs()
+        insertWaterIntoDb(water)
+    }
+
+    private suspend fun deleteAllWaterLogs() = waterDataSource.deleteAllWaterLogs()
 }

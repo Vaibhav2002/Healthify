@@ -17,6 +17,7 @@
         android:layout_marginVertical="4dp"
         app:cardBackgroundColor="?attr/colorBackgroundFloating"
         app:cardCornerRadius="12dp"
+        android:elevation="0dp"
         app:cardElevation="0dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,6 +66,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:alpha="0.8"
+                android:includeFontPadding="false"
                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

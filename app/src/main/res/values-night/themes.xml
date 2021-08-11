@@ -21,7 +21,6 @@
     <style name="Theme.Healthify.NoStatusBarTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
-        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
