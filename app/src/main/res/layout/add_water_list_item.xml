@@ -5,13 +5,14 @@
     android:layout_height="wrap_content"
     android:layout_margin="4dp"
     android:gravity="center"
+    android:layout_columnWeight="1"
     android:orientation="vertical"
     android:padding="8dp">
 
     <ImageView
         android:id="@+id/waterImage"
-        android:layout_width="56dp"
-        android:layout_height="56dp"
+        android:layout_width="@dimen/waterQuantityImageSize"
+        android:layout_height="@dimen/waterQuantityImageSize"
         tools:src="@drawable/mug" />
 
     <TextView
@@ -19,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body2"
         android:textColor="?attr/colorOnSurface"
         tools:text="1000mL" />
 

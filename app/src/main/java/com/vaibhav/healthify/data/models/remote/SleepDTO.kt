@@ -1,7 +1,7 @@
 package com.vaibhav.healthify.data.models.remote
 
-data class WaterDTO(
+data class SleepDTO(
     var userEmail: String = "",
-    val quantity: String = "",
-    val timeStamp: Long = 0L,
+    val duration: Int = 0,
+    val timeStamp: Long = 0
 )

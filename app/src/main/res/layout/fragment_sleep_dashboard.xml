@@ -1,14 +1,202 @@
-<?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?><?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
     tools:context=".ui.homeScreen.dashboardScreen.sleep.SleepDashboardFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/boundary"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/dashboard_card_color"
+                app:cardCornerRadius="16dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+
+                    <TextView
+                        android:id="@+id/yayText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:text="Yay !"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintEnd_toStartOf="@+id/addWater"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        android:id="@+id/greetingText"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="2dp"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintEnd_toEndOf="@+id/yayText"
+                        app:layout_constraintStart_toStartOf="@id/yayText"
+                        app:layout_constraintTop_toBottomOf="@id/yayText"
+                        tools:text="You're almost done !" />
+
+                    <TextView
+                        android:id="@+id/completedText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:includeFontPadding="false"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintStart_toStartOf="@id/greetingText"
+                        app:layout_constraintTop_toBottomOf="@id/greetingText"
+                        tools:text="2300" />
+
+                    <TextView
+                        android:id="@+id/totalText"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginBottom="4dp"
+                        android:alpha="0.7"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                        android:textColor="?attr/colorOnSecondary"
+                        app:layout_constraintBottom_toBottomOf="@+id/completedText"
+                        app:layout_constraintStart_toEndOf="@id/completedText"
+                        tools:text="/ 3500 mL" />
+
+                    <com.skydoves.progressview.ProgressView
+                        android:id="@+id/progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="24dp"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="16dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/totalText"
+                        app:progressView_animation="decelerate"
+                        app:progressView_autoAnimate="true"
+                        app:progressView_colorBackground="@color/progress_bg_color"
+                        app:progressView_colorProgress="@color/progress_color"
+                        app:progressView_max="100"
+                        app:progressView_min="0"
+                        app:progressView_progressFromPrevious="true"
+                        app:progressView_radius="12dp"
+                        tools:progressView_progress="70" />
+
+
+                    <RelativeLayout
+                        android:id="@+id/addWater"
+                        android:layout_width="66dp"
+                        android:layout_height="66dp"
+                        android:background="@drawable/mini_card_bg"
+                        android:padding="8dp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <ImageView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_centerInParent="true"
+                            android:elevation="8dp"
+                            android:src="@drawable/ic_add_sleep" />
+
+
+                    </RelativeLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/boundary"
+                android:text="@string/fact_of_the_day"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                android:textColor="?attr/colorOnSurface" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:layout_marginBottom="24dp"
+                app:cardBackgroundColor="@color/fotd_bg_color"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="16dp">
+
+                    <TextView
+                        android:id="@+id/fotd_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:lineHeight="24dp"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                        android:textColor="@color/color_on_fotd"
+                        tools:text="@string/fotd_sample_1" />
+
+                </FrameLayout>
+
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/boundary"
+                android:text="Sleep Log"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                android:textColor="?attr/colorOnSurface" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/sleepLogRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="56dp"
+                android:layoutAnimation="@anim/layout_anim"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/water_list_item" />
+
+        </LinearLayout>
+
+
+    </androidx.core.widget.NestedScrollView>
+
+    <include
+        android:id="@+id/loadingLayout"
+        layout="@layout/loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

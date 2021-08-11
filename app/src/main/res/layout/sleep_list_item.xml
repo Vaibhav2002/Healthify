@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="sleep"
+            type="com.vaibhav.healthify.data.models.local.Sleep" />
+    </data>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/boundary"
+        android:layout_marginVertical="4dp"
+        android:elevation="0dp"
+        app:cardBackgroundColor="?attr/colorBackgroundFloating"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="8dp">
+
+
+            <RelativeLayout
+                android:id="@+id/relativeLayout"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:background="@drawable/icon_bg"
+                android:padding="12dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+
+                <ImageView
+                    android:id="@+id/water_icon"
+                    loadImage="@{sleep.sleepImage}"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_centerInParent="true"
+                    android:scaleType="centerCrop"
+                    tools:src="@drawable/sleep" />
+
+            </RelativeLayout>
+
+            <TextView
+                setDuration="@{sleep.sleepDuration}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                app:layout_constraintBottom_toBottomOf="@+id/relativeLayout"
+                app:layout_constraintStart_toEndOf="@+id/relativeLayout"
+                app:layout_constraintTop_toTopOf="@+id/relativeLayout"
+                tools:text="200 mL" />
+
+
+            <TextView
+                style="@style/grayText"
+                setTime="@{sleep.timeStamp}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:alpha="0.8"
+                android:includeFontPadding="false"
+                android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="7:30 am" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+</layout>

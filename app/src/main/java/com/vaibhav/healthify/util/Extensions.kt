@@ -32,5 +32,15 @@ fun Int.getSleepQuantity(): Int {
         this >= 6 -> 11
         this >= 3 -> 13
         else -> 15
-    }
+    } * 60
+}
+
+fun Int.formatDuration(): String {
+    return if (this / 60 == 0)
+        String.format("%02dmin", this)
+    else String.format("%dhrs %02dmin", this / 60, this % 60)
+}
+
+fun Int.getHoursFromMinutes(): Float {
+    return this / 60F
 }

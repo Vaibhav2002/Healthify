@@ -12,7 +12,9 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.vaibhav.healthify.data.local.room.HealthifyDB
+import com.vaibhav.healthify.data.local.room.SleepDao
 import com.vaibhav.healthify.data.local.room.WaterDao
+import com.vaibhav.healthify.data.models.mapper.SleepMapper
 import com.vaibhav.healthify.data.models.mapper.UserMapper
 import com.vaibhav.healthify.data.models.mapper.WaterMapper
 import com.vaibhav.healthify.util.CLIENT_ID
@@ -55,6 +57,9 @@ object Module {
     @Provides
     fun providesWaterDao(roomDatabase: HealthifyDB): WaterDao = roomDatabase.getWaterDao()
 
+    @Provides
+    fun providesSleepDao(roomDatabase: HealthifyDB): SleepDao = roomDatabase.getSleepDao()
+
     // mappers
 
     @Provides
@@ -62,4 +67,7 @@ object Module {
 
     @Provides
     fun providesWaterMapper(): WaterMapper = WaterMapper()
+
+    @Provides
+    fun providesSleepMapper(): SleepMapper = SleepMapper()
 }

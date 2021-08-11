@@ -21,3 +21,8 @@ fun TextView.setWaterQuantity(quantity: Int) {
 fun TextView.setTime(time: Long) {
     text = time.getFormattedTime()
 }
+
+@BindingAdapter("setDuration")
+fun TextView.setTimeDuration(minutes: Int) {
+    text = minutes.formatDuration()
+}

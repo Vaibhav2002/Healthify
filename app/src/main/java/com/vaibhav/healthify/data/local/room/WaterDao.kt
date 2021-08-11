@@ -13,7 +13,7 @@ interface WaterDao {
     fun getAllAfterTime(time: Long): Flow<List<Water>>
 
     @Insert
-    fun insertWater(water: List<Water>)
+    suspend fun insertWater(water: List<Water>)
 
     @Query("DELETE FROM water_table")
     suspend fun deleteAll()

@@ -1,6 +1,7 @@
 package com.vaibhav.healthify.util
 
 import com.vaibhav.healthify.R
+import java.util.*
 
 const val DATASTORE = "HealthifyDataStore"
 const val USER_DOES_NOT_EXIST = "User does not exist"
@@ -9,6 +10,7 @@ const val USER_DETAILS_UPDATE_FAILED = "Failed to update details"
 
 const val USER_COLLECTION = "users"
 const val WATER_COLLECTION = "water"
+const val SLEEP_COLLECTION = "sleep"
 
 enum class WATER(val quantity: Int, val image: Int) {
     ML_200(200, R.drawable.hot_cup), ML_400(400, R.drawable.mug),
@@ -29,6 +31,15 @@ val waterFOTD = listOf(
     "Smile. Good hydration can help reduce cavities and tooth decay. Water helps produce saliva, which keeps your mouth and teeth clean.",
     "Good hydration can prevent arthritis. With plenty of water in your body, there is less friction in your joints, thus less chance of developing arthritis."
 )
+val sleepFOTD = listOf(
+    "Research shows that in the days leading up to a full moon, people go to bed later and sleep less, although the reasons are unclear.",
+    "Sea otters hold hands when they sleep so they don’t drift away from each other.",
+    "Tiredness peaks twice a day: Around 2 a.m. and 2 p.m. for most people. That’s why you’re less alert after lunch.",
+    "Have trouble waking up on Monday morning? Blame “social jet lag” from your altered weekend sleep schedule.",
+    "Today, 75% of us dream in color. Before color television, just 15% of us did.",
+    "Regular exercise usually improves your sleep patterns. Strenuous exercise right before bed may keep you awake.",
+    "Whales and dolphins literally fall half asleep. Each side of their brain takes turns so they can come up for air."
+)
 
 fun getGreeting(progress: Float): String {
     return when {
@@ -37,4 +48,16 @@ fun getGreeting(progress: Float): String {
         progress == 50f -> "You're half way done !"
         else -> "You can do it !"
     }
+}
+
+fun getTodaysTime(): Long {
+    val calendar = Calendar.getInstance()
+    calendar.set(Calendar.HOUR_OF_DAY, 0)
+    return calendar.timeInMillis
+}
+
+fun getTodayDayNo(): Int {
+    val cal = Calendar.getInstance()
+    cal.timeInMillis = System.currentTimeMillis()
+    return cal[Calendar.DAY_OF_WEEK] - 1
 }

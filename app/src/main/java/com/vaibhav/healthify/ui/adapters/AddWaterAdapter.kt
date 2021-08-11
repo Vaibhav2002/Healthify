@@ -7,12 +7,12 @@ import com.vaibhav.healthify.databinding.AddWaterListItemBinding
 import com.vaibhav.healthify.util.WATER
 import com.vaibhav.healthify.util.loadCoilImage
 import com.vaibhav.healthify.util.setWaterQuantity
-import com.vaibhav.healthify.util.waterList
 
-class AddWaterAdapter(private val onWaterSelected: (WATER) -> Unit) :
+class AddWaterAdapter(
+    private val waterList: List<WATER>,
+    private val onWaterSelected: (WATER) -> Unit
+) :
     RecyclerView.Adapter<AddWaterAdapter.AddWaterVieHolder>() {
-
-    val list = waterList
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AddWaterVieHolder {
         val binding =
@@ -21,17 +21,17 @@ class AddWaterAdapter(private val onWaterSelected: (WATER) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: AddWaterVieHolder, position: Int) {
-        holder.bind(list[position])
+        holder.bind(waterList[position])
     }
 
-    override fun getItemCount() = list.size
+    override fun getItemCount() = waterList.size
 
     inner class AddWaterVieHolder(private val binding: AddWaterListItemBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         init {
             binding.root.setOnClickListener {
-                onWaterSelected(list[adapterPosition])
+                onWaterSelected(waterList[adapterPosition])
             }
         }
 

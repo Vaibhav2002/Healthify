@@ -23,8 +23,8 @@ class AddWaterDialogFragment(private val onAmountSelected: (WATER) -> Unit = {})
         binding = FragmentAddWaterDialogBinding.inflate(inflater, container, false)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         dialog?.window?.setLayout(
-            ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
         return binding.root
     }
