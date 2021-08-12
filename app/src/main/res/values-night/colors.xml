@@ -59,4 +59,7 @@
     <color name="progress_color">@color/dt_blue</color>
     <color name="progress_bg_color">@color/dt_gray</color>
 
+    <color name="dividerColor">@color/dt_pink</color>
+    <color name="numberPickerColor">@color/dt_pink</color>
+
 </resources>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="16dp"
+    android:background="@drawable/bottom_sheet_bg"
+    android:elevation="8dp"
+    tools:context=".ui.homeScreen.dashboardScreen.addSleepDialog.AddSleepDialogFragment">
+
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="Select sleep amount"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/hrsPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:layout_marginEnd="32dp"
+        app:layout_constraintEnd_toStartOf="@+id/minPicker"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3"
+        app:np_divider="@drawable/divider"
+        app:np_dividerColor="@color/dividerColor"
+        app:np_dividerDistance="64dp"
+        app:np_dividerLength="48dp"
+        app:np_dividerType="side_lines"
+        app:np_fadingEdgeEnabled="true"
+        app:np_fadingEdgeStrength="10"
+        app:np_formatter="@string/number_picker_formatter"
+        app:np_itemSpacing="16dp"
+        app:np_max="24"
+        app:np_maxFlingVelocityCoefficient="10"
+        app:np_min="00"
+        app:np_selectedTextColor="@color/numberPickerColor"
+        app:np_textColor="@color/numberPickerColor"
+        app:np_wheelItemCount="3" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="hrs"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="@id/hrsPicker"
+        app:layout_constraintStart_toStartOf="@id/hrsPicker"
+        app:layout_constraintTop_toBottomOf="@id/hrsPicker" />
+
+    <com.shawnlin.numberpicker.NumberPicker
+        android:id="@+id/minPicker"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@+id/hrsPicker"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toEndOf="@+id/hrsPicker"
+        app:layout_constraintTop_toTopOf="@+id/hrsPicker"
+        app:np_divider="@drawable/divider"
+        app:np_dividerColor="@color/dividerColor"
+        app:np_dividerDistance="64dp"
+        app:np_dividerLength="48dp"
+        app:np_dividerType="side_lines"
+        app:np_fadingEdgeEnabled="true"
+        app:np_fadingEdgeStrength="10"
+        app:np_formatter="@string/number_picker_formatter"
+        app:np_itemSpacing="16dp"
+        app:np_max="60"
+        app:np_maxFlingVelocityCoefficient="10"
+        app:np_min="00"
+        app:np_selectedTextColor="@color/numberPickerColor"
+        app:np_textColor="@color/numberPickerColor"
+        app:np_wheelItemCount="3" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="min"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+        android:textColor="?attr/colorOnBackground"
+        app:layout_constraintEnd_toEndOf="@id/minPicker"
+        app:layout_constraintStart_toStartOf="@id/minPicker"
+        app:layout_constraintTop_toBottomOf="@id/minPicker" />
+
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnSaveTiming"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        android:layout_marginTop="32dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/rounded_button"
+        android:elevation="8dp"
+        android:paddingVertical="16dp"
+        android:text="Save"
+        android:textAllCaps="false"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Button"
+        android:textColor="?attr/colorOnSecondary"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

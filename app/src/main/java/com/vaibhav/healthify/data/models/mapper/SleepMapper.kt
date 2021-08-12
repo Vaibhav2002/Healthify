@@ -6,7 +6,7 @@ import com.vaibhav.healthify.data.models.remote.SleepDTO
 class SleepMapper : Mapper<Sleep, SleepDTO> {
     override fun toEntity(dto: SleepDTO) = Sleep(
         sleepDuration = dto.duration,
-        timeStamp = dto.duration
+        timeStamp = dto.timeStamp
     )
 
     override fun toEntityList(dtos: List<SleepDTO>) = dtos.map {

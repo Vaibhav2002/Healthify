@@ -34,7 +34,6 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/boundary"
             android:layout_marginTop="32dp"
-            app:tabPaddingStart="0dp"
             app:layout_constraintStart_toStartOf="@+id/textView"
             app:layout_constraintTop_toBottomOf="@+id/textView"
             app:tabIndicator="@drawable/underline"

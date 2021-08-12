@@ -12,6 +12,8 @@
 
         <item name="colorSurface">@color/surface</item>
 
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
         <item name="colorBackgroundFloating">@color/white</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/surface</item>
@@ -25,6 +27,15 @@
         <item name="android:windowLightStatusBar">true</item>
     </style>
 
+    <style name="CustomBottomSheetDialog" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="colorBackgroundFloating">@color/white</item>
+        <item name="colorOnBackground">@color/lt_deepblue</item>
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
+    </style>
 
     <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TabLayout</item>

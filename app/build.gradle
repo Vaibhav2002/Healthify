@@ -87,6 +87,8 @@ dependencies {
 
     implementation "com.github.skydoves:progressview:1.1.2"
 
+    implementation 'io.github.ShawnLin013:number-picker:2.4.13'
+
 
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"

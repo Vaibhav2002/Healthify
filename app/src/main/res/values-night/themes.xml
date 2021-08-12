@@ -12,6 +12,8 @@
 
         <item name="colorSurface">@color/dt_darkpblue</item>
 
+        <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
         <item name="colorBackgroundFloating">@color/dt_blue</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimary</item>
@@ -21,6 +23,16 @@
     <style name="Theme.Healthify.NoStatusBarTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="CustomBottomSheetDialog" parent="@style/Theme.Design.BottomSheetDialog">
+        <item name="colorBackgroundFloating">@color/dt_blue</item>
+        <item name="colorOnBackground">@color/dt_gray</item>
+        <item name="bottomSheetStyle">@style/CustomBottomSheet</item>
+    </style>
+
+    <style name="CustomBottomSheet" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
     </style>
 
     <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">

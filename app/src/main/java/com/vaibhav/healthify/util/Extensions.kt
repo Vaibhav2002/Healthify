@@ -20,7 +20,7 @@ fun Int.getWaterQuantity(): Int {
     val format = DecimalFormat("#.##")
     format.roundingMode = RoundingMode.CEILING
     val limit = (this.toFloat() / 30) * 1000f
-    return format.format(limit).toInt()
+    return format.format(limit).toDouble().toInt()
 }
 
 fun Int.getSleepQuantity(): Int {
@@ -43,4 +43,8 @@ fun Int.formatDuration(): String {
 
 fun Int.getHoursFromMinutes(): Float {
     return this / 60F
+}
+
+fun Int.getMinutesFromHours(): Int {
+    return this * 60
 }

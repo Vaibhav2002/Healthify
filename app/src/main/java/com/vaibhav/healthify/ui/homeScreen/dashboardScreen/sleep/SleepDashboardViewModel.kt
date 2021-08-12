@@ -42,7 +42,7 @@ class SleepDashboardViewModel @Inject constructor(
         _uiState.emit(uiState.value.copy(factOfTheDay = fotd))
     }
 
-    fun onAddWaterPressed() = viewModelScope.launch {
+    fun onAddSleepPressed() = viewModelScope.launch {
         _events.emit(SleepDashboardScreenEvents.OpenAddSleepDialog)
     }
 
@@ -88,7 +88,7 @@ class SleepDashboardViewModel @Inject constructor(
             val totalSlept = sleepLogs.sumOf { sleep ->
                 sleep.sleepDuration
             }
-            val progress = totalSlept / user.value!!.sleepLimit * 100f
+            val progress = (totalSlept.toFloat() / user.value!!.sleepLimit) * 100f
             _uiState.emit(
                 uiState.value.copy(
                     sleepLog = sleepLogs,

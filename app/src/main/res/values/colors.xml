@@ -64,5 +64,7 @@
     <color name="progress_color">@color/lt_darkpblue</color>
     <color name="progress_bg_color">@color/surface</color>
 
+    <color name="dividerColor">@color/lt_deepblue</color>
+    <color name="numberPickerColor">@color/lt_deepblue</color>
 
 </resources>
