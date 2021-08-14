@@ -25,6 +25,8 @@ class AuthRepo @Inject constructor(
 
     suspend fun getCurrentUser() = preferencesRepo.getUserData()
 
+    fun getUserDataFlow() = preferencesRepo.getUserDataFlow()
+
     private suspend fun isUserLoggedIn() = getCurrentUser() != null
 
     suspend fun isUserRegistered(userProfile: UserProfile): Resource<Boolean> =
@@ -85,6 +87,16 @@ class AuthRepo @Inject constructor(
             it.waterLimit = weight.getWaterQuantity()
             val resource =
                 authDataSource.saveUserWeightAndWaterQuantity(weight, it.waterLimit, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
+    suspend fun increaseUserExp(increment: Int) = withContext(Dispatchers.IO) {
+        return@withContext getCurrentUser()?.let {
+            it.exp += increment
+            val resource = authDataSource.increaseUserExp(increment, it.email)
             if (resource is Resource.Success)
                 saveUserIntoPreferences(it)
             resource

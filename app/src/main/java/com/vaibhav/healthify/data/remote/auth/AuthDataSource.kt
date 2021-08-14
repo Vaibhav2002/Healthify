@@ -18,4 +18,6 @@ interface AuthDataSource {
         quantity: Int,
         email: String
     ): Resource<Unit>
+
+    suspend fun increaseUserExp(inc: Int, email: String): Resource<Unit>
 }

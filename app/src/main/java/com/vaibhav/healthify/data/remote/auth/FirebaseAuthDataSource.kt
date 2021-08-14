@@ -1,5 +1,6 @@
 package com.vaibhav.healthify.data.remote.auth
 
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.vaibhav.healthify.data.models.remote.UserDTO
 import com.vaibhav.healthify.util.Resource
@@ -56,14 +57,22 @@ class FirebaseAuthDataSource @Inject constructor(
 
     override suspend fun saveUserWeightAndWaterQuantity(
         weight: Int,
-        waterLimit: Int,
+        quantity: Int,
         email: String
     ): Resource<Unit> =
         try {
             fireStore.collection(USER_COLLECTION).document(email)
-                .update("weight", weight, "waterLimit", waterLimit).await()
+                .update("weight", weight, "waterLimit", quantity).await()
             Resource.Success()
         } catch (e: Exception) {
             Resource.Error(e.message.toString())
         }
+
+    override suspend fun increaseUserExp(inc: Int, email: String): Resource<Unit> = try {
+        fireStore.collection(USER_COLLECTION).document(email)
+            .update("exp", FieldValue.increment(inc.toLong())).await()
+        Resource.Success()
+    } catch (e: Exception) {
+        Resource.Error(e.message.toString())
+    }
 }

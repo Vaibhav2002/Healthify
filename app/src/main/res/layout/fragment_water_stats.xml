@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.homeScreen.statsScreen.waterStats.WaterStatsFragment">
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/percentageCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/percentageCardBgColor"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:alpha="0.9"
+                    android:text="Weekly Percentage"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                    android:textColor="@color/colorOnCard" />
+
+                <TextView
+                    android:id="@+id/percentage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:includeFontPadding="false"
+                    android:text="85.6%"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline3"
+                    android:textColor="@color/colorOnCard" />
+
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/expCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="@color/expCardBgColor"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_centerVertical="true"
+                    android:alpha="0.9"
+                    android:text="Exp Gained"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline5"
+                    android:textColor="@color/colorOnCard" />
+
+                <TextView
+                    android:id="@+id/exp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:includeFontPadding="false"
+                    android:text="250"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline3"
+                    android:textColor="@color/colorOnCard" />
+
+
+            </RelativeLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            app:cardBackgroundColor="?attr/colorBackgroundFloating"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Water Completion"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <TextView
+                    android:id="@+id/weekDate"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.9"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                    android:textColor="?attr/colorOnSurface"
+                    tools:text="22nd July - 29th July" />
+
+                <com.db.williamchart.view.LineChartView
+                    android:id="@+id/lineChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="16dp"
+                    app:chart_lineColor="@color/graphColor"
+                    app:chart_smoothLine="true" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="100dp"
+            app:cardBackgroundColor="?attr/colorBackgroundFloating"
+            app:cardCornerRadius="16dp"
+            app:cardElevation="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Weekly Water Intake"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:alpha="0.9"
+                    android:text="Water drank each day"
+                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Subtitle2"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <com.db.williamchart.view.HorizontalBarChartView
+                    android:id="@+id/barChart"
+                    android:layout_width="match_parent"
+                    android:layout_height="240dp"
+                    android:layout_marginTop="16dp"
+                    app:chart_barsBackgroundColor="@color/graphBgColor"
+                    app:chart_barsColor="@color/graphColor"
+                    app:chart_barsRadius="8dp"
+                    app:chart_spacing="8dp" />
+
+            </LinearLayout>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

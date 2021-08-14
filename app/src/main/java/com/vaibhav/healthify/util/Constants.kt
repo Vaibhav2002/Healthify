@@ -12,6 +12,9 @@ const val USER_COLLECTION = "users"
 const val WATER_COLLECTION = "water"
 const val SLEEP_COLLECTION = "sleep"
 
+const val WATER_EXP = 20
+const val SLEEP_EXP = 20
+
 enum class WATER(val quantity: Int, val image: Int) {
     ML_200(200, R.drawable.hot_cup), ML_400(400, R.drawable.mug),
     ML_600(600, R.drawable.water_glass), ML_800(800, R.drawable.mineral_water),
@@ -56,8 +59,49 @@ fun getTodaysTime(): Long {
     return calendar.timeInMillis
 }
 
+fun getTimeOfLastWeek(): Long {
+    val calendar = Calendar.getInstance()
+    calendar[Calendar.HOUR_OF_DAY] = 0
+    return calendar.timeInMillis - (7 * 24 * 60 * 60 * 1000)
+}
+
 fun getTodayDayNo(): Int {
     val cal = Calendar.getInstance()
     cal.timeInMillis = System.currentTimeMillis()
     return cal[Calendar.DAY_OF_WEEK] - 1
+}
+
+enum class DAYS(index: Int) {
+    SUNDAY(1), MONDAY(2), TUESDAY(3), WEDNESDAY(4), THURSDAY(5), FRIDAY(6), SATURDAY(7);
+
+    companion object {
+        fun getDayFromNumber(d: Int) = when (d) {
+            1 -> SUNDAY
+            2 -> MONDAY
+            3 -> TUESDAY
+            4 -> WEDNESDAY
+            5 -> THURSDAY
+            6 -> FRIDAY
+            7 -> SATURDAY
+            else -> SUNDAY
+        }
+    }
+
+    fun getShortFormFromNumber() = when (this) {
+        SUNDAY -> getFirstChars()
+        MONDAY -> getFirstChars()
+        TUESDAY -> getFirstChars()
+        WEDNESDAY -> getFirstChars()
+        THURSDAY -> getTwoChars()
+        FRIDAY -> getFirstChars()
+        SATURDAY -> getTwoChars()
+        else -> getTwoChars()
+    }
+
+    fun getFullName() = this.name.lowercase().capitalize()
+
+    private fun getFirstChars() = this.name.substring(0, 1)
+
+    private fun getTwoChars() = this.name.substring(0, 2).lowercase()
+        .replaceFirstChar { if (it.isLowerCase()) it.titlecase(Locale.getDefault()) else it.toString() }
 }

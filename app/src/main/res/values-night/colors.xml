@@ -46,7 +46,8 @@
 
     <color name="dashboard_title_color">@color/dt_yellow</color>
 
-    <color name="tabLayoutIndicatorColor">@color/dt_yellow</color>
+    <color name="tabLayoutIndicatorColor">@color/dt_gray</color>
+    <color name="tabLayoutTextColor">@color/dt_gray</color>
 
     <color name="icon_bg_color">@color/dt_darkpblue</color>
 
@@ -62,4 +63,12 @@
     <color name="dividerColor">@color/dt_pink</color>
     <color name="numberPickerColor">@color/dt_pink</color>
 
+    <color name="percentageCardBgColor">@color/dt_yellow</color>
+    <color name="expCardBgColor">@color/dt_pink</color>
+    <color name="colorOnCard">@color/dt_darkpblue</color>
+
+    <color name="graphColor">@color/dt_pink</color>
+    <color name="graphGradientColor">@color/dt_blue</color>
+    <color name="graphLabelColor">@color/dt_gray</color>
+    <color name="graphBgColor">#60312c51</color>
 </resources>

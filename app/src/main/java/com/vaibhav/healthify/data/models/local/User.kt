@@ -4,7 +4,7 @@ data class User(
     var username: String,
     val email: String,
     val profileImg: String,
-    var exp: Int,
+    var exp: Long,
     var waterLimit: Int,
     var sleepLimit: Int,
     var age: Int,

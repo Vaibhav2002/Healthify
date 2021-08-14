@@ -8,6 +8,7 @@ import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.WaterRepo
 import com.vaibhav.healthify.util.Resource
 import com.vaibhav.healthify.util.WATER
+import com.vaibhav.healthify.util.WATER_EXP
 import com.vaibhav.healthify.util.getGreeting
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -55,15 +56,20 @@ class WaterDashboardViewModel @Inject constructor(
     }
 
     fun onWaterSelected(water: WATER) = viewModelScope.launch {
-        user.value?.let { user ->
-            startLoading()
-            val resource = waterRepo.insertIntoWaterLog(getWaterModelClass(water))
-            stopLoading()
-            if (resource is Resource.Error)
-                _events.emit(WaterDashboardScreenEvents.ShowToast(resource.message))
-            else
-                _events.emit(WaterDashboardScreenEvents.ShowToast("Water added successfully"))
-        }
+        addWater(water)
+        addExp()
+    }
+
+    private suspend fun addWater(water: WATER) {
+        startLoading()
+        val resource = waterRepo.insertIntoWaterLog(getWaterModelClass(water))
+        stopLoading()
+        if (resource is Resource.Error)
+            _events.emit(WaterDashboardScreenEvents.ShowToast(resource.message))
+    }
+
+    private suspend fun addExp() {
+        authRepo.increaseUserExp(WATER_EXP)
     }
 
     private fun collectUserData() = viewModelScope.launch {

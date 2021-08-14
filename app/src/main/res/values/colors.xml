@@ -52,6 +52,7 @@
     <color name="dashboard_title_color">@color/lt_deepblue</color>
 
     <color name="tabLayoutIndicatorColor">@color/dt_deepblue</color>
+    <color name="tabLayoutTextColor">@color/dt_deepblue</color>
 
     <color name="icon_bg_color">@color/lt_blue</color>
 
@@ -66,5 +67,14 @@
 
     <color name="dividerColor">@color/lt_deepblue</color>
     <color name="numberPickerColor">@color/lt_deepblue</color>
+
+    <color name="percentageCardBgColor">@color/lt_blue</color>
+    <color name="expCardBgColor">@color/lt_deepblue</color>
+    <color name="colorOnCard">@color/white</color>
+
+    <color name="graphColor">@color/lt_blue</color>
+    <color name="graphGradientColor">@color/white</color>
+    <color name="graphLabelColor">@color/gray5</color>
+    <color name="graphBgColor">@color/gray2</color>
 
 </resources>

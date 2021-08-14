@@ -6,9 +6,11 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.res.ResourcesCompat
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentAddSleepDialogBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
@@ -41,6 +43,12 @@ class AddSleepDialogFragment(private val onTimeSelected: (Int) -> Unit = {}) :
         binding.btnSaveTiming.setOnClickListener {
             onTimeSelected(viewModel.getMinutes())
             dismiss()
+        }
+        binding.hrsPicker.apply {
+            setSelectedTypeface(ResourcesCompat.getFont(requireContext(), R.font.quicksand_medium))
+        }
+        binding.minPicker.apply {
+            setSelectedTypeface(ResourcesCompat.getFont(requireContext(), R.font.quicksand_medium))
         }
     }
 

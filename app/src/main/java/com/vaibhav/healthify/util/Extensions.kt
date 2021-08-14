@@ -1,7 +1,10 @@
 package com.vaibhav.healthify.util
 
 import android.content.Context
+import android.view.View
 import android.widget.Toast
+import androidx.core.view.ViewCompat
+import com.vaibhav.chatofy.util.setMarginTop
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -17,10 +20,14 @@ fun Long.getFormattedTime(): String {
 }
 
 fun Int.getWaterQuantity(): Int {
+    val limit = (this.toFloat() / 30) * 1000f
+    return limit.roundOff().toInt()
+}
+
+fun Float.roundOff(): Float {
     val format = DecimalFormat("#.##")
     format.roundingMode = RoundingMode.CEILING
-    val limit = (this.toFloat() / 30) * 1000f
-    return format.format(limit).toDouble().toInt()
+    return format.format(this).toFloat()
 }
 
 fun Int.getSleepQuantity(): Int {
@@ -42,9 +49,22 @@ fun Int.formatDuration(): String {
 }
 
 fun Int.getHoursFromMinutes(): Float {
-    return this / 60F
+    return (this / 60F).roundOff()
 }
 
 fun Int.getMinutesFromHours(): Int {
     return this * 60
+}
+
+fun View.setMarginTopForFullScreen() {
+    ViewCompat.setOnApplyWindowInsetsListener(this) { _, insets ->
+        this.setMarginTop(insets.systemWindowInsetTop)
+        insets.consumeSystemWindowInsets()
+    }
+}
+
+fun Long.formatDate(): String {
+    val pattern = "d MMM"
+    val sdf = SimpleDateFormat(pattern)
+    return sdf.format(this)
 }

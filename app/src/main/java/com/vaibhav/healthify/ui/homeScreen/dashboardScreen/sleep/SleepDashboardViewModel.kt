@@ -7,6 +7,7 @@ import com.vaibhav.healthify.data.models.local.User
 import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.SleepRepo
 import com.vaibhav.healthify.util.Resource
+import com.vaibhav.healthify.util.SLEEP_EXP
 import com.vaibhav.healthify.util.getGreeting
 import com.vaibhav.healthify.util.getHoursFromMinutes
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -55,15 +56,20 @@ class SleepDashboardViewModel @Inject constructor(
     }
 
     fun onSleepSelected(sleepDuration: Int) = viewModelScope.launch {
-        user.value?.let { user ->
-            startLoading()
-            val resource = sleepRepo.insertIntoSleepLog(getSleepModelClass(sleepDuration))
-            stopLoading()
-            if (resource is Resource.Error)
-                _events.emit(SleepDashboardScreenEvents.ShowToast(resource.message))
-            else
-                _events.emit(SleepDashboardScreenEvents.ShowToast("Sleep added successfully"))
-        }
+        addSleep(sleepDuration)
+        addExp()
+    }
+
+    private suspend fun addSleep(sleepDuration: Int) {
+        startLoading()
+        val resource = sleepRepo.insertIntoSleepLog(getSleepModelClass(sleepDuration))
+        stopLoading()
+        if (resource is Resource.Error)
+            _events.emit(SleepDashboardScreenEvents.ShowToast(resource.message))
+    }
+
+    private suspend fun addExp() {
+        authRepo.increaseUserExp(SLEEP_EXP)
     }
 
     private fun collectUserData() = viewModelScope.launch {

@@ -39,4 +39,11 @@ class PreferencesRepo @Inject constructor(private val dataStore: DataStore<Prefe
             }
         }.first()
     }
+
+    fun getUserDataFlow() = dataStore.data.map {
+        val serializedUser = it[USER_KEY]
+        return@map serializedUser?.let { sUser ->
+            Gson().fromJson(sUser, User::class.java)
+        }
+    }
 }

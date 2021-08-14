@@ -89,7 +89,6 @@ dependencies {
 
     implementation 'io.github.ShawnLin013:number-picker:2.4.13'
 
-
     //hilt
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-compiler:$hilt_version"

@@ -14,10 +14,13 @@ import com.google.firebase.storage.ktx.storage
 import com.vaibhav.healthify.data.local.room.HealthifyDB
 import com.vaibhav.healthify.data.local.room.SleepDao
 import com.vaibhav.healthify.data.local.room.WaterDao
+import com.vaibhav.healthify.data.models.local.Sleep
+import com.vaibhav.healthify.data.models.local.Water
 import com.vaibhav.healthify.data.models.mapper.SleepMapper
 import com.vaibhav.healthify.data.models.mapper.UserMapper
 import com.vaibhav.healthify.data.models.mapper.WaterMapper
 import com.vaibhav.healthify.util.CLIENT_ID
+import com.vaibhav.healthify.util.ChartDataOrganizer
 import com.vaibhav.healthify.util.DATASTORE
 import com.vaibhav.healthify.util.DOMAIN_NAME
 import dagger.Module
@@ -70,4 +73,11 @@ object Module {
 
     @Provides
     fun providesSleepMapper(): SleepMapper = SleepMapper()
+
+    // Chart DataOrganizer
+    @Provides
+    fun providesWaterChartDataOrganizer(): ChartDataOrganizer<Water> = ChartDataOrganizer()
+
+    @Provides
+    fun providesSleepChartDataOrganizer(): ChartDataOrganizer<Sleep> = ChartDataOrganizer()
 }

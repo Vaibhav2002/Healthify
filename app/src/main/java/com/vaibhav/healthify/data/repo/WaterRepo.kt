@@ -6,6 +6,7 @@ import com.vaibhav.healthify.data.models.mapper.WaterMapper
 import com.vaibhav.healthify.data.remote.water.FirestoreWaterDataSource
 import com.vaibhav.healthify.util.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
@@ -18,6 +19,10 @@ class WaterRepo @Inject constructor(
 ) {
 
     fun getTodaysWaterLogs() = waterDataSource.getAllWaterLogsAfterTime(getTodaysTime())
+        .flowOn(Dispatchers.IO)
+
+    fun getAllWaterLogsOfLastWeek() = waterDataSource.getAllWaterLogsAfterTime(getTimeOfLastWeek())
+        .flowOn(Dispatchers.IO)
 
     suspend fun fetchAllWaterLogs(): Resource<Unit> = withContext(Dispatchers.IO) {
         return@withContext authRepo.getCurrentUser()?.let {
