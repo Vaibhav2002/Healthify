@@ -8,6 +8,7 @@ import com.vaibhav.chatofy.util.setMarginTop
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
+import java.util.*
 
 fun Context.showToast(message: String) {
     Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
@@ -63,8 +64,24 @@ fun View.setMarginTopForFullScreen() {
     }
 }
 
-fun Long.formatDate(): String {
-    val pattern = "d MMM"
+fun Calendar.getFormattedDate(): String {
+    val suffix = this[Calendar.DAY_OF_MONTH].getDayNumberSuffix()
+    return this.timeInMillis.formatDate(suffix)
+}
+
+fun Int.getDayNumberSuffix(): String {
+    return if (this in 11..13) {
+        "th"
+    } else when (this % 10) {
+        1 -> "st"
+        2 -> "nd"
+        3 -> "rd"
+        else -> "th"
+    }
+}
+
+fun Long.formatDate(dayNumberSuffix: String): String {
+    val pattern = "d'$dayNumberSuffix' MMM"
     val sdf = SimpleDateFormat(pattern)
     return sdf.format(this)
 }

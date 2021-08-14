@@ -6,6 +6,7 @@ import com.vaibhav.healthify.data.models.mapper.SleepMapper
 import com.vaibhav.healthify.data.remote.sleep.FirestoreSleepDataSource
 import com.vaibhav.healthify.util.*
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.withContext
 import java.util.*
 import javax.inject.Inject
@@ -17,7 +18,11 @@ class SleepRepo @Inject constructor(
     private val sleepMapper: SleepMapper
 ) {
 
-    fun getTodaysSleepLogs() = sleepDataSource.getAllSleepAfterTime(getTodaysTime())
+    fun getTodaysSleepLogs() =
+        sleepDataSource.getAllSleepAfterTime(getTodaysTime()).flowOn(Dispatchers.IO)
+
+    fun getAllSleepsOfLastWeek() = sleepDataSource.getAllSleepAfterTime(getTimeOfLastWeek())
+        .flowOn(Dispatchers.IO)
 
     suspend fun fetchAllSleepLogs(): Resource<Unit> = withContext(Dispatchers.IO) {
         return@withContext authRepo.getCurrentUser()?.let {

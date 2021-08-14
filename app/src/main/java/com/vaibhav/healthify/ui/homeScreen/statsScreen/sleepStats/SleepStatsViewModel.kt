@@ -1,10 +1,10 @@
-package com.vaibhav.healthify.ui.homeScreen.statsScreen.waterStats
+package com.vaibhav.healthify.ui.homeScreen.statsScreen.sleepStats
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vaibhav.healthify.data.models.local.Water
+import com.vaibhav.healthify.data.models.local.Sleep
 import com.vaibhav.healthify.data.repo.AuthRepo
-import com.vaibhav.healthify.data.repo.WaterRepo
+import com.vaibhav.healthify.data.repo.SleepRepo
 import com.vaibhav.healthify.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -13,14 +13,14 @@ import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
-class WaterStatsViewModel @Inject constructor(
+class SleepStatsViewModel @Inject constructor(
     private val authRepo: AuthRepo,
-    private val waterRepo: WaterRepo,
-    private val waterChartDataOrganizer: ChartDataOrganizer<Water>
+    private val sleepRepo: SleepRepo,
+    private val sleepChartOrganizer: ChartDataOrganizer<Sleep>
 ) : ViewModel() {
 
-    private val _uiState = MutableStateFlow(WaterStatsScreenState())
-    val uiState: StateFlow<WaterStatsScreenState> = _uiState
+    private val _uiState = MutableStateFlow(SleepStatsScreenState())
+    val uiState: StateFlow<SleepStatsScreenState> = _uiState
 
     private val user =
         authRepo.getUserDataFlow().stateIn(viewModelScope, SharingStarted.WhileSubscribed(), null)
@@ -28,8 +28,8 @@ class WaterStatsViewModel @Inject constructor(
     init {
         collectUserData()
         viewModelScope.launch {
-            waterChartDataOrganizer.setUp()
-            collectWaterLogs()
+            sleepChartOrganizer.setUp()
+            collectSleepLogs()
         }
     }
 
@@ -38,63 +38,63 @@ class WaterStatsViewModel @Inject constructor(
         }
     }
 
-    private fun collectWaterLogs() = viewModelScope.launch {
-        waterRepo.getAllWaterLogsOfLastWeek().collect { logs ->
+    private fun collectSleepLogs() = viewModelScope.launch {
+        sleepRepo.getAllSleepsOfLastWeek().collect { logs ->
             logs.forEach {
-                val index = waterChartDataOrganizer.findCalendarInstance(it.timeStamp)
-                waterChartDataOrganizer.add(it, index)
+                val index = sleepChartOrganizer.findCalendarInstance(it.timeStamp)
+                sleepChartOrganizer.add(it, index)
             }
-            waterChartDataOrganizer.sortData()
+            sleepChartOrganizer.sortData()
             calculateExp(logs)
             prepareDataForCharts(logs)
         }
     }
 
-    private fun calculateExp(logs: List<Water>) = viewModelScope.launch {
+    private fun calculateExp(logs: List<Sleep>) = viewModelScope.launch {
         val exp = logs.size * WATER_EXP
         _uiState.emit(uiState.value.copy(expGained = exp.toLong()))
     }
 
-    private fun calculatePercentage(logs: List<Water>, days: Int) = viewModelScope.launch {
+    private fun calculatePercentage(logs: List<Sleep>, days: Int) = viewModelScope.launch {
         user.value?.let {
-            val totalAmountDrank = logs.sumOf { water ->
-                water.quantity.quantity
+            val totalSlept = logs.sumOf { sleep ->
+                sleep.sleepDuration
             }
-            var percentage = (totalAmountDrank.toFloat() / (it.waterLimit * days)) * 100f
+            var percentage = (totalSlept.toFloat() / (it.waterLimit * days)) * 100f
             percentage = percentage.roundOff()
             _uiState.emit(uiState.value.copy(weeklyPercentage = percentage))
         }
     }
 
-    private suspend fun prepareDataForCharts(logs: List<Water>) = viewModelScope.launch {
+    private suspend fun prepareDataForCharts(logs: List<Sleep>) = viewModelScope.launch {
         val barList = mutableListOf<Pair<String, Float>>()
         val lineList = mutableListOf<Pair<String, Float>>()
         var startDate = ""
         var endDate = ""
-        var numberOfDaysDrank = 0
+        var numberOfDaysSlept = 0
         var index = 0
-        val length = waterChartDataOrganizer.data.size
-        waterChartDataOrganizer.data.forEach {
+        val length = sleepChartOrganizer.data.size
+        sleepChartOrganizer.data.forEach {
             index++
             val day = DAYS.getDayFromNumber(it.key[Calendar.DAY_OF_WEEK])
-            val totalAmountDrank = it.value.sumOf { water ->
-                water.quantity.quantity
+            val totalSlept = it.value.sumOf { sleep ->
+                sleep.sleepDuration
             }
             if (index == 1)
                 startDate = it.key.getFormattedDate()
             else if (index == length)
                 endDate = it.key.getFormattedDate()
-            var dailyPercentage = (totalAmountDrank.toFloat() / user.value!!.waterLimit) * 100f
+            var dailyPercentage = (totalSlept.toFloat() / user.value!!.sleepLimit) * 100f
             dailyPercentage = dailyPercentage.roundOff()
             if (it.value.size > 0)
-                numberOfDaysDrank++
-            val pair = Pair(day.getShortFormFromNumber(), totalAmountDrank.toFloat())
+                numberOfDaysSlept++
+            val pair = Pair(day.getShortFormFromNumber(), totalSlept.getHoursFromMinutes())
             val lineChartPair = Pair(day.getShortFormFromNumber(), dailyPercentage)
             barList.add(pair)
             lineList.add(lineChartPair)
         }
         val weekDate = "$startDate - $endDate"
-        calculatePercentage(logs, numberOfDaysDrank)
+        calculatePercentage(logs, numberOfDaysSlept)
         _uiState.emit(
             uiState.value.copy(
                 barChartData = barList,
