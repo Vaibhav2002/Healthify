@@ -1,5 +1,9 @@
 package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.water
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
@@ -10,11 +14,12 @@ import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentWaterDashboardBinding
 import com.vaibhav.healthify.ui.adapters.WaterLogAdapter
 import com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addWaterDialog.AddWaterDialogFragment
+import com.vaibhav.healthify.util.NOTIFICATION_INTERVAL
+import com.vaibhav.healthify.util.WaterBroadcastReceiver
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import timber.log.Timber
 
 @AndroidEntryPoint
 class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
@@ -25,6 +30,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
 
     companion object {
         fun newInstance() = WaterDashboardFragment()
+        const val ALARM_CODE = 15
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -45,6 +51,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
             when (it) {
                 WaterDashboardScreenEvents.OpenAddWaterDialog -> openAddWaterDialog()
                 is WaterDashboardScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                WaterDashboardScreenEvents.CreateAlarm -> createAlarm()
             }
         }
     }
@@ -52,7 +59,6 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
     private fun collectUiState() = viewLifecycleOwner.lifecycleScope.launchWhenCreated {
         viewModel.uiState.collect {
             binding.apply {
-                Timber.d(it.toString())
                 greetingText.text = it.greeting
                 fotdText.text = it.factOfTheDay
                 completedText.text = it.completedAmount.toString()
@@ -69,5 +75,21 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
         AddWaterDialogFragment {
             viewModel.onWaterSelected(it)
         }.show(parentFragmentManager, "ADD_WATER")
+    }
+
+    private fun createAlarm() {
+        val alarmManager = requireContext().getSystemService(Context.ALARM_SERVICE) as AlarmManager
+        val intent = Intent(requireContext(), WaterBroadcastReceiver::class.java)
+        val pendingIntent = PendingIntent.getBroadcast(
+            requireContext(),
+            ALARM_CODE,
+            intent,
+            PendingIntent.FLAG_UPDATE_CURRENT
+        )
+        alarmManager.set(
+            AlarmManager.RTC_WAKEUP,
+            System.currentTimeMillis() + NOTIFICATION_INTERVAL,
+            pendingIntent
+        )
     }
 }

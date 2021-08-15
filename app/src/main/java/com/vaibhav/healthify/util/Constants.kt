@@ -15,6 +15,8 @@ const val SLEEP_COLLECTION = "sleep"
 const val WATER_EXP = 20
 const val SLEEP_EXP = 20
 
+const val NOTIFICATION_INTERVAL = 60 * 60 * 1000L
+
 enum class WATER(val quantity: Int, val image: Int) {
     ML_200(200, R.drawable.hot_cup), ML_400(400, R.drawable.mug),
     ML_600(600, R.drawable.water_glass), ML_800(800, R.drawable.mineral_water),

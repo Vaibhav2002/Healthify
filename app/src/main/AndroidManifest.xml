@@ -27,6 +27,8 @@
         <activity
             android:name=".ui.homeScreen.MainActivity"
             android:theme="@style/Theme.Healthify"></activity>
+
+        <receiver android:name=".util.WaterBroadcastReceiver" />
     </application>
 
 </manifest>

@@ -66,6 +66,7 @@ class WaterDashboardViewModel @Inject constructor(
         stopLoading()
         if (resource is Resource.Error)
             _events.emit(WaterDashboardScreenEvents.ShowToast(resource.message))
+        _events.emit(WaterDashboardScreenEvents.CreateAlarm)
     }
 
     private suspend fun addExp() {
