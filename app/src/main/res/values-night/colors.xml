@@ -71,4 +71,10 @@
     <color name="graphGradientColor">@color/dt_blue</color>
     <color name="graphLabelColor">@color/dt_gray</color>
     <color name="graphBgColor">#60312c51</color>
+
+    <color name="onBoardingCard">#6048426d</color>
+    <color name="onBoardingBg">@color/dt_darkpblue</color>
+    <color name="selectedDot">@color/onBoardingPrimary</color>
+    <color name="unselectedDot">#50f0c38e</color>
+    <color name="onBoardingPrimary">@color/dt_yellow</color>
 </resources>

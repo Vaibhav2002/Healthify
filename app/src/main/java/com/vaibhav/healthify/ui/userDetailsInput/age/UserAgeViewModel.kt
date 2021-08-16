@@ -32,6 +32,7 @@ class UserAgeViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         val resource = authRepo.saveUserAge(uiState.value.age)
         _uiState.emit(uiState.value.copy(isLoading = false))
         if (resource is Resource.Success) {
+            authRepo.saveUserDataEntryCompleted()
             _events.emit(UserAgeScreenEvents.ShowToast(USER_DETAILS_UPDATED))
             _events.emit(UserAgeScreenEvents.NavigateToHomeScreen)
         } else {

@@ -27,7 +27,15 @@ class AuthRepo @Inject constructor(
 
     fun getUserDataFlow() = preferencesRepo.getUserDataFlow()
 
-    private suspend fun isUserLoggedIn() = getCurrentUser() != null
+    suspend fun isUserLoggedIn() = getCurrentUser() != null
+
+    suspend fun isUserOnBoardingComplete() = preferencesRepo.getOnBoardingCompleted() != null
+
+    suspend fun isUserDataEntryCompleted() = preferencesRepo.getUserCompletedDataEntry() != null
+
+    suspend fun saveUserOnBoardingCompleted() = preferencesRepo.saveOnBoardingCompleted()
+
+    suspend fun saveUserDataEntryCompleted() = preferencesRepo.saveUserDataCompleted()
 
     suspend fun isUserRegistered(userProfile: UserProfile): Resource<Boolean> =
         withContext(Dispatchers.IO) {
@@ -55,6 +63,8 @@ class AuthRepo @Inject constructor(
 
     suspend fun logoutUser() = withContext(Dispatchers.IO) {
         removeUserFromPreferences()
+        removeUserDataCompleted()
+        removeUserOnBoarding()
     }
 
     suspend fun saveUserName(username: String) = withContext(Dispatchers.IO) {
@@ -121,5 +131,13 @@ class AuthRepo @Inject constructor(
 
     private suspend fun removeUserFromPreferences() {
         preferencesRepo.removeUserData()
+    }
+
+    private suspend fun removeUserDataCompleted() {
+        preferencesRepo.removeUserData()
+    }
+
+    private suspend fun removeUserOnBoarding() {
+        preferencesRepo.removeOnBoarding()
     }
 }

@@ -72,10 +72,6 @@ class SleepStatsFragment : Fragment(R.layout.fragment_sleep_stats) {
             labelsColor = resources.getColor(R.color.graphLabelColor)
             labelsSize =
                 TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_SP, 12F, resources.displayMetrics)
-//            onDataPointClickListener = { i: Int, _: Float, _: Float ->
-//                val message = "${data[i].count} tasks completed on last ${data[i].dayFull}"
-//                requireContext().showToast(message)
-//            }
         }
     }
 }

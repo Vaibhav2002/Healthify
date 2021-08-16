@@ -68,7 +68,7 @@
             android:background="@drawable/rounded_button"
             android:elevation="8dp"
             android:paddingVertical="16dp"
-            android:text="Login"
+            android:text="@string/get_started"
             android:textAllCaps="false"
             android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Button"
             android:textColor="?attr/colorOnSecondary" />

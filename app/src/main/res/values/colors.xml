@@ -77,4 +77,9 @@
     <color name="graphLabelColor">@color/gray5</color>
     <color name="graphBgColor">@color/gray2</color>
 
+    <color name="onBoardingCard">@color/surface</color>
+    <color name="onBoardingBg">@color/white</color>
+    <color name="selectedDot">@color/onBoardingPrimary</color>
+    <color name="unselectedDot">#5000133d</color>
+    <color name="onBoardingPrimary">@color/lt_deepblue</color>
 </resources>

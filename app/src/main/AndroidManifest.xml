@@ -13,10 +13,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Healthify">
         <activity
-            android:name=".ui.userDetailsInput.UserDetailsActivity"
+            android:name=".ui.onBoarding.OnBoardingActivity"
             android:theme="@style/Theme.Healthify.NoStatusBarTheme" />
         <activity
-            android:name=".ui.auth.AuthActivity"
+            android:name=".ui.splashScreen.SplashActivity"
             android:theme="@style/Theme.Healthify.NoStatusBarTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,8 +25,14 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.userDetailsInput.UserDetailsActivity"
+            android:theme="@style/Theme.Healthify.NoStatusBarTheme" />
+        <activity
+            android:name=".ui.auth.AuthActivity"
+            android:theme="@style/Theme.Healthify.NoStatusBarTheme" />
+        <activity
             android:name=".ui.homeScreen.MainActivity"
-            android:theme="@style/Theme.Healthify"></activity>
+            android:theme="@style/Theme.Healthify" />
 
         <receiver android:name=".util.WaterBroadcastReceiver" />
     </application>

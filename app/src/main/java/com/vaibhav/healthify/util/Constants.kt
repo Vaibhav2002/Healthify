@@ -1,6 +1,7 @@
 package com.vaibhav.healthify.util
 
 import com.vaibhav.healthify.R
+import com.vaibhav.healthify.data.models.OnBoarding
 import java.util.*
 
 const val DATASTORE = "HealthifyDataStore"
@@ -22,6 +23,30 @@ enum class WATER(val quantity: Int, val image: Int) {
     ML_600(600, R.drawable.water_glass), ML_800(800, R.drawable.mineral_water),
     ML_1000(1000, R.drawable.water_bottle)
 }
+
+val onBoardingList = listOf(
+    OnBoarding(
+        id = 0,
+        anim = R.raw.hello,
+        title = "Welcome!",
+        subtitle = "Stay fit and improve your productivity\n" +
+            "with Healthify"
+    ),
+    OnBoarding(
+        id = 1,
+        anim = R.raw.water,
+        title = "Stay hydrated",
+        subtitle = "Healthify helps you track your water\n" +
+            "intake and reminds you to drink water"
+    ),
+    OnBoarding(
+        id = 2,
+        anim = R.raw.sleep,
+        title = "Get Good Sleep",
+        subtitle = "Healthify tracks your daily sleep\n" +
+            "and helps you maintain a good sleep cycle"
+    )
+)
 
 val waterList = listOf(
     WATER.ML_200, WATER.ML_400, WATER.ML_600, WATER.ML_800, WATER.ML_1000
