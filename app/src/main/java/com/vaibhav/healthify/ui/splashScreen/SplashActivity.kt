@@ -6,6 +6,7 @@ import android.os.Handler
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
+import com.vaibhav.chatofy.util.makeStatusBarTransparent
 import com.vaibhav.healthify.databinding.ActivitySplashBinding
 import com.vaibhav.healthify.ui.auth.AuthActivity
 import com.vaibhav.healthify.ui.homeScreen.MainActivity
@@ -29,6 +30,7 @@ class SplashActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        makeStatusBarTransparent()
         collectUiEvents()
         Handler().postDelayed({
             viewModel.onTimerComplete()

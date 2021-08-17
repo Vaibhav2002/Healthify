@@ -57,11 +57,12 @@ class WaterStatsViewModel @Inject constructor(
 
     private fun calculatePercentage(logs: List<Water>, days: Int) = viewModelScope.launch {
         user.value?.let {
-            val totalAmountDrank = logs.sumOf { water ->
-                water.quantity.quantity
-            }
-            var percentage = (totalAmountDrank.toFloat() / (it.waterLimit * days)) * 100f
-            percentage = percentage.roundOff()
+            val percentage = if (days != 0) {
+                val totalAmountDrank = logs.sumOf { water ->
+                    water.quantity.quantity
+                }
+                ((totalAmountDrank.toFloat() / (it.waterLimit * days)) * 100f).roundOff()
+            } else 0f
             _uiState.emit(uiState.value.copy(weeklyPercentage = percentage))
         }
     }

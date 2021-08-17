@@ -103,7 +103,7 @@ with Healthify" />
         android:background="@android:color/transparent"
         android:text="Skip"
         android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Button"
+        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Subtitle1"
         android:textColor="@color/onBoardingPrimary"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -57,11 +57,12 @@ class SleepStatsViewModel @Inject constructor(
 
     private fun calculatePercentage(logs: List<Sleep>, days: Int) = viewModelScope.launch {
         user.value?.let {
-            val totalSlept = logs.sumOf { sleep ->
-                sleep.sleepDuration
-            }
-            var percentage = (totalSlept.toFloat() / (it.waterLimit * days)) * 100f
-            percentage = percentage.roundOff()
+            val percentage = if (days != 0) {
+                val totalSlept = logs.sumOf { sleep ->
+                    sleep.sleepDuration
+                }
+                ((totalSlept.toFloat() / (it.waterLimit * days)) * 100f).roundOff()
+            } else 0f
             _uiState.emit(uiState.value.copy(weeklyPercentage = percentage))
         }
     }

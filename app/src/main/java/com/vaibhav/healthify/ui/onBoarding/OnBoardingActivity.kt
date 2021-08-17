@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.lifecycleScope
 import androidx.viewpager2.widget.ViewPager2
+import com.vaibhav.chatofy.util.makeStatusBarTransparent
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.ActivityOnBoardingBinding
 import com.vaibhav.healthify.ui.adapters.OnboardingAdapter
@@ -28,6 +29,7 @@ class OnBoardingActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        makeStatusBarTransparent()
         onBoardingAdapter = OnboardingAdapter(viewModel.onboardingList)
         animation = AnimationUtils.loadAnimation(this, R.anim.scale_from_center)
         setupViewPager()
