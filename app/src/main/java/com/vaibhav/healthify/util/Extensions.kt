@@ -87,7 +87,12 @@ fun Long.formatDate(dayNumberSuffix: String): String {
     return sdf.format(this)
 }
 
-fun Context.showDialog(title: String, message: String, onConfirm: () -> Unit) {
+fun Context.showDialog(
+    title: String,
+    message: String,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
     val dialog = AlertDialog.Builder(this)
         .setTitle(title)
         .setMessage(message)
@@ -96,5 +101,8 @@ fun Context.showDialog(title: String, message: String, onConfirm: () -> Unit) {
         }
         .setNegativeButton("Cancel", null)
         .create()
+    dialog.setOnDismissListener {
+        onDismiss()
+    }
     dialog.show()
 }

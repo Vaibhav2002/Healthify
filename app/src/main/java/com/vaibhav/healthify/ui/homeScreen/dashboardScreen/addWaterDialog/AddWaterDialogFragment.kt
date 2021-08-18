@@ -1,5 +1,6 @@
 package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addWaterDialog
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -10,7 +11,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.vaibhav.healthify.databinding.FragmentAddWaterDialogBinding
 import com.vaibhav.healthify.util.WATER
 
-class AddWaterDialogFragment(private val onAmountSelected: (WATER) -> Unit = {}) :
+class AddWaterDialogFragment(
+    private val onAmountSelected: (WATER) -> Unit = {},
+    private val onDismiss: () -> Unit
+) :
     BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAddWaterDialogBinding
@@ -55,5 +59,10 @@ class AddWaterDialogFragment(private val onAmountSelected: (WATER) -> Unit = {})
     private fun setWaterAndClose(water: WATER) {
         onAmountSelected(water)
         dismiss()
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss()
     }
 }

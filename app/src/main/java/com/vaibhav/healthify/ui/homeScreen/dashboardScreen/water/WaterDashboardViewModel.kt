@@ -44,6 +44,7 @@ class WaterDashboardViewModel @Inject constructor(
     }
 
     fun onAddWaterPressed() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isAddWaterButtonEnabled = false))
         _events.emit(WaterDashboardScreenEvents.OpenAddWaterDialog)
     }
 
@@ -58,6 +59,10 @@ class WaterDashboardViewModel @Inject constructor(
     fun onWaterSelected(water: WATER) = viewModelScope.launch {
         addWater(water)
         addExp()
+    }
+
+    fun onDialogClosed() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isAddWaterButtonEnabled = true))
     }
 
     private suspend fun addWater(water: WATER) {

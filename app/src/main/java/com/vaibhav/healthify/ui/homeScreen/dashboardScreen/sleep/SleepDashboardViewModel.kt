@@ -44,6 +44,7 @@ class SleepDashboardViewModel @Inject constructor(
     }
 
     fun onAddSleepPressed() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isAddSleepButtonEnabled = false))
         _events.emit(SleepDashboardScreenEvents.OpenAddSleepDialog)
     }
 
@@ -53,6 +54,10 @@ class SleepDashboardViewModel @Inject constructor(
 
     private fun stopLoading() = viewModelScope.launch {
         _uiState.emit(uiState.value.copy(isLoading = false))
+    }
+
+    fun onDialogClosed() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isAddSleepButtonEnabled = true))
     }
 
     fun onSleepSelected(sleepDuration: Int) = viewModelScope.launch {

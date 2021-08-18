@@ -72,9 +72,11 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
     }
 
     private fun openAddWaterDialog() {
-        AddWaterDialogFragment {
+        AddWaterDialogFragment(onAmountSelected = {
             viewModel.onWaterSelected(it)
-        }.show(parentFragmentManager, "ADD_WATER")
+        }, onDismiss = {
+            viewModel.onDialogClosed()
+        }).show(parentFragmentManager, "ADD_WATER")
     }
 
     private fun createAlarm() {

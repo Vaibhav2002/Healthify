@@ -74,6 +74,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     fun logout() {
+        viewModel.disableLogoutButton()
         WebAuthProvider
             .logout(auth0)
             .withScheme(getString(R.string.scheme))
@@ -92,9 +93,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     }
 
     fun showLogoutDialog(title: String, message: String) {
-        requireContext().showDialog(title, message) {
+        requireContext().showDialog(title, message, onConfirm = {
             viewModel.onLogoutConfirmed()
-        }
+        }, onDismiss = {
+            viewModel.onDialogClosed()
+        })
     }
 
     fun navigateToAuthScreen() {

@@ -66,8 +66,13 @@ class SleepDashboardFragment : Fragment(R.layout.fragment_sleep_dashboard) {
     }
 
     private fun openAddSleepDialog() {
-        AddSleepDialogFragment {
-            viewModel.onSleepSelected(it)
-        }.show(parentFragmentManager, "ADD_WATER")
+        AddSleepDialogFragment(
+            onTimeSelected = {
+                viewModel.onSleepSelected(it)
+            },
+            onDismiss = {
+                viewModel.onDialogClosed()
+            }
+        ).show(parentFragmentManager, "ADD_WATER")
     }
 }

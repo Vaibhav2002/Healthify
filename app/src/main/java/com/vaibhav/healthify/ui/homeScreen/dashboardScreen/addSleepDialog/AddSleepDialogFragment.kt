@@ -1,5 +1,6 @@
 package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addSleepDialog
 
+import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
@@ -16,7 +17,10 @@ import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
 @AndroidEntryPoint
-class AddSleepDialogFragment(private val onTimeSelected: (Int) -> Unit = {}) :
+class AddSleepDialogFragment(
+    private val onTimeSelected: (Int) -> Unit = {},
+    private val onDismiss: () -> Unit = {}
+) :
     BottomSheetDialogFragment() {
 
     private lateinit var binding: FragmentAddSleepDialogBinding
@@ -65,5 +69,10 @@ class AddSleepDialogFragment(private val onTimeSelected: (Int) -> Unit = {}) :
         viewModel.uiState.collect {
             binding.btnSaveTiming.isEnabled = it.isButtonEnabled
         }
+    }
+
+    override fun onDismiss(dialog: DialogInterface) {
+        super.onDismiss(dialog)
+        onDismiss()
     }
 }

@@ -46,12 +46,17 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
     }
 
     fun onLogoutPressed() = viewModelScope.launch {
+        disableLogoutButton()
         _events.emit(
             ProfileScreenEvents.ShowLogoutDialog(
                 "Confirm Logout",
                 "Are you sure that you want to logout"
             )
         )
+    }
+
+    fun onDialogClosed() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isLogoutButtonEnabled = true))
     }
 
     fun onLogoutConfirmed() = viewModelScope.launch {
@@ -63,7 +68,12 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         _events.emit(ProfileScreenEvents.NavigateToAuthScreen)
     }
 
+    fun disableLogoutButton() = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isLogoutButtonEnabled = false))
+    }
+
     fun onLogoutFailed(exception: Exception) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isLogoutButtonEnabled = true))
         Timber.d(exception.toString())
         _events.emit(ProfileScreenEvents.ShowToast("Failed to logout"))
     }
