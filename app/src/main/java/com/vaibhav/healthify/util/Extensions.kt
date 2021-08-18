@@ -1,5 +1,6 @@
 package com.vaibhav.healthify.util
 
+import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.Toast
@@ -84,4 +85,16 @@ fun Long.formatDate(dayNumberSuffix: String): String {
     val pattern = "d'$dayNumberSuffix' MMM"
     val sdf = SimpleDateFormat(pattern)
     return sdf.format(this)
+}
+
+fun Context.showDialog(title: String, message: String, onConfirm: () -> Unit) {
+    val dialog = AlertDialog.Builder(this)
+        .setTitle(title)
+        .setMessage(message)
+        .setPositiveButton("Confirm") { _, _ ->
+            onConfirm()
+        }
+        .setNegativeButton("Cancel", null)
+        .create()
+    dialog.show()
 }

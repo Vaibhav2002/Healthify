@@ -19,5 +19,14 @@
         android:id="@+id/profileFragment"
         android:name="com.vaibhav.healthify.ui.homeScreen.profileScreen.ProfileFragment"
         android:label="fragment_profile"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile">
+        <action
+            android:id="@+id/action_profileFragment_to_aboutFragment"
+            app:destination="@id/aboutFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/aboutFragment"
+        android:name="com.vaibhav.healthify.ui.homeScreen.aboutScreen.AboutFragment"
+        android:label="fragment_about"
+        tools:layout="@layout/fragment_about" />
 </navigation>

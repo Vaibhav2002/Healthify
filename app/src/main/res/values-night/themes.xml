@@ -35,6 +35,12 @@
         <item name="android:background">@drawable/bottom_sheet_bg</item>
     </style>
 
+    <style name="headerText">
+        <item name="android:textColor">@color/dashboard_title_color</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Headline4
+        </item>
+    </style>
+
     <style name="Widget.App.TabLayout" parent="Widget.MaterialComponents.TabLayout">
         <item name="materialThemeOverlay">@style/ThemeOverlay.App.TabLayout</item>
     </style>

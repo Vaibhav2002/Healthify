@@ -77,4 +77,13 @@
     <color name="selectedDot">@color/onBoardingPrimary</color>
     <color name="unselectedDot">#50f0c38e</color>
     <color name="onBoardingPrimary">@color/dt_yellow</color>
+
+
+    <color name="card1BgColor">@color/dt_yellow</color>
+    <color name="card1TextColor">@color/dt_darkpblue</color>
+
+    <color name="card2BgColor">@color/dt_blue</color>
+    <color name="card2TextColor">@color/dt_gray</color>
+
+    <color name="divider">@color/dt_deepblue</color>
 </resources>

@@ -82,4 +82,14 @@
     <color name="selectedDot">@color/onBoardingPrimary</color>
     <color name="unselectedDot">#5000133d</color>
     <color name="onBoardingPrimary">@color/lt_deepblue</color>
+
+    <!--    profile-->
+    <color name="card1BgColor">@color/lt_yellow</color>
+    <color name="card1TextColor">@color/lt_deepblue</color>
+
+    <color name="card2BgColor">@color/lt_blue</color>
+    <color name="card2TextColor">@color/surface</color>
+
+
+    <color name="divider">#EEEDF0</color>
 </resources>

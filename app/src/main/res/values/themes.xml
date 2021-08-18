@@ -47,6 +47,12 @@
         <item name="colorOnSurface">@color/lt_deepblue</item>
     </style>
 
+    <style name="headerText">
+        <item name="android:textColor">@color/dashboard_title_color</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Headline4
+        </item>
+    </style>
+
     <style name="authBg">
         <item name="android:background">@color/lt_blue</item>
     </style>

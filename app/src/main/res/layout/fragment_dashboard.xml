@@ -23,8 +23,7 @@
             android:layout_marginHorizontal="@dimen/boundary"
             android:layout_marginTop="@dimen/boundary"
             android:ellipsize="end"
-            android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline4"
-            android:textColor="@color/dashboard_title_color"
+            style="@style/headerText"
             android:text="Hey Vaibhav !" />
 
         <com.google.android.material.tabs.TabLayout
