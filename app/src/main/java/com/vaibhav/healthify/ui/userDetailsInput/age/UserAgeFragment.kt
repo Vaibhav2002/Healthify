@@ -7,9 +7,11 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentUserAgeBinding
 import com.vaibhav.healthify.ui.homeScreen.MainActivity
+import com.vaibhav.healthify.util.setMarginTopForFullScreen
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import com.warkiz.widget.IndicatorSeekBar
@@ -30,6 +32,10 @@ class UserAgeFragment : Fragment(R.layout.fragment_user_age) {
         binding.userAgeProgressBar.setProgress(viewModel.uiState.value.age.toFloat())
         binding.continueBtn.setOnClickListener {
             viewModel.onContinueButtonPressed()
+        }
+        binding.backButton.setMarginTopForFullScreen()
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
         }
         binding.userAgeProgressBar.onSeekChangeListener = object : OnSeekChangeListener {
             override fun onSeeking(seekParams: SeekParams?) {

@@ -10,4 +10,5 @@ sealed class ProfileScreenEvents {
     data class ShowToast(val message: String) : ProfileScreenEvents()
     object Logout : ProfileScreenEvents()
     object NavigateToAuthScreen : ProfileScreenEvents()
+    object NavigateToLeaderBoardScreen : ProfileScreenEvents()
 }

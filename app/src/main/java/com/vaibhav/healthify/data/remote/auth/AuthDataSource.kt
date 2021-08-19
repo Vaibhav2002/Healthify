@@ -20,4 +20,6 @@ interface AuthDataSource {
     ): Resource<Unit>
 
     suspend fun increaseUserExp(inc: Int, email: String): Resource<Unit>
+
+    suspend fun fetchAllUsers(): Resource<List<UserDTO>>
 }

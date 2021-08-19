@@ -16,7 +16,7 @@
 
         <item name="colorBackgroundFloating">@color/white</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor" tools:targetApi="l">@color/surface</item>
+        <item name="android:statusBarColor" tools:targetApi="l">@color/gray4</item>
         <!-- Customize your theme here. -->
     </style>
 

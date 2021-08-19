@@ -9,6 +9,17 @@
     tools:context=".ui.userDetailsInput.age.UserAgeFragment">
 
 
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/boundary"
+        android:layout_marginTop="@dimen/boundary"
+        android:background="@android:color/transparent"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

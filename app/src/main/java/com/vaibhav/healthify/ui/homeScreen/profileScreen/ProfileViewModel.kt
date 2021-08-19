@@ -3,6 +3,7 @@ package com.vaibhav.healthify.ui.homeScreen.profileScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
+import com.vaibhav.healthify.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -22,12 +23,18 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         authRepo.getUserDataFlow().stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
-        collectUserData()
+        viewModelScope.launch {
+            loadLeaderBoard()
+            collectUserData()
+        }
     }
 
-    fun collectUserData() = viewModelScope.launch {
+    suspend fun getUserRank(email: String) = authRepo.getUserRank(email)
+
+    suspend fun collectUserData() {
         user.collect {
             it?.let { userData ->
+                val rank = getUserRank(userData.email)
                 _uiState.emit(
                     uiState.value.copy(
                         username = userData.username,
@@ -35,10 +42,24 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
                         profileImage = userData.profileImg,
                         age = userData.age,
                         weight = userData.weight,
+                        rank = rank,
+                        isLeaderBoardButtonEnabled = rank != 0
                     )
                 )
             }
         }
+    }
+
+    fun onRefreshed() = viewModelScope.launch {
+        loadLeaderBoard()
+    }
+
+    private suspend fun loadLeaderBoard() {
+        _uiState.emit(uiState.value.copy(isLoading = true))
+        val resource = authRepo.fetchLeaderBoard()
+        _uiState.emit(uiState.value.copy(isLoading = false))
+        if (resource is Resource.Error)
+            _events.emit(ProfileScreenEvents.ShowToast(resource.message))
     }
 
     fun onAboutPressed() = viewModelScope.launch {
@@ -76,5 +97,9 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         _uiState.emit(uiState.value.copy(isLogoutButtonEnabled = true))
         Timber.d(exception.toString())
         _events.emit(ProfileScreenEvents.ShowToast("Failed to logout"))
+    }
+
+    fun onLeaderBoardArrowClicked() = viewModelScope.launch {
+        _events.emit(ProfileScreenEvents.NavigateToLeaderBoardScreen)
     }
 }

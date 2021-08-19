@@ -42,9 +42,15 @@ val onBoardingList = listOf(
     OnBoarding(
         id = 2,
         anim = R.raw.sleep,
-        title = "Get Good Sleep",
+        title = "Maintain Good Sleep",
         subtitle = "Healthify tracks your daily sleep\n" +
             "and helps you maintain a good sleep cycle"
+    ),
+    OnBoarding(
+        id = 3,
+        anim = R.raw.leaderboard,
+        title = "Earn XP as you go",
+        subtitle = "Earn XP when you drink water or record sleep. Make your way up to the leaders"
     )
 )
 

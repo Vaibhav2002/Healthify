@@ -8,5 +8,6 @@ data class ProfileScreenState(
     val exp: Int = 0,
     val rank: Int = 0,
     val isLoading: Boolean = false,
-    val isLogoutButtonEnabled: Boolean = true
+    val isLogoutButtonEnabled: Boolean = true,
+    val isLeaderBoardButtonEnabled: Boolean = false
 )

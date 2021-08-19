@@ -12,10 +12,12 @@ import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.ktx.storage
 import com.vaibhav.healthify.data.local.room.HealthifyDB
+import com.vaibhav.healthify.data.local.room.LeaderBoardDao
 import com.vaibhav.healthify.data.local.room.SleepDao
 import com.vaibhav.healthify.data.local.room.WaterDao
 import com.vaibhav.healthify.data.models.local.Sleep
 import com.vaibhav.healthify.data.models.local.Water
+import com.vaibhav.healthify.data.models.mapper.LeaderBoardItemMapper
 import com.vaibhav.healthify.data.models.mapper.SleepMapper
 import com.vaibhav.healthify.data.models.mapper.UserMapper
 import com.vaibhav.healthify.data.models.mapper.WaterMapper
@@ -63,6 +65,10 @@ object Module {
     @Provides
     fun providesSleepDao(roomDatabase: HealthifyDB): SleepDao = roomDatabase.getSleepDao()
 
+    @Provides
+    fun providesLeaderBoardDao(roomDatabase: HealthifyDB): LeaderBoardDao =
+        roomDatabase.getLeaderBoardDao()
+
     // mappers
 
     @Provides
@@ -73,6 +79,9 @@ object Module {
 
     @Provides
     fun providesSleepMapper(): SleepMapper = SleepMapper()
+
+    @Provides
+    fun providesLeaderBoardMapper(): LeaderBoardItemMapper = LeaderBoardItemMapper()
 
     // Chart DataOrganizer
     @Provides

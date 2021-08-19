@@ -12,6 +12,13 @@ fun ImageView.loadCoilImage(image: Int) {
     }
 }
 
+@BindingAdapter("loadImageFromUrl")
+fun ImageView.loadImageUrl(image: String) {
+    load(image) {
+        crossfade(true)
+    }
+}
+
 @BindingAdapter("setWaterQuantity")
 fun TextView.setWaterQuantity(quantity: Int) {
     text = "$quantity mL"

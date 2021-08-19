@@ -83,7 +83,7 @@ class WaterDashboardViewModel @Inject constructor(
             user?.let {
                 _uiState.emit(
                     uiState.value.copy(
-                        username = it.username,
+                        username = it.username.substringBefore(' ', it.username),
                         totalAmount = it.waterLimit,
                     )
                 )

@@ -42,6 +42,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.logoutButton.setOnClickListener {
             viewModel.onLogoutPressed()
         }
+        binding.nextArrowBtn.setOnClickListener {
+            viewModel.onLeaderBoardArrowClicked()
+        }
+        binding.swipeRefresh.setOnRefreshListener {
+            binding.swipeRefresh.isRefreshing = true
+            viewModel.onRefreshed()
+            binding.swipeRefresh.isRefreshing = false
+        }
     }
 
     private fun collectUiEvents() = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -54,6 +62,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 expTv.text = it.exp.toString()
                 weightTv.text = "${it.weight} kgs"
                 ageTv.text = it.age.toString()
+                rankingTv.text = it.rank.toString()
             }
         }
     }
@@ -69,6 +78,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     it.description
                 )
                 is ProfileScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                ProfileScreenEvents.NavigateToLeaderBoardScreen -> navigateToLeaderboardScreen()
             }
         }
     }
@@ -109,5 +119,9 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     fun navigateToAboutScreen() {
         findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
+    }
+
+    fun navigateToLeaderboardScreen() {
+        findNavController().navigate(R.id.action_profileFragment_to_leaderboardFragment)
     }
 }

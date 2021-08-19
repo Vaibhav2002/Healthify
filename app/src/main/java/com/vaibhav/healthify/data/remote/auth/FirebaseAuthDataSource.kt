@@ -75,4 +75,12 @@ class FirebaseAuthDataSource @Inject constructor(
     } catch (e: Exception) {
         Resource.Error(e.message.toString())
     }
+
+    override suspend fun fetchAllUsers() = try {
+        val users =
+            fireStore.collection(USER_COLLECTION).get().await().toObjects(UserDTO::class.java)
+        Resource.Success(users)
+    } catch (e: Exception) {
+        Resource.Error(e.message.toString())
+    }
 }

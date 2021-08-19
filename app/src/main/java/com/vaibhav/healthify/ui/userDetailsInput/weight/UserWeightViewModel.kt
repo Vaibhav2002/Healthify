@@ -36,12 +36,11 @@ class UserWeightViewModel @Inject constructor(private val authRepo: AuthRepo) : 
         _uiState.emit(_uiState.value.copy(isLoading = true, isButtonEnabled = false))
         val resource =
             authRepo.saveUserWeight(weight = uiState.value.weight)
-        _uiState.emit(_uiState.value.copy(isLoading = false))
+        _uiState.emit(_uiState.value.copy(isLoading = false, isButtonEnabled = true))
         if (resource is Resource.Success) {
             _events.emit(UserWeightScreenEvents.ShowToast(USER_DETAILS_UPDATED))
             _events.emit(UserWeightScreenEvents.NavigateToNextScreen)
         } else {
-            _uiState.emit(_uiState.value.copy(isButtonEnabled = true))
             _events.emit(UserWeightScreenEvents.ShowToast(USER_DETAILS_UPDATE_FAILED))
         }
     }

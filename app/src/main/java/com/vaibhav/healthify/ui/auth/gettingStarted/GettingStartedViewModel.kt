@@ -70,9 +70,10 @@ class GettingStartedViewModel @Inject constructor(private val authRepo: AuthRepo
             stopLoading()
             if (resource is Resource.Success) {
                 _events.emit(GettingStartedScreenEvents.ShowToast(LOGIN_SUCCESS))
-                if (isUserAlreadyRegistered.data!!)
+                if (isUserAlreadyRegistered.data!!) {
+                    authRepo.saveUserDataEntryCompleted()
                     _events.emit(GettingStartedScreenEvents.NavigateToHomeScreen)
-                else
+                } else
                     _events.emit(GettingStartedScreenEvents.NavigateToUserDetailsScreen)
             } else {
                 sendError(resource.message)

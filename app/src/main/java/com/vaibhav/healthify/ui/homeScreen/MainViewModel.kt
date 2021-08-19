@@ -33,18 +33,26 @@ class MainViewModel @Inject constructor(
     }
 
     private fun loadAllWaterLogs() = viewModelScope.launch {
-        _isLoading.emit(true)
+        startLoading()
         val resource = waterRepo.fetchAllWaterLogs()
-        _isLoading.emit(false)
+        stopLoading()
         if (resource is Resource.Error)
             _events.emit(MainActivityScreenEvents.ShowToast(resource.message))
     }
 
     private fun loadAllSleepLogs() = viewModelScope.launch {
-        _isLoading.emit(true)
+        startLoading()
         val resource = sleepRepo.fetchAllSleepLogs()
-        _isLoading.emit(false)
+        stopLoading()
         if (resource is Resource.Error)
             _events.emit(MainActivityScreenEvents.ShowToast(resource.message))
+    }
+
+    private suspend fun stopLoading() {
+        _isLoading.emit(false)
+    }
+
+    private suspend fun startLoading() {
+        _isLoading.emit(true)
     }
 }

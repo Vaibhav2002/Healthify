@@ -13,6 +13,7 @@ import com.syzible.scales.ScaleSliderLayoutManager
 import com.syzible.scales.Screen
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentUserWeightBinding
+import com.vaibhav.healthify.util.setMarginTopForFullScreen
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,6 +33,10 @@ class UserWeightFragment :
         binding.nextButton.setOnClickListener {
             viewModel.onNextButtonPressed()
         }
+        binding.backButton.setOnClickListener {
+            findNavController().popBackStack()
+        }
+        binding.backButton.setMarginTopForFullScreen()
         setUpWeightScale()
         collectUiState()
         collectEvents()
