@@ -35,7 +35,7 @@ class MainActivity : AppCompatActivity() {
     private fun collectLoadingState() {
         lifecycleScope.launchWhenStarted {
             viewModel.isLoading.collect {
-                binding.loadingLayout.loadingAnim.isVisible = it
+                binding.loadingLayout.loadingLayout.isVisible = it
             }
         }
     }

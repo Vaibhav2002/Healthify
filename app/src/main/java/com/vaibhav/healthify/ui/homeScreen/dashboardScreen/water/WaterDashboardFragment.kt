@@ -65,7 +65,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
                 totalText.text = "/ ${it.totalAmount} mL"
                 progress.progress = it.progress
                 addWater.isEnabled = it.isAddWaterButtonEnabled
-                loadingLayout.loadingAnim.isVisible = it.isLoading
+                loadingLayout.loadingLayout.isVisible = it.isLoading
                 waterAdapter.submitList(it.waterLog)
             }
         }

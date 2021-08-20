@@ -64,7 +64,6 @@ class AuthRepo @Inject constructor(
     suspend fun logoutUser() = withContext(Dispatchers.IO) {
         removeUserFromPreferences()
         removeUserDataCompleted()
-        removeUserOnBoarding()
     }
 
     suspend fun saveUserName(username: String) = withContext(Dispatchers.IO) {

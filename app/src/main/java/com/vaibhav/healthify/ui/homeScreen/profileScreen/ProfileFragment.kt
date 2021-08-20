@@ -21,7 +21,6 @@ import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -63,8 +62,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 weightTv.text = "${it.weight} kgs"
                 ageTv.text = it.age.toString()
                 rankingTv.text = it.rank.toString()
-                loadingLayout.loadingAnim.isVisible = it.isLoading
-                Timber.d("Got leaderboard ${it.rank}")
+                loadingLayout.loadingLayout.isVisible = it.isLoading
             }
         }
     }

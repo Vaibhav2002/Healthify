@@ -59,7 +59,7 @@ class SleepDashboardFragment : Fragment(R.layout.fragment_sleep_dashboard) {
                 totalText.text = "/ ${it.totalAmount} hrs"
                 progress.progress = it.progress
                 binding.addSleep.isEnabled = it.isAddSleepButtonEnabled
-                loadingLayout.loadingAnim.isVisible = it.isLoading
+                loadingLayout.loadingLayout.isVisible = it.isLoading
                 sleepLogAdapter.submitList(it.sleepLog)
             }
         }
