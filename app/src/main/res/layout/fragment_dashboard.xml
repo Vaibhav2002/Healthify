@@ -23,8 +23,10 @@
             android:layout_marginHorizontal="@dimen/boundary"
             android:layout_marginTop="@dimen/boundary"
             android:ellipsize="end"
+            android:maxLines="1"
+            android:singleLine="true"
             style="@style/headerText"
-            android:text="Hey Vaibhav !" />
+            tools:text="Hey Vaibhav !" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tableLayout"

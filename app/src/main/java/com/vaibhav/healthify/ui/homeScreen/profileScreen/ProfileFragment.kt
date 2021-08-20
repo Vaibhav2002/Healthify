@@ -3,6 +3,7 @@ package com.vaibhav.healthify.ui.homeScreen.profileScreen
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -20,6 +21,7 @@ import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -42,8 +44,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         binding.logoutButton.setOnClickListener {
             viewModel.onLogoutPressed()
         }
-        binding.nextArrowBtn.setOnClickListener {
-            viewModel.onLeaderBoardArrowClicked()
+        binding.rankCard.setOnClickListener {
+            viewModel.onLeaderBoardClicked()
         }
         binding.swipeRefresh.setOnRefreshListener {
             binding.swipeRefresh.isRefreshing = true
@@ -61,6 +63,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 weightTv.text = "${it.weight} kgs"
                 ageTv.text = it.age.toString()
                 rankingTv.text = it.rank.toString()
+                loadingLayout.loadingAnim.isVisible = it.isLoading
+                Timber.d("Got leaderboard ${it.rank}")
             }
         }
     }

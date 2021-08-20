@@ -3,6 +3,7 @@ package com.vaibhav.healthify.ui.homeScreen.profileScreen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
+import com.vaibhav.healthify.data.repo.LeaderboardRepo
 import com.vaibhav.healthify.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -11,7 +12,10 @@ import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
-class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : ViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val authRepo: AuthRepo,
+    private val leaderboardRepo: LeaderboardRepo
+) : ViewModel() {
 
     private val _uiState = MutableStateFlow(ProfileScreenState())
     val uiState = _uiState.asStateFlow()
@@ -29,8 +33,6 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         }
     }
 
-    suspend fun getUserRank(email: String) = authRepo.getUserRank(email)
-
     suspend fun collectUserData() {
         user.collect {
             it?.let { userData ->
@@ -43,6 +45,7 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
                         age = userData.age,
                         weight = userData.weight,
                         rank = rank,
+                        email = userData.email,
                         isLeaderBoardButtonEnabled = rank != 0
                     )
                 )
@@ -50,13 +53,21 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         }
     }
 
+    suspend fun getUserRank(email: String) = leaderboardRepo.getUserRank(email)
+
     fun onRefreshed() = viewModelScope.launch {
         loadLeaderBoard()
+        updateRank()
+    }
+
+    suspend fun updateRank() {
+        val rank = getUserRank(uiState.value.email)
+        _uiState.emit(uiState.value.copy(rank = rank, isLeaderBoardButtonEnabled = rank != 0))
     }
 
     private suspend fun loadLeaderBoard() {
         _uiState.emit(uiState.value.copy(isLoading = true))
-        val resource = authRepo.fetchLeaderBoard()
+        val resource = leaderboardRepo.fetchLeaderBoard()
         _uiState.emit(uiState.value.copy(isLoading = false))
         if (resource is Resource.Error)
             _events.emit(ProfileScreenEvents.ShowToast(resource.message))
@@ -99,7 +110,7 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         _events.emit(ProfileScreenEvents.ShowToast("Failed to logout"))
     }
 
-    fun onLeaderBoardArrowClicked() = viewModelScope.launch {
+    fun onLeaderBoardClicked() = viewModelScope.launch {
         _events.emit(ProfileScreenEvents.NavigateToLeaderBoardScreen)
     }
 }

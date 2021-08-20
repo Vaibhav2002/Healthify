@@ -7,6 +7,7 @@ data class ProfileScreenState(
     val weight: Int = 0,
     val exp: Int = 0,
     val rank: Int = 0,
+    val email: String = "",
     val isLoading: Boolean = false,
     val isLogoutButtonEnabled: Boolean = true,
     val isLeaderBoardButtonEnabled: Boolean = false

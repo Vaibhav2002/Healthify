@@ -1,10 +1,7 @@
 package com.vaibhav.healthify.data.repo
 
 import com.auth0.android.result.UserProfile
-import com.vaibhav.healthify.data.local.room.LeaderBoardDao
-import com.vaibhav.healthify.data.models.local.LeaderBoardItem
 import com.vaibhav.healthify.data.models.local.User
-import com.vaibhav.healthify.data.models.mapper.LeaderBoardItemMapper
 import com.vaibhav.healthify.data.models.mapper.UserMapper
 import com.vaibhav.healthify.data.models.remote.UserDTO
 import com.vaibhav.healthify.data.remote.auth.FirebaseAuthDataSource
@@ -19,9 +16,7 @@ import javax.inject.Inject
 class AuthRepo @Inject constructor(
     private val authDataSource: FirebaseAuthDataSource,
     private val preferencesRepo: PreferencesRepo,
-    private val leaderBoardDao: LeaderBoardDao,
-    private val userMapper: UserMapper,
-    private val leaderBoardItemMapper: LeaderBoardItemMapper
+    private val userMapper: UserMapper
 ) {
 
     companion object {
@@ -41,20 +36,6 @@ class AuthRepo @Inject constructor(
     suspend fun saveUserOnBoardingCompleted() = preferencesRepo.saveOnBoardingCompleted()
 
     suspend fun saveUserDataEntryCompleted() = preferencesRepo.saveUserDataCompleted()
-
-    suspend fun getUserRank(email: String) = leaderBoardDao.getUserRank(email)
-
-    fun getAllLeaderBoardItems() = leaderBoardDao.getLeaderBoard()
-
-    suspend fun fetchLeaderBoard(): Resource<Unit> = withContext(Dispatchers.IO) {
-        val resource = authDataSource.fetchAllUsers()
-        return@withContext if (resource is Resource.Success && resource.data != null) {
-            dumpAllLeaderBoardUsersIntoDB(leaderBoardItemMapper.toEntityList(resource.data!!))
-            Resource.Success()
-        } else {
-            Resource.Error("Failed to get leaderboard")
-        }
-    }
 
     suspend fun isUserRegistered(userProfile: UserProfile): Resource<Boolean> =
         withContext(Dispatchers.IO) {
@@ -158,22 +139,5 @@ class AuthRepo @Inject constructor(
 
     private suspend fun removeUserOnBoarding() {
         preferencesRepo.removeOnBoarding()
-    }
-
-    private suspend fun dumpAllLeaderBoardUsersIntoDB(leaderBoardItems: List<LeaderBoardItem>) {
-        deleteAllFromLeaderBoardDB()
-        val leaderBoard = leaderBoardItems.sortedByDescending {
-            it.exp
-        }
-        var index = 1
-        leaderBoard.forEach {
-            it.id = index
-            index++
-        }
-        leaderBoardDao.insertAllItems(leaderBoard)
-    }
-
-    private suspend fun deleteAllFromLeaderBoardDB() {
-        leaderBoardDao.deleteAll()
     }
 }

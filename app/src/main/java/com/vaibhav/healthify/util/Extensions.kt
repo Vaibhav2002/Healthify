@@ -108,3 +108,7 @@ fun Context.showDialog(
     }
     dialog.show()
 }
+
+fun String.getFirstName(): String {
+    return this.substringBefore(' ')
+}
