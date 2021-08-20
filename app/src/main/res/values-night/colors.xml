@@ -86,4 +86,7 @@
     <color name="card2TextColor">@color/dt_gray</color>
 
     <color name="divider">@color/dt_deepblue</color>
+
+    <color name="versionColor">@color/dt_pink</color>
+    <color name="nameColor">@color/dt_pink</color>
 </resources>

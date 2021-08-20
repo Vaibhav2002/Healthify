@@ -2,8 +2,8 @@
     <!-- Base application theme. -->
     <style name="Theme.Healthify" parent="Theme.MaterialComponents.DayNight.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/lt_darkpblue</item>
-        <item name="colorPrimaryVariant">@color/lt_blue</item>
+        <item name="colorPrimary">@color/lt_blue</item>
+        <item name="colorPrimaryVariant">@color/lt_darkpblue</item>
         <item name="colorOnPrimary">@color/surface</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/lt_blue</item>
@@ -11,6 +11,9 @@
         <item name="colorOnSecondary">@color/surface</item>
 
         <item name="colorSurface">@color/surface</item>
+
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
+
 
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
 
@@ -25,6 +28,30 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
         <item name="android:windowLightStatusBar">true</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:colorAccent">@color/lt_deepblue</item>
+        <item name="android:textColor">@color/lt_deepblue</item>
+        <item name="android:textColorPrimary">@color/lt_deepblue</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyText</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/TextAppearance.MdcTypographyStyles.Headline5
+        </item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="AlertDialogBodyText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:alpha">0.5</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/lt_deepblue</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/lt_deepblue</item>
     </style>
 
     <style name="CustomBottomSheetDialog" parent="@style/Theme.Design.BottomSheetDialog">

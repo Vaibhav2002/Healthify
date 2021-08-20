@@ -3,10 +3,12 @@ package com.vaibhav.healthify.ui.splashScreen
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
+import android.view.animation.AnimationUtils
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.vaibhav.chatofy.util.makeStatusBarTransparent
+import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.ActivitySplashBinding
 import com.vaibhav.healthify.ui.auth.AuthActivity
 import com.vaibhav.healthify.ui.homeScreen.MainActivity
@@ -32,9 +34,17 @@ class SplashActivity : AppCompatActivity() {
         setContentView(binding.root)
         makeStatusBarTransparent()
         collectUiEvents()
+        animateLogo()
         Handler().postDelayed({
             viewModel.onTimerComplete()
         }, SPLASH_SCREEN_DURATION)
+    }
+
+    private fun animateLogo() {
+        val animation = AnimationUtils.loadAnimation(this, R.anim.scale_logo)
+        binding.logo.apply {
+            startAnimation(animation)
+        }
     }
 
     private fun collectUiEvents() = lifecycleScope.launchWhenStarted {

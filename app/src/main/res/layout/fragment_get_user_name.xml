@@ -48,6 +48,7 @@
             android:hint="@string/enter_your_name"
             android:inputType="textPersonName"
             android:maxLines="1"
+            android:maxLength="30"
             android:paddingHorizontal="16dp"
             android:paddingVertical="24dp"
             android:singleLine="true"
@@ -62,7 +63,7 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/next_button"
             android:elevation="8dp"
-            android:paddingHorizontal="32dp"
+            android:paddingHorizontal="40dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_next_arrow"
             app:tint="@color/nextIconTint" />

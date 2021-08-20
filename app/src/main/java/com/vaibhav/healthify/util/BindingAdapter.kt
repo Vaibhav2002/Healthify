@@ -4,10 +4,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
+import coil.size.Scale
 
 @BindingAdapter("loadImage")
 fun ImageView.loadCoilImage(image: Int) {
     load(image) {
+        scale(Scale.FILL)
         crossfade(true)
     }
 }
@@ -15,6 +17,7 @@ fun ImageView.loadCoilImage(image: Int) {
 @BindingAdapter("loadImageFromUrl")
 fun ImageView.loadImageUrl(image: String) {
     load(image) {
+        scale(Scale.FILL)
         crossfade(true)
     }
 }

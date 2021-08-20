@@ -92,4 +92,7 @@
 
 
     <color name="divider">#EEEDF0</color>
+
+    <color name="versionColor">@color/lt_blue</color>
+    <color name="nameColor">@color/lt_blue</color>
 </resources>

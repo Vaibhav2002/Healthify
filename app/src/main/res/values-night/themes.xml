@@ -12,7 +12,10 @@
 
         <item name="colorSurface">@color/dt_darkpblue</item>
 
+        <item name="materialAlertDialogTheme">@style/AlertDialogTheme</item>
+
         <item name="bottomSheetDialogTheme">@style/CustomBottomSheetDialog</item>
+
 
         <item name="colorBackgroundFloating">@color/dt_blue</item>
         <!-- Status bar color. -->
@@ -23,6 +26,30 @@
     <style name="Theme.Healthify.NoStatusBarTheme">
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowTranslucentStatus">true</item>
+    </style>
+
+    <style name="AlertDialogTheme" parent="ThemeOverlay.MaterialComponents.Dialog.Alert">
+        <item name="android:colorAccent">@color/dt_yellow</item>
+        <item name="android:textColor">@color/dt_gray</item>
+        <item name="android:textColorPrimary">@color/dt_gray</item>
+        <item name="materialAlertDialogBodyTextStyle">@style/AlertDialogBodyText</item>
+        <item name="materialAlertDialogTitleTextStyle">
+            @style/TextAppearance.MdcTypographyStyles.Headline5
+        </item>
+        <item name="buttonBarNegativeButtonStyle">@style/NegativeButtonStyle</item>
+        <item name="buttonBarPositiveButtonStyle">@style/PositiveButtonStyle</item>
+    </style>
+
+    <style name="AlertDialogBodyText" parent="TextAppearance.MaterialComponents.Body1">
+        <item name="android:alpha">0.3</item>
+    </style>
+
+    <style name="NegativeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dt_gray</item>
+    </style>
+
+    <style name="PositiveButtonStyle" parent="Widget.MaterialComponents.Button.TextButton.Dialog">
+        <item name="android:textColor">@color/dt_gray</item>
     </style>
 
     <style name="CustomBottomSheetDialog" parent="@style/Theme.Design.BottomSheetDialog">

@@ -71,7 +71,7 @@ class ProfileViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
         _events.emit(
             ProfileScreenEvents.ShowLogoutDialog(
                 "Confirm Logout",
-                "Are you sure that you want to logout"
+                "Are you sure that you want to logout?"
             )
         )
     }

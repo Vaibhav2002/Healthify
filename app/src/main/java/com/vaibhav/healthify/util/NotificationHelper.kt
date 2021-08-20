@@ -42,7 +42,7 @@ class NotificationHelper(private val context: Context) {
         NotificationCompat.Builder(context, CHANNEL_ID)
             .setContentTitle(NOTIFICATION_TITLE)
             .setContentText(NOTIFICATION_DESC)
-            .setSmallIcon(R.mipmap.ic_launcher)
+            .setSmallIcon(R.drawable.logo_small)
             .setContentIntent(pendingIntent)
             .setAutoCancel(true)
             .build()

@@ -1,11 +1,12 @@
 package com.vaibhav.healthify.util
 
-import android.app.AlertDialog
 import android.content.Context
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.ViewCompat
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.vaibhav.chatofy.util.setMarginTop
+import com.vaibhav.healthify.R
 import java.math.RoundingMode
 import java.text.DecimalFormat
 import java.text.SimpleDateFormat
@@ -93,7 +94,8 @@ fun Context.showDialog(
     onConfirm: () -> Unit,
     onDismiss: () -> Unit
 ) {
-    val dialog = AlertDialog.Builder(this)
+    val dialog = MaterialAlertDialogBuilder(this)
+        .setBackground(getDrawable(R.drawable.alert_dialog_bg))
         .setTitle(title)
         .setMessage(message)
         .setPositiveButton("Confirm") { _, _ ->

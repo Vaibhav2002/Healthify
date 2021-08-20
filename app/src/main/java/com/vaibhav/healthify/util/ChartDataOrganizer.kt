@@ -37,8 +37,8 @@ class ChartDataOrganizer<T> {
         }
     }
 
-    suspend fun sortData() {
-        data.toSortedMap { cal1, cal2 -> cal1.timeInMillis.compareTo(cal2.timeInMillis) }
+    suspend fun sortData() = withContext(Dispatchers.IO) {
+        data.toSortedMap { cal1, cal2 -> cal2.timeInMillis.compareTo(cal1.timeInMillis) }
     }
 
     suspend fun findCalendarInstance(timeStamp: Long): Calendar? =

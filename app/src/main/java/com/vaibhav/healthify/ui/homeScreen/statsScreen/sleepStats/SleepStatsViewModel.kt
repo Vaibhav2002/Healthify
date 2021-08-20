@@ -94,7 +94,8 @@ class SleepStatsViewModel @Inject constructor(
             barList.add(pair)
             lineList.add(lineChartPair)
         }
-        val weekDate = "$startDate - $endDate"
+        lineList.reverse()
+        val weekDate = "$endDate - $startDate"
         calculatePercentage(logs, numberOfDaysSlept)
         _uiState.emit(
             uiState.value.copy(

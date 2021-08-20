@@ -82,7 +82,7 @@
             android:layout_marginBottom="32dp"
             android:background="@drawable/next_button"
             android:elevation="8dp"
-            android:paddingHorizontal="32dp"
+            android:paddingHorizontal="40dp"
             android:paddingVertical="16dp"
             android:src="@drawable/ic_next_arrow"
             app:tint="@color/nextIconTint" />

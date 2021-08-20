@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import coil.load
 import com.auth0.android.Auth0
 import com.auth0.android.authentication.AuthenticationException
 import com.auth0.android.callback.Callback
@@ -15,6 +14,7 @@ import com.auth0.android.provider.WebAuthProvider
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentProfileBinding
 import com.vaibhav.healthify.ui.auth.AuthActivity
+import com.vaibhav.healthify.util.loadImageUrl
 import com.vaibhav.healthify.util.showDialog
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
@@ -56,9 +56,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         viewModel.uiState.collect {
             binding.apply {
                 username.text = it.username
-                profileImage.load(it.profileImage) {
-                    crossfade(true)
-                }
+                profileImage.loadImageUrl(it.profileImage)
                 expTv.text = it.exp.toString()
                 weightTv.text = "${it.weight} kgs"
                 ageTv.text = it.age.toString()
