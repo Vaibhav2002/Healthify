@@ -69,8 +69,10 @@ class ProfileViewModel @Inject constructor(
         _uiState.emit(uiState.value.copy(isLoading = true))
         val resource = leaderboardRepo.fetchLeaderBoard()
         _uiState.emit(uiState.value.copy(isLoading = false))
-        if (resource is Resource.Error)
+        if (resource is Resource.Error) {
+            Timber.d(resource.errorType.name)
             _events.emit(ProfileScreenEvents.ShowToast(resource.message))
+        }
     }
 
     private fun updateUserSleepLimit(limit: Int) = viewModelScope.launch {

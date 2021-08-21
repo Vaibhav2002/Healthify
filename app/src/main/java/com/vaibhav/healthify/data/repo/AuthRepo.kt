@@ -44,7 +44,7 @@ class AuthRepo @Inject constructor(
                 if (userResource.message == USER_DOES_NOT_EXIST)
                     Resource.Success(false)
                 else
-                    Resource.Error(userResource.message)
+                    Resource.Error(userResource.message, errorType = userResource.errorType)
             } else Resource.Success(true)
         }
 

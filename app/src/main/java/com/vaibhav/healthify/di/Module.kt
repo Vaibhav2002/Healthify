@@ -21,10 +21,7 @@ import com.vaibhav.healthify.data.models.mapper.LeaderBoardItemMapper
 import com.vaibhav.healthify.data.models.mapper.SleepMapper
 import com.vaibhav.healthify.data.models.mapper.UserMapper
 import com.vaibhav.healthify.data.models.mapper.WaterMapper
-import com.vaibhav.healthify.util.CLIENT_ID
-import com.vaibhav.healthify.util.ChartDataOrganizer
-import com.vaibhav.healthify.util.DATASTORE
-import com.vaibhav.healthify.util.DOMAIN_NAME
+import com.vaibhav.healthify.util.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -89,4 +86,8 @@ object Module {
 
     @Provides
     fun providesSleepChartDataOrganizer(): ChartDataOrganizer<Sleep> = ChartDataOrganizer()
+
+    @Provides
+    fun providesInternetChecker(@ApplicationContext context: Context): InternetChecker =
+        InternetChecker(context)
 }

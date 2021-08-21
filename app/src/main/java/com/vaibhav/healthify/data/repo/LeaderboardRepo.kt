@@ -25,7 +25,7 @@ class LeaderboardRepo @Inject constructor(
             dumpAllLeaderBoardUsersIntoDB(leaderBoardItemMapper.toEntityList(resource.data!!))
             Resource.Success()
         } else {
-            Resource.Error("Failed to get leaderboard")
+            Resource.Error(errorType = resource.errorType, message = "Cannot load leaderboard")
         }
     }
 

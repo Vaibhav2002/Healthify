@@ -8,6 +8,7 @@ const val DATASTORE = "HealthifyDataStore"
 const val USER_DOES_NOT_EXIST = "User does not exist"
 const val USER_DETAILS_UPDATED = "Details updated successfully"
 const val USER_DETAILS_UPDATE_FAILED = "Failed to update details"
+const val NO_INTERNET_MESSAGE = "Looks like you don't have an active internet connection"
 
 const val USER_COLLECTION = "users"
 const val WATER_COLLECTION = "water"
@@ -22,6 +23,10 @@ enum class WATER(val quantity: Int, val image: Int) {
     ML_200(200, R.drawable.hot_cup), ML_400(400, R.drawable.mug),
     ML_600(600, R.drawable.water_glass), ML_800(800, R.drawable.mineral_water),
     ML_1000(1000, R.drawable.water_bottle)
+}
+
+enum class ERROR_TYPE {
+    NO_INTERNET, UNKNOWN
 }
 
 val onBoardingList = listOf(

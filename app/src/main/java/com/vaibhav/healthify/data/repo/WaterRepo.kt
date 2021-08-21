@@ -30,7 +30,7 @@ class WaterRepo @Inject constructor(
             if (resource is Resource.Success) {
                 dumpNewWaterLogsDataIntoDb(waterMapper.toEntityList(resource.data!!))
                 Resource.Success<Unit>()
-            } else Resource.Error(resource.message)
+            } else Resource.Error(resource.message, errorType = resource.errorType)
         } ?: Resource.Error(USER_DOES_NOT_EXIST)
     }
 
