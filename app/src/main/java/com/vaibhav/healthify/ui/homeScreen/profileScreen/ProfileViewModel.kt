@@ -73,6 +73,22 @@ class ProfileViewModel @Inject constructor(
             _events.emit(ProfileScreenEvents.ShowToast(resource.message))
     }
 
+    private fun updateUserSleepLimit(limit: Int) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isLoading = true))
+        val resource = authRepo.updateUserSleepLimit(limit)
+        _uiState.emit(uiState.value.copy(isLoading = false))
+        val message = if (resource is Resource.Success) "Updated successfully" else resource.message
+        _events.emit(ProfileScreenEvents.ShowToast(message))
+    }
+
+    private fun updateUserWaterLimit(limit: Int) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isLoading = true))
+        val resource = authRepo.updateUserWaterLimit(limit)
+        _uiState.emit(uiState.value.copy(isLoading = false))
+        val message = if (resource is Resource.Success) "Updated successfully" else resource.message
+        _events.emit(ProfileScreenEvents.ShowToast(message))
+    }
+
     fun onAboutPressed() = viewModelScope.launch {
         _events.emit(ProfileScreenEvents.NavigateToAboutScreen)
     }
@@ -112,5 +128,41 @@ class ProfileViewModel @Inject constructor(
 
     fun onLeaderBoardClicked() = viewModelScope.launch {
         _events.emit(ProfileScreenEvents.NavigateToLeaderBoardScreen)
+    }
+
+    fun editWaterLimitButtonState(isEnabled: Boolean) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isEditWaterQuantityButtonEnabled = isEnabled))
+    }
+
+    fun editSleepLimitButtonState(isEnabled: Boolean) = viewModelScope.launch {
+        _uiState.emit(uiState.value.copy(isEditSleepLimitButtonEnabled = isEnabled))
+    }
+
+    fun onEditWaterLimitPressed() = viewModelScope.launch {
+        editWaterLimitButtonState(false)
+        _events.emit(
+            ProfileScreenEvents.OpenWaterLimitDialog(
+                onQuantitySelected = {
+                    updateUserWaterLimit(it)
+                },
+                onDismiss = {
+                    editWaterLimitButtonState(true)
+                }
+            )
+        )
+    }
+
+    fun onEditSleepLimitPressed() = viewModelScope.launch {
+        editSleepLimitButtonState(false)
+        _events.emit(
+            ProfileScreenEvents.OpenSleepLimitDialog(
+                onTimeSelected = {
+                    updateUserSleepLimit(it)
+                },
+                onDismiss = {
+                    editSleepLimitButtonState(true)
+                }
+            )
+        )
     }
 }

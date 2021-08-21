@@ -2,14 +2,10 @@ package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.water
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.vaibhav.healthify.data.models.local.User
 import com.vaibhav.healthify.data.models.local.Water
 import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.WaterRepo
-import com.vaibhav.healthify.util.Resource
-import com.vaibhav.healthify.util.WATER
-import com.vaibhav.healthify.util.WATER_EXP
-import com.vaibhav.healthify.util.getGreeting
+import com.vaibhav.healthify.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,14 +23,12 @@ class WaterDashboardViewModel @Inject constructor(
     private val _events = MutableSharedFlow<WaterDashboardScreenEvents>()
     val events: SharedFlow<WaterDashboardScreenEvents> = _events
 
-    private var user = MutableStateFlow<User?>(null)
+    private var user =
+        authRepo.getUserDataFlow().stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
-        viewModelScope.launch {
-            getUserInfo()
-            collectWaterLogs()
-        }
         collectUserData()
+        collectWaterLogs()
         getFotd()
     }
 
@@ -91,24 +85,23 @@ class WaterDashboardViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getUserInfo() {
-        user.emit(authRepo.getCurrentUser())
-    }
-
-    private suspend fun collectWaterLogs() {
+    private fun collectWaterLogs() = viewModelScope.launch {
         waterRepo.getTodaysWaterLogs().collect { waterLogs ->
             val totalDrinked = waterLogs.sumOf { water ->
                 water.quantity.quantity
             }
-            val progress = totalDrinked.toFloat() / user.value!!.waterLimit * 100f
-            _uiState.emit(
-                uiState.value.copy(
-                    waterLog = waterLogs,
-                    completedAmount = totalDrinked,
-                    progress = progress,
-                    greeting = getGreeting(progress)
+            user.value?.let {
+                val progress = totalDrinked.toFloat() / user.value!!.waterLimit * 100f
+                _uiState.emit(
+                    uiState.value.copy(
+                        waterLog = waterLogs,
+                        completedAmount = totalDrinked,
+                        progress = progress,
+                        greeting = getGreeting(progress),
+                        mainGreeting = getMainGreeting(progress)
+                    )
                 )
-            )
+            }
         }
     }
 

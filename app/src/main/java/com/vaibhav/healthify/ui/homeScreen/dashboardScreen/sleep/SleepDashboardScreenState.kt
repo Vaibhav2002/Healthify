@@ -4,6 +4,7 @@ import com.vaibhav.healthify.data.models.local.Sleep
 
 data class SleepDashboardScreenState(
     val username: String = "",
+    val mainGreeting: String = "",
     val greeting: String = "",
     val completedAmount: Float = 0F,
     val totalAmount: Float = 0F,

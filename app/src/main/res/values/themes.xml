@@ -55,6 +55,16 @@
         <item name="android:textColor">@color/lt_deepblue</item>
     </style>
 
+    <style name="ProfileButtons">
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:paddingVertical">8dp</item>
+        <item name="android:paddingHorizontal">16dp</item>
+        <item name="android:gravity">center_vertical|start</item>
+        <item name="android:background">@android:color/transparent</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:textAppearance">@style/TextAppearance.MdcTypographyStyles.Body1</item>
+    </style>
+
     <style name="CustomBottomSheetDialog" parent="@style/Theme.Design.BottomSheetDialog">
         <item name="colorBackgroundFloating">@color/white</item>
         <item name="colorOnBackground">@color/lt_deepblue</item>

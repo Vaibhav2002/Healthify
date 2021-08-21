@@ -6,7 +6,7 @@
     android:layout_margin="@dimen/boundary"
     android:background="@drawable/bottom_sheet_bg"
     android:elevation="8dp"
-    tools:context=".ui.homeScreen.dashboardScreen.addWaterDialog.AddWaterDialogFragment">
+    tools:context=".ui.dialogs.addWaterDialog.AddWaterDialogFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

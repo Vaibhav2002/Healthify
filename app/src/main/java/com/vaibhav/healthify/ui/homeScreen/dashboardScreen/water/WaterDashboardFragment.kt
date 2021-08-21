@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentWaterDashboardBinding
 import com.vaibhav.healthify.ui.adapters.WaterLogAdapter
-import com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addWaterDialog.AddWaterDialogFragment
+import com.vaibhav.healthify.ui.dialogs.addWaterDialog.AddWaterDialogFragment
 import com.vaibhav.healthify.util.NOTIFICATION_INTERVAL
 import com.vaibhav.healthify.util.WaterBroadcastReceiver
 import com.vaibhav.healthify.util.showToast
@@ -67,6 +67,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
                 addWater.isEnabled = it.isAddWaterButtonEnabled
                 loadingLayout.loadingLayout.isVisible = it.isLoading
                 waterAdapter.submitList(it.waterLog)
+                yayText.text = it.mainGreeting
             }
         }
     }

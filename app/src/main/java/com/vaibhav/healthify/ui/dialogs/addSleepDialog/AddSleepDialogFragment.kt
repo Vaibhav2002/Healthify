@@ -1,4 +1,4 @@
-package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addSleepDialog
+package com.vaibhav.healthify.ui.dialogs.addSleepDialog
 
 import android.content.DialogInterface
 import android.graphics.Color
@@ -15,6 +15,7 @@ import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentAddSleepDialogBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import timber.log.Timber
 
 @AndroidEntryPoint
 class AddSleepDialogFragment(
@@ -73,6 +74,7 @@ class AddSleepDialogFragment(
 
     override fun onDismiss(dialog: DialogInterface) {
         super.onDismiss(dialog)
+        Timber.d("onDismiss")
         onDismiss()
     }
 }

@@ -1,4 +1,4 @@
-package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addSleepDialog
+package com.vaibhav.healthify.ui.dialogs.addSleepDialog
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

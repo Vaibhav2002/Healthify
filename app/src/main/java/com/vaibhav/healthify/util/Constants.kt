@@ -77,6 +77,15 @@ val sleepFOTD = listOf(
     "Whales and dolphins literally fall half asleep. Each side of their brain takes turns so they can come up for air."
 )
 
+fun getMainGreeting(progress: Float): String {
+    return when {
+        progress >= 100 -> "Yay !"
+        progress > 50f -> "Yay !"
+        progress == 50f -> "Good going !"
+        else -> "It's okay !"
+    }
+}
+
 fun getGreeting(progress: Float): String {
     return when {
         progress >= 100 -> "You're done !"

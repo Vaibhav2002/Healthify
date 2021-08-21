@@ -1,4 +1,4 @@
-package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addSleepDialog
+package com.vaibhav.healthify.ui.dialogs.addSleepDialog
 
 data class AddSleepDialogScreenState(
     val hours: Int = 0,

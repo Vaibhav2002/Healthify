@@ -7,7 +7,7 @@
     android:layout_margin="16dp"
     android:background="@drawable/bottom_sheet_bg"
     android:elevation="8dp"
-    tools:context=".ui.homeScreen.dashboardScreen.addSleepDialog.AddSleepDialogFragment">
+    tools:context=".ui.dialogs.addSleepDialog.AddSleepDialogFragment">
 
 
     <TextView

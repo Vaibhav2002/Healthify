@@ -76,7 +76,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/dotsIndicator"
-        tools:text="Welcome!" />
+        tools:text="Gain XP as you go" />
 
     <TextView
         android:id="@+id/description"

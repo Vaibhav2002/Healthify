@@ -46,9 +46,7 @@
                     app:cardElevation="0dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/textView5"
-                    app:strokeColor="@color/dashboard_title_color"
-                    app:strokeWidth="2dp">
+                    app:layout_constraintTop_toBottomOf="@+id/textView5">
 
                     <FrameLayout
                         android:layout_width="match_parent"
@@ -154,7 +152,6 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
                                 android:alpha="0.8"
                                 android:text="Weight"
                                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
@@ -198,7 +195,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_gravity="center_vertical"
                                 android:alpha="0.8"
-                                android:text="Exp"
+                                android:text="XP"
                                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
                                 android:textColor="@color/card2TextColor" />
 
@@ -241,7 +238,6 @@
                                 android:id="@+id/rankingTextView"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginBottom="4dp"
                                 android:alpha="0.8"
                                 android:text="Ranking"
                                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
@@ -282,36 +278,43 @@
                     android:background="@color/divider"
                     app:layout_constraintTop_toBottomOf="@id/constraintLayout" />
 
+
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/aboutButton"
+                    android:id="@+id/changeWaterLimitBtn"
+                    style="@style/ProfileButtons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:background="@android:color/transparent"
-                    android:drawableStart="@drawable/ic_about"
-                    android:drawablePadding="16dp"
-                    android:gravity="start|center_vertical"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:text="About"
-                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
-                    android:textColor="?attr/colorOnSurface"
+                    android:drawableStart="@drawable/ic_water"
+                    android:text="Edit daily water limit"
                     app:layout_constraintTop_toBottomOf="@id/divider" />
 
                 <androidx.appcompat.widget.AppCompatButton
-                    android:id="@+id/logoutButton"
+                    android:id="@+id/changeSleepLimitBtn"
+                    style="@style/ProfileButtons"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:background="@android:color/transparent"
+                    android:drawableStart="@drawable/ic_clock"
+                    android:text="Edit daily sleep limit"
+                    app:layout_constraintTop_toBottomOf="@id/changeWaterLimitBtn" />
+
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/aboutButton"
+                    style="@style/ProfileButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableStart="@drawable/ic_about"
+                    android:text="About"
+                    app:layout_constraintTop_toBottomOf="@id/changeSleepLimitBtn" />
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/logoutButton"
+                    style="@style/ProfileButtons"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
                     android:drawableStart="@drawable/ic_logout"
-                    android:drawablePadding="16dp"
-                    android:gravity="start|center_vertical"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
                     android:text="Logout"
-                    android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
-                    android:textColor="?attr/colorOnSurface"
                     app:layout_constraintTop_toBottomOf="@id/aboutButton" />
 
 

@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentSleepDashboardBinding
 import com.vaibhav.healthify.ui.adapters.SleepLogAdapter
-import com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addSleepDialog.AddSleepDialogFragment
+import com.vaibhav.healthify.ui.dialogs.addSleepDialog.AddSleepDialogFragment
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -58,9 +58,10 @@ class SleepDashboardFragment : Fragment(R.layout.fragment_sleep_dashboard) {
                 completedText.text = it.completedAmount.toString()
                 totalText.text = "/ ${it.totalAmount} hrs"
                 progress.progress = it.progress
-                binding.addSleep.isEnabled = it.isAddSleepButtonEnabled
+                addSleep.isEnabled = it.isAddSleepButtonEnabled
                 loadingLayout.loadingLayout.isVisible = it.isLoading
                 sleepLogAdapter.submitList(it.sleepLog)
+                yayText.text = it.mainGreeting
             }
         }
     }

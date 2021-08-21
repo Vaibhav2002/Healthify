@@ -15,6 +15,8 @@ import com.auth0.android.provider.WebAuthProvider
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentProfileBinding
 import com.vaibhav.healthify.ui.auth.AuthActivity
+import com.vaibhav.healthify.ui.dialogs.addSleepDialog.AddSleepDialogFragment
+import com.vaibhav.healthify.ui.dialogs.editWaterLimitDialog.EditWaterLimitFragment
 import com.vaibhav.healthify.util.loadImageUrl
 import com.vaibhav.healthify.util.showDialog
 import com.vaibhav.healthify.util.showToast
@@ -51,6 +53,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             viewModel.onRefreshed()
             binding.swipeRefresh.isRefreshing = false
         }
+        binding.changeSleepLimitBtn.setOnClickListener {
+            viewModel.onEditSleepLimitPressed()
+        }
+        binding.changeWaterLimitBtn.setOnClickListener {
+            viewModel.onEditWaterLimitPressed()
+        }
     }
 
     private fun collectUiEvents() = viewLifecycleOwner.lifecycleScope.launchWhenStarted {
@@ -63,6 +71,8 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 ageTv.text = it.age.toString()
                 rankingTv.text = it.rank.toString()
                 loadingLayout.loadingLayout.isVisible = it.isLoading
+                changeWaterLimitBtn.isEnabled = it.isEditWaterQuantityButtonEnabled
+                changeSleepLimitBtn.isEnabled = it.isEditSleepLimitButtonEnabled
             }
         }
     }
@@ -79,6 +89,14 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                 )
                 is ProfileScreenEvents.ShowToast -> requireContext().showToast(it.message)
                 ProfileScreenEvents.NavigateToLeaderBoardScreen -> navigateToLeaderboardScreen()
+                is ProfileScreenEvents.OpenSleepLimitDialog -> openEditSleepLimitDialog(
+                    it.onTimeSelected,
+                    it.onDismiss
+                )
+                is ProfileScreenEvents.OpenWaterLimitDialog -> openEditWaterLimitDialog(
+                    it.onQuantitySelected,
+                    it.onDismiss
+                )
             }
         }
     }
@@ -108,6 +126,16 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         }, onDismiss = {
             viewModel.onDialogClosed()
         })
+    }
+
+    fun openEditSleepLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
+        AddSleepDialogFragment(onLimitSelected, onDismiss)
+            .show(parentFragmentManager, "OPEN EDIT SLEEP DIALOG")
+    }
+
+    fun openEditWaterLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
+        EditWaterLimitFragment(onLimitSelected, onDismiss)
+            .show(parentFragmentManager, "OPEN EDIT WATER LIMIT DIALOG")
     }
 
     fun navigateToAuthScreen() {

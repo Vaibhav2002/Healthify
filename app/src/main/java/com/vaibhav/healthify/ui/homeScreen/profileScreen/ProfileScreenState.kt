@@ -10,5 +10,7 @@ data class ProfileScreenState(
     val email: String = "",
     val isLoading: Boolean = false,
     val isLogoutButtonEnabled: Boolean = true,
-    val isLeaderBoardButtonEnabled: Boolean = false
+    val isLeaderBoardButtonEnabled: Boolean = false,
+    val isEditSleepLimitButtonEnabled: Boolean = true,
+    val isEditWaterQuantityButtonEnabled: Boolean = true
 )

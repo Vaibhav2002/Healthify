@@ -5,7 +5,7 @@
     android:id="@+id/loadingLayout"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:visibility="gone"
+    android:visibility="invisible"
     app:cardBackgroundColor="?attr/colorBackgroundFloating"
     app:cardCornerRadius="@dimen/loadingAnimCornerRadius"
     app:cardElevation="16dp"

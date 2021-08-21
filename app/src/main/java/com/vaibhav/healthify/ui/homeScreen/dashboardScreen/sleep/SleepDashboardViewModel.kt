@@ -3,13 +3,9 @@ package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.sleep
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.models.local.Sleep
-import com.vaibhav.healthify.data.models.local.User
 import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.SleepRepo
-import com.vaibhav.healthify.util.Resource
-import com.vaibhav.healthify.util.SLEEP_EXP
-import com.vaibhav.healthify.util.getGreeting
-import com.vaibhav.healthify.util.getHoursFromMinutes
+import com.vaibhav.healthify.util.*
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -27,14 +23,12 @@ class SleepDashboardViewModel @Inject constructor(
     private val _events = MutableSharedFlow<SleepDashboardScreenEvents>()
     val events: SharedFlow<SleepDashboardScreenEvents> = _events
 
-    private var user = MutableStateFlow<User?>(null)
+    private var user =
+        authRepo.getUserDataFlow().stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
     init {
-        viewModelScope.launch {
-            getUserInfo()
-            collectSleepLogs()
-        }
         collectUserData()
+        collectSleepLogs()
         getFotd()
     }
 
@@ -90,24 +84,23 @@ class SleepDashboardViewModel @Inject constructor(
         }
     }
 
-    private suspend fun getUserInfo() {
-        user.emit(authRepo.getCurrentUser())
-    }
-
-    private suspend fun collectSleepLogs() {
+    private fun collectSleepLogs() = viewModelScope.launch {
         sleepRepo.getTodaysSleepLogs().collect { sleepLogs ->
             val totalSlept = sleepLogs.sumOf { sleep ->
                 sleep.sleepDuration
             }
-            val progress = (totalSlept.toFloat() / user.value!!.sleepLimit) * 100f
-            _uiState.emit(
-                uiState.value.copy(
-                    sleepLog = sleepLogs,
-                    completedAmount = totalSlept.getHoursFromMinutes(),
-                    progress = progress,
-                    greeting = getGreeting(progress)
+            user.value?.let {
+                val progress = (totalSlept.toFloat() / it.sleepLimit) * 100f
+                _uiState.emit(
+                    uiState.value.copy(
+                        sleepLog = sleepLogs,
+                        completedAmount = totalSlept.getHoursFromMinutes(),
+                        progress = progress,
+                        greeting = getGreeting(progress),
+                        mainGreeting = getMainGreeting(progress)
+                    )
                 )
-            )
+            }
         }
     }
 

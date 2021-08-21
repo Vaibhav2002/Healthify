@@ -4,6 +4,7 @@ import com.vaibhav.healthify.data.models.local.Water
 
 data class WaterDashboardScreenState(
     val username: String = "",
+    val mainGreeting: String = "",
     val greeting: String = "",
     val completedAmount: Int = 0,
     val totalAmount: Int = 0,

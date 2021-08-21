@@ -1,4 +1,4 @@
-package com.vaibhav.healthify.ui.homeScreen.dashboardScreen.addWaterDialog
+package com.vaibhav.healthify.ui.dialogs.addWaterDialog
 
 import android.content.DialogInterface
 import android.graphics.Color

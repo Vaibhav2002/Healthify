@@ -102,6 +102,26 @@ class AuthRepo @Inject constructor(
         } ?: Resource.Error(USER_NOT_LOGGED_IN)
     }
 
+    suspend fun updateUserWaterLimit(limit: Int) = withContext(Dispatchers.IO) {
+        return@withContext getCurrentUser()?.let {
+            it.waterLimit = limit
+            val resource = authDataSource.updateUserWaterLimit(it.waterLimit, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
+    suspend fun updateUserSleepLimit(limit: Int) = withContext(Dispatchers.IO) {
+        return@withContext getCurrentUser()?.let {
+            it.sleepLimit = limit
+            val resource = authDataSource.updateUserSleepLimit(it.waterLimit, it.email)
+            if (resource is Resource.Success)
+                saveUserIntoPreferences(it)
+            resource
+        } ?: Resource.Error(USER_NOT_LOGGED_IN)
+    }
+
     suspend fun increaseUserExp(increment: Int) = withContext(Dispatchers.IO) {
         return@withContext getCurrentUser()?.let {
             it.exp += increment
