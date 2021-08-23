@@ -39,7 +39,6 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
 
     private fun initViewPager() {
         binding.viewpager.adapter = dashboardPagerAdapter
-        binding.viewpager.isSaveEnabled = false
         TabLayoutMediator(binding.tableLayout, binding.viewpager) { tab, position ->
             when (position) {
                 0 -> {
