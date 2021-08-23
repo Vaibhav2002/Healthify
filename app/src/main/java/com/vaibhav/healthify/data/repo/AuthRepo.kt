@@ -11,6 +11,7 @@ import com.vaibhav.healthify.util.getSleepQuantity
 import com.vaibhav.healthify.util.getWaterQuantity
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepo @Inject constructor(
@@ -115,7 +116,8 @@ class AuthRepo @Inject constructor(
     suspend fun updateUserSleepLimit(limit: Int) = withContext(Dispatchers.IO) {
         return@withContext getCurrentUser()?.let {
             it.sleepLimit = limit
-            val resource = authDataSource.updateUserSleepLimit(it.waterLimit, it.email)
+            Timber.d("Editing sleep Limit in REPO")
+            val resource = authDataSource.updateUserSleepLimit(it.sleepLimit, it.email)
             if (resource is Resource.Success)
                 saveUserIntoPreferences(it)
             resource

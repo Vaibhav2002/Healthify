@@ -13,6 +13,8 @@ import com.syzible.scales.ScaleSliderLayoutManager
 import com.syzible.scales.Screen
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentUserWeightBinding
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.OPEN_NO_INTERNET_DIALOG
 import com.vaibhav.healthify.util.setMarginTopForFullScreen
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
@@ -66,9 +68,14 @@ class UserWeightFragment :
                         findNavController().navigate(R.id.action_userWeightFragment_to_userAgeFragment)
                     }
                     is UserWeightScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                    UserWeightScreenEvents.ShowNoInternetDialog -> openNoInternetDialog()
                 }
             }
         }
+    }
+
+    private fun openNoInternetDialog() {
+        NoInternetDialogFragment().show(parentFragmentManager, OPEN_NO_INTERNET_DIALOG)
     }
 
     private fun collectUiState() {

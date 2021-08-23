@@ -64,8 +64,9 @@ class WaterDashboardViewModel @Inject constructor(
         val resource = waterRepo.insertIntoWaterLog(getWaterModelClass(water))
         stopLoading()
         if (resource is Resource.Error)
-            _events.emit(WaterDashboardScreenEvents.ShowToast(resource.message))
-        _events.emit(WaterDashboardScreenEvents.CreateAlarm)
+            handleError(resource)
+        else
+            _events.emit(WaterDashboardScreenEvents.CreateAlarm)
     }
 
     private suspend fun addExp() {
@@ -109,4 +110,12 @@ class WaterDashboardViewModel @Inject constructor(
         quantity = water,
         timeStamp = System.currentTimeMillis()
     )
+
+    private suspend fun handleError(resource: Resource.Error<*>) {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> WaterDashboardScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> WaterDashboardScreenEvents.ShowToast(resource.message)
+        }
+        _events.emit(event)
+    }
 }

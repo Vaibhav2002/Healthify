@@ -158,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:lineHeight="24dp"
                         tools:text="@string/fotd_sample_1"
-                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body1"
+                        android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Body2"
                         android:textColor="@color/color_on_fotd" />
 
                 </FrameLayout>

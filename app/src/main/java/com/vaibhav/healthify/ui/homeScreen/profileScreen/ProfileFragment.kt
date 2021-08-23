@@ -17,10 +17,8 @@ import com.vaibhav.healthify.databinding.FragmentProfileBinding
 import com.vaibhav.healthify.ui.auth.AuthActivity
 import com.vaibhav.healthify.ui.dialogs.addSleepDialog.AddSleepDialogFragment
 import com.vaibhav.healthify.ui.dialogs.editWaterLimitDialog.EditWaterLimitFragment
-import com.vaibhav.healthify.util.loadImageUrl
-import com.vaibhav.healthify.util.showDialog
-import com.vaibhav.healthify.util.showToast
-import com.vaibhav.healthify.util.viewBinding
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import javax.inject.Inject
@@ -97,11 +95,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
                     it.onQuantitySelected,
                     it.onDismiss
                 )
+                ProfileScreenEvents.ShowNoInternetDialog -> openNoInternetDialog()
             }
         }
     }
 
-    fun logout() {
+    private fun logout() {
         viewModel.disableLogoutButton()
         WebAuthProvider
             .logout(auth0)
@@ -120,7 +119,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             )
     }
 
-    fun showLogoutDialog(title: String, message: String) {
+    private fun showLogoutDialog(title: String, message: String) {
         requireContext().showDialog(title, message, onConfirm = {
             viewModel.onLogoutConfirmed()
         }, onDismiss = {
@@ -128,28 +127,32 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         })
     }
 
-    fun openEditSleepLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
+    private fun openEditSleepLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
         AddSleepDialogFragment(onLimitSelected, onDismiss)
-            .show(parentFragmentManager, "OPEN EDIT SLEEP DIALOG")
+            .show(parentFragmentManager, OPEN_SLEEP_LIMIT_DIALOG)
     }
 
-    fun openEditWaterLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
+    private fun openEditWaterLimitDialog(onLimitSelected: (Int) -> Unit, onDismiss: () -> Unit) {
         EditWaterLimitFragment(onLimitSelected, onDismiss)
-            .show(parentFragmentManager, "OPEN EDIT WATER LIMIT DIALOG")
+            .show(parentFragmentManager, OPEN_WATER_LIMIT_DIALOG)
     }
 
-    fun navigateToAuthScreen() {
+    private fun openNoInternetDialog() {
+        NoInternetDialogFragment().show(parentFragmentManager, OPEN_NO_INTERNET_DIALOG)
+    }
+
+    private fun navigateToAuthScreen() {
         Intent(requireContext(), AuthActivity::class.java).also {
             startActivity(it)
             requireActivity().finish()
         }
     }
 
-    fun navigateToAboutScreen() {
+    private fun navigateToAboutScreen() {
         findNavController().navigate(R.id.action_profileFragment_to_aboutFragment)
     }
 
-    fun navigateToLeaderboardScreen() {
+    private fun navigateToLeaderboardScreen() {
         findNavController().navigate(R.id.action_profileFragment_to_leaderboardFragment)
     }
 }

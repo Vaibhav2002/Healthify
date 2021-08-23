@@ -11,6 +11,8 @@ sealed class ProfileScreenEvents {
 
     data class ShowToast(val message: String) : ProfileScreenEvents()
 
+    object ShowNoInternetDialog : ProfileScreenEvents()
+
     object Logout : ProfileScreenEvents()
 
     object NavigateToAuthScreen : ProfileScreenEvents()

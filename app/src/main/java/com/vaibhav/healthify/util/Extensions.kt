@@ -1,6 +1,7 @@
 package com.vaibhav.healthify.util
 
 import android.content.Context
+import android.content.res.Configuration
 import android.view.View
 import android.widget.Toast
 import androidx.core.view.ViewCompat
@@ -111,4 +112,9 @@ fun Context.showDialog(
 
 fun String.getFirstName(): String {
     return this.substringBefore(' ')
+}
+
+fun Context.isDarkModeOn(): Boolean {
+    val currentNightMode = resources.configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK
+    return currentNightMode == Configuration.UI_MODE_NIGHT_YES
 }

@@ -14,8 +14,14 @@ const val USER_COLLECTION = "users"
 const val WATER_COLLECTION = "water"
 const val SLEEP_COLLECTION = "sleep"
 
-const val WATER_EXP = 20
-const val SLEEP_EXP = 20
+const val OPEN_ADD_SLEEP_DIALOG = "AddSleep"
+const val OPEN_ADD_WATER_DIALOG = "AddWater"
+const val OPEN_WATER_LIMIT_DIALOG = "SelectWaterLimit"
+const val OPEN_SLEEP_LIMIT_DIALOG = "SelectSleepLimit"
+const val OPEN_NO_INTERNET_DIALOG = "NoInternetDialog"
+
+const val WATER_EXP = 5
+const val SLEEP_EXP = 5
 
 const val NOTIFICATION_INTERVAL = 60 * 60 * 1000L
 

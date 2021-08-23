@@ -14,10 +14,8 @@ import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentWaterDashboardBinding
 import com.vaibhav.healthify.ui.adapters.WaterLogAdapter
 import com.vaibhav.healthify.ui.dialogs.addWaterDialog.AddWaterDialogFragment
-import com.vaibhav.healthify.util.NOTIFICATION_INTERVAL
-import com.vaibhav.healthify.util.WaterBroadcastReceiver
-import com.vaibhav.healthify.util.showToast
-import com.vaibhav.healthify.util.viewBinding
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 
@@ -52,6 +50,7 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
                 WaterDashboardScreenEvents.OpenAddWaterDialog -> openAddWaterDialog()
                 is WaterDashboardScreenEvents.ShowToast -> requireContext().showToast(it.message)
                 WaterDashboardScreenEvents.CreateAlarm -> createAlarm()
+                WaterDashboardScreenEvents.ShowNoInternetDialog -> showNoInternetDialog()
             }
         }
     }
@@ -77,7 +76,11 @@ class WaterDashboardFragment : Fragment(R.layout.fragment_water_dashboard) {
             viewModel.onWaterSelected(it)
         }, onDismiss = {
             viewModel.onDialogClosed()
-        }).show(parentFragmentManager, "ADD_WATER")
+        }).show(parentFragmentManager, OPEN_ADD_WATER_DIALOG)
+    }
+
+    private fun showNoInternetDialog() {
+        NoInternetDialogFragment().show(parentFragmentManager, OPEN_NO_INTERNET_DIALOG)
     }
 
     private fun createAlarm() {

@@ -10,10 +10,13 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.ActivityMainBinding
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.OPEN_NO_INTERNET_DIALOG
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.collectLatest
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,11 +45,16 @@ class MainActivity : AppCompatActivity() {
 
     private fun collectUiEvents() {
         lifecycleScope.launchWhenStarted {
-            viewModel.events.collect {
+            viewModel.events.collectLatest {
                 when (it) {
                     is MainActivityScreenEvents.ShowToast -> showToast(it.message)
+                    MainActivityScreenEvents.ShowNoInternetDialog -> showNoInternetDialog()
                 }
             }
         }
+    }
+
+    private fun showNoInternetDialog() {
+        NoInternetDialogFragment().show(supportFragmentManager, OPEN_NO_INTERNET_DIALOG)
     }
 }

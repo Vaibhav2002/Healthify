@@ -32,7 +32,7 @@ class DashboardFragment : Fragment(R.layout.fragment_dashboard) {
     private fun collectUserInfo() = lifecycleScope.launchWhenStarted {
         viewModel.user.collect {
             it?.let { user ->
-                binding.headerText.text = " Hey ${user.username.getFirstName()} !"
+                binding.headerText.text = "Hey ${user.username.getFirstName()} !"
             }
         }
     }

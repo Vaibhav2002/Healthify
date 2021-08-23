@@ -64,7 +64,7 @@ class SleepDashboardViewModel @Inject constructor(
         val resource = sleepRepo.insertIntoSleepLog(getSleepModelClass(sleepDuration))
         stopLoading()
         if (resource is Resource.Error)
-            _events.emit(SleepDashboardScreenEvents.ShowToast(resource.message))
+            handleError(resource)
     }
 
     private suspend fun addExp() {
@@ -108,4 +108,12 @@ class SleepDashboardViewModel @Inject constructor(
         sleepDuration = minutes,
         timeStamp = System.currentTimeMillis()
     )
+
+    private fun handleError(resource: Resource.Error<*>) = viewModelScope.launch {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> SleepDashboardScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> SleepDashboardScreenEvents.ShowToast(resource.message)
+        }
+        _events.emit(event)
+    }
 }

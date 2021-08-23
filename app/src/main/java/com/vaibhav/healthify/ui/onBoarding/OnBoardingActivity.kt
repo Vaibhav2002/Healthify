@@ -41,6 +41,7 @@ class OnBoardingActivity : AppCompatActivity() {
         binding.nextButton.setOnClickListener {
             viewModel.onNextButtonPressed()
         }
+        binding.dotsIndicator.dotsClickable = false
     }
 
     private fun collectUiState() = lifecycleScope.launchWhenStarted {

@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.LeaderboardRepo
+import com.vaibhav.healthify.util.ERROR_TYPE
 import com.vaibhav.healthify.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
@@ -69,26 +70,37 @@ class ProfileViewModel @Inject constructor(
         _uiState.emit(uiState.value.copy(isLoading = true))
         val resource = leaderboardRepo.fetchLeaderBoard()
         _uiState.emit(uiState.value.copy(isLoading = false))
-        if (resource is Resource.Error) {
-            Timber.d(resource.errorType.name)
-            _events.emit(ProfileScreenEvents.ShowToast(resource.message))
+        if (resource is Resource.Error)
+            handleError(resource)
+    }
+
+    private fun handleError(resource: Resource.Error<*>) = viewModelScope.launch {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> ProfileScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> ProfileScreenEvents.ShowToast(resource.message)
         }
+        _events.emit(event)
     }
 
     private fun updateUserSleepLimit(limit: Int) = viewModelScope.launch {
+        Timber.d("Editing sleep Limit in VM")
         _uiState.emit(uiState.value.copy(isLoading = true))
         val resource = authRepo.updateUserSleepLimit(limit)
         _uiState.emit(uiState.value.copy(isLoading = false))
-        val message = if (resource is Resource.Success) "Updated successfully" else resource.message
-        _events.emit(ProfileScreenEvents.ShowToast(message))
+        if (resource is Resource.Success)
+            _events.emit(ProfileScreenEvents.ShowToast("Updated successfully"))
+        else
+            handleError(resource = resource as Resource.Error<*>)
     }
 
     private fun updateUserWaterLimit(limit: Int) = viewModelScope.launch {
         _uiState.emit(uiState.value.copy(isLoading = true))
         val resource = authRepo.updateUserWaterLimit(limit)
         _uiState.emit(uiState.value.copy(isLoading = false))
-        val message = if (resource is Resource.Success) "Updated successfully" else resource.message
-        _events.emit(ProfileScreenEvents.ShowToast(message))
+        if (resource is Resource.Success)
+            _events.emit(ProfileScreenEvents.ShowToast("Updated successfully"))
+        else
+            handleError(resource = resource as Resource.Error<*>)
     }
 
     fun onAboutPressed() = viewModelScope.launch {

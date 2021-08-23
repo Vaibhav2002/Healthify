@@ -10,6 +10,9 @@ import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentSleepDashboardBinding
 import com.vaibhav.healthify.ui.adapters.SleepLogAdapter
 import com.vaibhav.healthify.ui.dialogs.addSleepDialog.AddSleepDialogFragment
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.OPEN_ADD_SLEEP_DIALOG
+import com.vaibhav.healthify.util.OPEN_NO_INTERNET_DIALOG
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,6 +48,7 @@ class SleepDashboardFragment : Fragment(R.layout.fragment_sleep_dashboard) {
             when (it) {
                 SleepDashboardScreenEvents.OpenAddSleepDialog -> openAddSleepDialog()
                 is SleepDashboardScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                SleepDashboardScreenEvents.ShowNoInternetDialog -> showNoInternetDialog()
             }
         }
     }
@@ -74,6 +78,10 @@ class SleepDashboardFragment : Fragment(R.layout.fragment_sleep_dashboard) {
             onDismiss = {
                 viewModel.onDialogClosed()
             }
-        ).show(parentFragmentManager, "ADD_WATER")
+        ).show(parentFragmentManager, OPEN_ADD_SLEEP_DIALOG)
+    }
+
+    private fun showNoInternetDialog() {
+        NoInternetDialogFragment().show(parentFragmentManager, OPEN_NO_INTERNET_DIALOG)
     }
 }

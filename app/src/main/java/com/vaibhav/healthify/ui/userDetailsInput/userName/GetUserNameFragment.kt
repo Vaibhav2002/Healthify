@@ -10,6 +10,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.vaibhav.healthify.R
 import com.vaibhav.healthify.databinding.FragmentGetUserNameBinding
+import com.vaibhav.healthify.ui.dialogs.noInternetDialog.NoInternetDialogFragment
+import com.vaibhav.healthify.util.OPEN_NO_INTERNET_DIALOG
 import com.vaibhav.healthify.util.showToast
 import com.vaibhav.healthify.util.viewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -53,8 +55,13 @@ class GetUserNameFragment : Fragment(R.layout.fragment_get_user_name) {
                         findNavController().navigate(R.id.action_getUserNameFragment_to_userWeightFragment)
                     }
                     is GetUserNameScreenEvents.ShowToast -> requireContext().showToast(it.message)
+                    GetUserNameScreenEvents.ShowNoInternetDialog -> openNoInternetDialog()
                 }
             }
         }
+    }
+
+    private fun openNoInternetDialog() {
+        NoInternetDialogFragment().show(parentFragmentManager, OPEN_NO_INTERNET_DIALOG)
     }
 }

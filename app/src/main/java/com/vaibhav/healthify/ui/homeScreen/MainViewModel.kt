@@ -5,11 +5,10 @@ import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
 import com.vaibhav.healthify.data.repo.SleepRepo
 import com.vaibhav.healthify.data.repo.WaterRepo
+import com.vaibhav.healthify.util.ERROR_TYPE
 import com.vaibhav.healthify.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -21,8 +20,8 @@ class MainViewModel @Inject constructor(
     private val authRepo: AuthRepo
 ) : ViewModel() {
 
-    private val _events = MutableSharedFlow<MainActivityScreenEvents>()
-    val events: SharedFlow<MainActivityScreenEvents> = _events
+    private val _events = MutableStateFlow<MainActivityScreenEvents>(MainActivityScreenEvents.Empty)
+    val events: StateFlow<MainActivityScreenEvents> = _events
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading: StateFlow<Boolean> = _isLoading
@@ -37,7 +36,7 @@ class MainViewModel @Inject constructor(
         val resource = waterRepo.fetchAllWaterLogs()
         stopLoading()
         if (resource is Resource.Error)
-            _events.emit(MainActivityScreenEvents.ShowToast(resource.message))
+            handleError(resource)
     }
 
     private fun loadAllSleepLogs() = viewModelScope.launch {
@@ -45,7 +44,7 @@ class MainViewModel @Inject constructor(
         val resource = sleepRepo.fetchAllSleepLogs()
         stopLoading()
         if (resource is Resource.Error)
-            _events.emit(MainActivityScreenEvents.ShowToast(resource.message))
+            handleError(resource)
     }
 
     private suspend fun stopLoading() {
@@ -54,5 +53,13 @@ class MainViewModel @Inject constructor(
 
     private suspend fun startLoading() {
         _isLoading.emit(true)
+    }
+
+    private suspend fun handleError(resource: Resource.Error<*>) {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> MainActivityScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> MainActivityScreenEvents.ShowToast(resource.message)
+        }
+        _events.emit(event)
     }
 }

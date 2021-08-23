@@ -154,6 +154,7 @@
                                 android:layout_height="wrap_content"
                                 android:alpha="0.8"
                                 android:text="Weight"
+                                android:includeFontPadding="false"
                                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
                                 android:textColor="@color/card2TextColor" />
 
@@ -239,6 +240,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:alpha="0.8"
+                                android:includeFontPadding="false"
                                 android:text="Ranking"
                                 android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Headline6"
                                 android:textColor="@color/card1TextColor" />

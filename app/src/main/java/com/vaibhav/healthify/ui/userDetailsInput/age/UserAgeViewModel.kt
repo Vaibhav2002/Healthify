@@ -3,6 +3,7 @@ package com.vaibhav.healthify.ui.userDetailsInput.age
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
+import com.vaibhav.healthify.util.ERROR_TYPE
 import com.vaibhav.healthify.util.Resource
 import com.vaibhav.healthify.util.USER_DETAILS_UPDATED
 import com.vaibhav.healthify.util.USER_DETAILS_UPDATE_FAILED
@@ -28,6 +29,10 @@ class UserAgeViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
     }
 
     fun onContinueButtonPressed() = viewModelScope.launch {
+        saveUserAge()
+    }
+
+    private suspend fun saveUserAge() {
         _uiState.emit(uiState.value.copy(isLoading = true, isButtonEnabled = false))
         val resource = authRepo.saveUserAge(uiState.value.age)
         _uiState.emit(uiState.value.copy(isLoading = false))
@@ -37,7 +42,15 @@ class UserAgeViewModel @Inject constructor(private val authRepo: AuthRepo) : Vie
             _events.emit(UserAgeScreenEvents.NavigateToHomeScreen)
         } else {
             _uiState.emit(uiState.value.copy(isButtonEnabled = true))
-            _events.emit(UserAgeScreenEvents.ShowToast(USER_DETAILS_UPDATE_FAILED))
+            handleError(resource as Resource.Error<Unit>)
         }
+    }
+
+    private fun handleError(resource: Resource.Error<Unit>) = viewModelScope.launch {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> UserAgeScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> UserAgeScreenEvents.ShowToast(USER_DETAILS_UPDATE_FAILED)
+        }
+        _events.emit(event)
     }
 }

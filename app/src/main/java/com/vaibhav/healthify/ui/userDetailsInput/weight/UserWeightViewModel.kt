@@ -3,9 +3,9 @@ package com.vaibhav.healthify.ui.userDetailsInput.weight
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.vaibhav.healthify.data.repo.AuthRepo
+import com.vaibhav.healthify.util.ERROR_TYPE
 import com.vaibhav.healthify.util.Resource
 import com.vaibhav.healthify.util.USER_DETAILS_UPDATED
-import com.vaibhav.healthify.util.USER_DETAILS_UPDATE_FAILED
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -41,7 +41,15 @@ class UserWeightViewModel @Inject constructor(private val authRepo: AuthRepo) : 
             _events.emit(UserWeightScreenEvents.ShowToast(USER_DETAILS_UPDATED))
             _events.emit(UserWeightScreenEvents.NavigateToNextScreen)
         } else {
-            _events.emit(UserWeightScreenEvents.ShowToast(USER_DETAILS_UPDATE_FAILED))
+            handleError(resource as Resource.Error<Unit>)
         }
+    }
+
+    private fun handleError(resource: Resource.Error<Unit>) = viewModelScope.launch {
+        val event = when (resource.errorType) {
+            ERROR_TYPE.NO_INTERNET -> UserWeightScreenEvents.ShowNoInternetDialog
+            ERROR_TYPE.UNKNOWN -> UserWeightScreenEvents.ShowToast(resource.message)
+        }
+        _events.emit(event)
     }
 }
