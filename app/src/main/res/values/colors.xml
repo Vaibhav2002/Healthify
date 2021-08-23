@@ -43,7 +43,7 @@
     <color name="indicatorTextColor">@color/surface</color>
 
 
-    <color name="bottom_nav_icon_tint">@color/lt_darkpblue</color>
+    <color name="bottom_nav_icon_tint">@color/lt_blue</color>
     <color name="bottom_nav_icon_tint_disabled">@color/gray6</color>
     <color name="bottom_nav_bg">@color/white</color>
 
