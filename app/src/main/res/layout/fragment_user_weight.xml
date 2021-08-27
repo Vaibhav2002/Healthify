@@ -25,7 +25,6 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/backButton">
 
@@ -44,7 +43,7 @@
             style="@style/grayText"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="56dp"
+            android:layout_marginBottom="48dp"
             android:text="@string/this_would_help_us_find_the_perfect_water_limit_for_you"
             android:textAppearance="@style/TextAppearance.MdcTypographyStyles.Caption" />
 

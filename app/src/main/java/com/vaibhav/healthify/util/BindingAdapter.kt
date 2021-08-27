@@ -5,6 +5,7 @@ import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import coil.load
 import coil.size.Scale
+import com.vaibhav.healthify.R
 
 @BindingAdapter("loadImage")
 fun ImageView.loadCoilImage(image: Int) {
@@ -19,6 +20,7 @@ fun ImageView.loadImageUrl(image: String) {
     load(image) {
         scale(Scale.FILL)
         crossfade(true)
+        error(R.drawable.avatar)
     }
 }
 
