@@ -8,6 +8,10 @@
 
 This is a small introduction video about healthify https://youtu.be/QiP8NkIqVQs.
 
+# Blog ✍
+
+To know more about how I build this project, read my article on hashnode
+
 # Application Install
 
 ***You can Install and test latest Healthify app from below 👇***
