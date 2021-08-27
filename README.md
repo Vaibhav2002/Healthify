@@ -80,6 +80,18 @@ Have a look at your daily sleep 😴 amount and statistics of your sleep in the 
 | ![](media/water-dashboard.jpg) | ![](media/sleep-dashboard.jpg)    | ![](media/water-stats.jpg)      | ![](media/sleep-stats.jpg) |
 | ![](media/profile.jpg)  |    ![](media/leaderboard.jpg)    | ![](media/about.jpg)        | ![](media/splash.jpg) |
 
+
+### Technical details 
+
+- Healthify uses Auth0 for user authentication, it supports email based authentication and Google authentication
+- Healthify uses Firebase Firestore as it's primary database.
+- Healthify has full offline support, it uses Android's ROOM database for caching all data offline.
+- Healthify is made using Kotlin and following Modern Android Development practices.
+- Healthify uses all Jetpack libraries and follows MVVM architecture. It also has a G.O.A.T rating in Android's  M.A.D scorecard.
+- Healthify's code follows all the best practices and software development principles which make it a very good learning resource for beginners.
+
+![summary.png](https://cdn.hashnode.com/res/hashnode/image/upload/v1629894600750/lYuPA7nYY.png)
+
 ## Built With 🛠
 - [Kotlin](https://kotlinlang.org/) - First class and official programming language for Android development.
 - [Coroutines](https://kotlinlang.org/docs/reference/coroutines-overview.html) - For asynchronous and more..
