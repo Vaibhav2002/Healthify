@@ -6,13 +6,13 @@
 
 # Video Introduction 📹
 
-This is a small introduction video about healthify  https://youtu.be/MEuoxix5SGY.
+This is a small introduction video about healthify https://youtu.be/QiP8NkIqVQs.
 
 # Application Install
 
 ***You can Install and test latest Healthify app from below 👇***
 
-[![Healthify](https://img.shields.io/badge/Healthify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Vaibhav2002/Healthify/releases/tag/1.0.0)
+[![Healthify](https://img.shields.io/badge/Healthify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Vaibhav2002/Healthify/releases/tag/v1.0.0)
 
 ## Setup
 Clone the repository on your machine. Open the project on your IDE and connect it to firebase and auth0 and everything will be setup.
