@@ -54,7 +54,7 @@ Clone the repository on your machine. Open the project on your IDE and connect i
 **Healthify** has a clean and sleek user interface which makes it easy for people of all age groups use it. 😁
 
 
-![](media/slide-12.png)
+![](media/slide-2.png)
 
 
 **Healthify** uses Auth0 for authentication. It supports email-based authentication as well as Google authentication. **Healthify** also has a smooth user onboarding process.
