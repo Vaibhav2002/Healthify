@@ -10,7 +10,7 @@ This is a small introduction video about healthify https://youtu.be/QiP8NkIqVQs.
 
 # Blog ✍
 
-To know more about how I build this project, read my article on hashnode
+To know more about how I build this project, read my article on https://vaibhav2002.hashnode.dev/healthify-an-app-to-track-your-daily-water-intake-and-sleep-and-boost-your-work-efficiency-auth0hackathon
 
 # Application Install
 
