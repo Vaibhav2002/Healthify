@@ -6,13 +6,17 @@
 
 # Video Introduction 📹
 
-This is a small introduction video about healthify  https://youtu.be/MEuoxix5SGY.
+This is a small introduction video about healthify https://youtu.be/QiP8NkIqVQs.
+
+# Blog ✍
+
+To know more about how I build this project, read my article on https://vaibhav2002.hashnode.dev/healthify-an-app-to-track-your-daily-water-intake-and-sleep-and-boost-your-work-efficiency-auth0hackathon
 
 # Application Install
 
 ***You can Install and test latest Healthify app from below 👇***
 
-[![Healthify](https://img.shields.io/badge/Healthify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Vaibhav2002/Healthify/releases/tag/1.0.0)
+[![Healthify](https://img.shields.io/badge/Healthify✅-APK-red.svg?style=for-the-badge&logo=android)](https://github.com/Vaibhav2002/Healthify/releases/tag/v1.0.0)
 
 ## Setup
 Clone the repository on your machine. Open the project on your IDE and connect it to firebase and auth0 and everything will be setup.
@@ -50,7 +54,7 @@ Clone the repository on your machine. Open the project on your IDE and connect i
 **Healthify** has a clean and sleek user interface which makes it easy for people of all age groups use it. 😁
 
 
-![](media/slide-12.png)
+![](media/slide-2.png)
 
 
 **Healthify** uses Auth0 for authentication. It supports email-based authentication as well as Google authentication. **Healthify** also has a smooth user onboarding process.
