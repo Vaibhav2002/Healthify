@@ -27,13 +27,13 @@ Open strings.xml and add Auth0 credentials
 
 ```xml
 
-    <!--    add your auth0 scheme here-->
+    <!--    add your Auth0 scheme here-->
     <string name="scheme"></string>
 
-    <!--    add your domain name here-->
+    <!--    add your Auth0 domain name here-->
     <string name="domain"></string>
 
-    <!--    add your client id here-->
+    <!--    add your Auth0 client id here-->
     <string name="client"></string>
 
 ```
@@ -42,8 +42,8 @@ Open Secrets.kt in util package and add your Auth0 credentials
 
 ```kotlin
 
-   const val CLIENT_ID = ""            // add you client id here
-   const val DOMAIN_NAME = ""          // add you domain name here
+   const val CLIENT_ID = ""            // add you Auth0 client id here
+   const val DOMAIN_NAME = ""          // add you Auth0 domain name here
 
 ```
 
