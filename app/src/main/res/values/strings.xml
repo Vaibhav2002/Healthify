@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Healthify</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="let_s_get_nstarted">Let\'s Get\nStarted</string>
+    <string name="staying_healthy_is_as_important_as_being_good_at_work">Staying healthy is as important as being good at work.</string>
+
+    <!--    add your auth0 scheme here-->
+    <string name="scheme"></string>
+
+    <!--    add your domain name here-->
+    <string name="domain"></string>
+
+    <!--    add your client id here-->
+    <string name="client"></string>
+
+    <string name="what_should_we_ncall_you">What should we\ncall you ?</string>
+    <string name="enter_your_name">Enter your name</string>
+    <string name="what_s_your_weight">How much do you weigh ?</string>
+    <string name="this_would_help_us_find_the_perfect_water_limit_for_you">This would help us find the perfect water limit for you</string>
+    <string name="what_s_your_age">What\'s your age ?</string>
+    <string name="this_would_help_you_find_the_perfect_sleep_limit_for_you">This would help you find the perfect sleep limit for you</string>
+    <string name="fotd_sample_1">Water makes up approximately 70% of a human’s body weight – but DON’T stop drinking water to lose weight!</string>
+    <string name="fact_of_the_day">Fact of the day</string>
+    <string name="number_picker_formatter">%02d</string>
+    <string name="get_started">Get Started</string>
+    <string name="appTagline">Track your daily water intake and sleep and be fit with Healthify</string>
+</resources>
