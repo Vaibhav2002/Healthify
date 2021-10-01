@@ -27,14 +27,14 @@ Open strings.xml and add Auth0 credentials
 
 ```xml
 
-    <!--    add your Auth0 scheme here-->
-    <string name="scheme"></string>
+<!--    add your Auth0 scheme here-->
+<string name="scheme"></string>
 
-    <!--    add your Auth0 domain name here-->
-    <string name="domain"></string>
+<!--    add your Auth0 domain name here-->
+<string name="domain"></string>
 
-    <!--    add your Auth0 client id here-->
-    <string name="client"></string>
+<!--    add your Auth0 client id here-->
+<string name="client"></string>
 
 ```
 
@@ -42,14 +42,14 @@ Open Secrets.kt in util package and add your Auth0 credentials
 
 ```kotlin
 
-   const val CLIENT_ID = ""            // add you Auth0 client id here
-   const val DOMAIN_NAME = ""          // add you Auth0 domain name here
+const val CLIENT_ID = ""            // add you Auth0 client id here
+const val DOMAIN_NAME = ""          // add you Auth0 domain name here
 
 ```
 
 ## About
 
- It uses Firebase and Auth0 as its backend. It uses Auth0 for email based auth and Google auth and Firebase Firestore as its database.
+It uses Firebase and Auth0 as its backend. It uses Auth0 for email based auth and Google auth and Firebase Firestore as its database.
 
 - Fully functionable. 
 - Clean and Simple Material UI.
